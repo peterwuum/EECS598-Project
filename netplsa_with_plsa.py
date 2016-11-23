@@ -108,7 +108,7 @@ class PLSA(object):
 						self._probability[i, j, k] /= denominator;
 
 	def _MStep(self):
-		
+
 		# update topic-word matrix
 		for k in range(0, self.number_of_topic):
 			denominator = 0
@@ -119,7 +119,7 @@ class PLSA(object):
 				denominator = np.sum(self._word_topic[k,:])
 			if denominator == 0:
 				self._word_topic[k, :] = 1.0 / self._numWord
-			else：
+			else:
 				self._word_topic[k, :] /= denominator
 		# update document-topic matrix
 		for i in range(0, self._numDoc):
