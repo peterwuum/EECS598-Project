@@ -9,6 +9,9 @@ from scipy.sparse import csr_matrix
 # import enchant
 import pickle
 
+# TODO:
+# do not remove the document with 0 word or remove the adjacency matrix with corresponding column or row
+
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, number_of_topic = 10, maxIteration = 30, threshold = 10.0, network = True, lambda_par = 0.1, gamma_par = 0.1):
 		self._doc_path = doc_path
@@ -68,8 +71,8 @@ class PLSA(object):
 							# print word
 					# else:
 					# 	temp.pop(key)
-				if len(temp):
-					list_of_doc_word_count.append(temp)
+				# if len(temp):
+				list_of_doc_word_count.append(temp)
 		
 		self._numWord = len(self._CommonWordList)
 		self._numDoc = len(list_of_doc_word_count)
@@ -219,10 +222,10 @@ class PLSA(object):
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
-	# doc_path = 'titlesUnderCSLayer1Sampled1000.txt'
-	doc_path = 'test.txt'
+	doc_path = 'titlesUnderCSLayer1Sampled1000.txt'
+	# doc_path = 'test.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'synthetic_data'
+	path_to_adj = 'adjacentMatrixUnderCS'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
