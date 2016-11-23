@@ -108,7 +108,7 @@ class PLSA(object):
 						self._probability[i, j, k] /= denominator;
 
 	def _MStep(self):
-
+		
 		# update topic-word matrix
 		for k in range(0, self.number_of_topic):
 			denominator = 0
@@ -116,14 +116,11 @@ class PLSA(object):
 				self._word_topic[k, j] = 0
 				for i in range(0, self._numDoc):
 					self._word_topic[k, j] += self.doc_term_matrix[i, j] * self._probability[i, j, k]
-	           denominator = np.sum(self._word_topic[k,:])
+				denominator = np.sum(self._word_topic[k,:])
 			if denominator == 0:
-				for j in range(0, self._numWord):
-					self._word_topic[k, :] = 1.0 / self._numWord
-			else:
-				for j in range(0, self._numWord):
-					self._word_topic[k, :] /= denominator
-			
+				self._word_topic[k, :] = 1.0 / self._numWord
+			else：
+				self._word_topic[k, :] /= denominator
 		# update document-topic matrix
 		for i in range(0, self._numDoc):
 			for k in range(0, self.number_of_topic):
@@ -131,12 +128,12 @@ class PLSA(object):
 				denominator = 0
 				for j in range(0, self._numWord):
 					self._doc_topic[i, k] += self.doc_term_matrix[i, j] * self._probability[i, j, k]
-	          denominator = np.sum(self._doc_topic[i,:])
-	          if denominator == 0:
-	              self._doc_topic[i,:] = 1.0 / self.number_of_topic
-	          else:
-	              self._doc_topic[i,:] /= denominator
-
+				denominator = np.sum(self._doc_topic[i,:])
+			if denominator == 0:
+				self._doc_topic[i,:] = 1.0 / self.number_of_topic
+			else:
+				self._doc_topic[i,:] /= denominator
+		
 		if self._network:
 			old_loglikelihood = self._old
 			new_loglikelihood = self._LogLikelihood()
@@ -151,7 +148,6 @@ class PLSA(object):
 						break
 					else:
 						old_loglikelihood = new_loglikelihood
-
 				for i in range(0, 5):
 					old_loglikelihood = new_loglikelihood
 					old_doc_topic = self._doc_topic
