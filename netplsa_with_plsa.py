@@ -19,7 +19,6 @@ class PLSA(object):
 		with open(stop_word_path, 'r') as INFILE:
 			for line in INFILE.readlines():
 				self._stopword.add(line.strip())
-		print self._stopword
 		
 		self.number_of_topic = number_of_topic
 		self._maxIteration = maxIteration
@@ -38,10 +37,7 @@ class PLSA(object):
 			self._adj = pickle.load(INFILE)
 		
 		self._lap = laplacian(self._adj)
-		print self._lap
-		
 		self._adj = normalize(self._adj, norm='l1', axis=1)
-		print self._adj
 		self._network = network
 		self._lambda = lambda_par
 		self._gamma = gamma_par
@@ -175,12 +171,12 @@ class PLSA(object):
 			for j in range(0, self._numWord):
 				tmp = 0
 				for k in range(0, self.number_of_topic):
-					tmp += self._word_topic[k, j] * self._doc_topic[i, k]
+					tmp += self._probability[i, j, k] * np.log(self._word_topic[k, j] * self._doc_topic[i, k])
 				if tmp > 0:
-					loglikelihood += self.doc_term_matrix[i, j] * np.log(tmp)
+					loglikelihood += self.doc_term_matrix[i, j] * tmp
 
 		if self._network:
-			regular = np.trace(np.dot(self._lap.dot(self._doc_topic.T), self._doc_topic))
+			regular = np.trace(np.dot((self._lap.dot(self._doc_topic)).T, self._doc_topic))
 			loglikelihood = (1 - self._lambda) * loglikelihood - self._lambda / 2 * regular
 		
 		return loglikelihood
