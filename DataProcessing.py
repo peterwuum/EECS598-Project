@@ -141,6 +141,46 @@ def get_1000_connected_papers(fields_file):
 
   create_adjacent_matrix(chosen_paper_ids)
 
+  # TODO: 
+  # 1. paper_to_keywords
+  # 2. paperidsUnderCS
+  # 3. titleUnderCS
+  create_paper_id_list(chosen_paper_ids)
+  create_title_list(chosen_paper_ids)
+  create_paper_to_keywords(chosen_paper_ids, paper_to_keywords)
+
+def create_paper_id_list(chosen_paper_ids):
+  ids = open('PROCESSED/PaperIdsUnderCS.txt', 'w')  
+  for paper_id in chosen_paper_ids:
+    ids.write('%s\n' % (paper_id))
+  ids.close()
+
+def create_title_list(chosen_paper_ids):
+  chosen_paper_ids_set = set(chosen_paper_ids)
+
+  titles = open('PROCESSED/titlesUnderCS.txt', 'w')
+  with open('DATA/Papers.txt', 'r') as data:
+    for line in data:
+      tmp = line.strip().split('\t')
+      paper_id = tmp[0]
+      title = tmp[2]
+      if paper_id in chosen_paper_ids_set:
+        paper_to_title[paper_id] = title
+
+
+  for paper_id in chosen_paper_ids:
+    titles.write('%s\n' % (paper_to_title[paper_id]))
+  titles.close()
+
+def create_paper_to_keywords(chosen_paper_ids, paper_to_keywords):
+  file = open('PROCESSED/PaperToKeywords.txt', 'w')
+  for paper_id in chosen_paper_ids:
+    keywords = ''
+    for keyword in paper_to_keywords[paper_id]:
+      keywords += keywords + '\t'
+    keywords = keywords[:-1] + '\n'
+    file.write(keywords)
+
 def create_adjacent_matrix(chosen_paper_ids):
   id_count = 0
   ids_under_CS = {}
