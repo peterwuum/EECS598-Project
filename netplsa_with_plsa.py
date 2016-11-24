@@ -13,7 +13,7 @@ import pickle
 # do not remove the document with 0 word or remove the adjacency matrix with corresponding column or row
 
 class PLSA(object):
-	def __init__(self, doc_path, stop_word_path, path_to_adj, number_of_topic = 10, maxIteration = 30, threshold = 10.0, network = True, lambda_par = 0.1, gamma_par = 0.1):
+	def __init__(self, doc_path, stop_word_path, path_to_adj, number_of_topic = 10, maxIteration = 30, threshold = 10.0, network = False, lambda_par = 0.1, gamma_par = 0.1):
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -174,7 +174,7 @@ class PLSA(object):
 		if self._network:
 			regular = np.trace(np.dot((self._lap.dot(self._doc_topic)).T, self._doc_topic))
 			loglikelihood = (1 - self._lambda) * loglikelihood - self._lambda / 2 * regular
-		
+		print loglikelihood
 		return loglikelihood
 
 	def RunPLSA(self):
