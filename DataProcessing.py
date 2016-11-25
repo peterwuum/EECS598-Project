@@ -158,6 +158,7 @@ def create_paper_id_list(chosen_paper_ids):
 def create_title_list(chosen_paper_ids):
   chosen_paper_ids_set = set(chosen_paper_ids)
 
+  paper_to_title = {}
   titles = open('PROCESSED/titlesUnderCS.txt', 'w')
   with open('DATA/Papers.txt', 'r') as data:
     for line in data:
@@ -177,7 +178,7 @@ def create_paper_to_keywords(chosen_paper_ids, paper_to_keywords):
   for paper_id in chosen_paper_ids:
     keywords = ''
     for keyword in paper_to_keywords[paper_id]:
-      keywords += keywords + '\t'
+      keywords += keyword + '\t'
     keywords = keywords[:-1] + '\n'
     file.write(keywords)
 
