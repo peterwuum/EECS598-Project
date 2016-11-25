@@ -11,7 +11,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 
 class PLSA(object):
-	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, number_of_topic = 10, maxIteration = 30, 
+	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, number_of_topic = 10, maxIteration = 30, 
 			threshold = 10.0, network = False, lambda_par = 0.5, gamma_par = 0.1):
 		self._doc_path = doc_path
 		self._stopword = set()
@@ -50,10 +50,15 @@ class PLSA(object):
 				self._docname_to_id[re.split('\t', line)[0]] = name2id
 				name2id += 1
 
-		# self._doc_label = list()
-		# with open(path_to_paperid, 'r') as INFILE:
-		# 	for line in INFILE.readlines():
-		# 		self._doc_label.append(self._docname_to_id[line.strip()])
+		# doc_label is a list of set of documents label ids
+		self._doc_label = list()
+		with open(path_to_paperid, 'r') as INFILE:
+			for line in INFILE.readlines():
+				ids = re.split('\t', line.strip())
+				temp = set()
+				for item in ids:
+					temp.add(item)
+				self._doc_label.append(temp)
 
 
 	def _preprocessing(self):
@@ -250,10 +255,9 @@ if __name__ == '__main__':
 	# doc_path = 'test.txt'
 	stop_word_path = 'stopwords.txt'
 	path_to_adj = 'adjacentMatrixUnderCS'
-	path_to_idname = 'filtered_10_fields.txt'
-	# todo: 
-	# path_to_paperid = 
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname)
+	path_to_idname = 'filtered_10_fields.txt' 
+	path_to_paperid = 'PaperToKeyWords.txt'
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
 	path_to_save = 'plsa_data'
