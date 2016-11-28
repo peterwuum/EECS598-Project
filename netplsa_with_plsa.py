@@ -168,8 +168,7 @@ class PLSA(object):
 				tmp = 0
 				for k in range(0, self.number_of_topic):
 					tmp += self._probability[i, j, k] * np.log(self._word_topic[k, j] * self._doc_topic[i, k])
-				if tmp > 0:
-					loglikelihood += self.doc_term_matrix[i, j] * tmp
+				loglikelihood += self.doc_term_matrix[i, j] * tmp
 
 		if self._network:
 			regular = np.trace(np.dot((self._lap.dot(self._doc_topic)).T, self._doc_topic))
