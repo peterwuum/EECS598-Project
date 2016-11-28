@@ -141,7 +141,7 @@ def get_1000_connected_papers(fields_file):
 
   create_adjacent_matrix(chosen_paper_ids)
 
-  # TODO: 
+  #ㄋ TODO: 
   # 1. paper_to_keywords
   # 2. paperidsUnderCS
   # 3. titleUnderCS
@@ -200,9 +200,8 @@ def create_adjacent_matrix(chosen_paper_ids):
       if paper1 in ids_under_CS and paper2 in ids_under_CS:
         id1 = ids_under_CS[paper1]
         id2 = ids_under_CS[paper2]
-        adj_matrix[id1, id1] = 1.0
-        adj_matrix[id2, id2] = 1.0
         adj_matrix[id1, id2] = 1.0
+        adj_matrix[id2, id1] = 1.0
 
   pickle.dump(adj_matrix, open('PROCESSED/adjacentMatrixUnderCS', 'wb'))
 
