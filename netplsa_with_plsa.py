@@ -252,7 +252,6 @@ class PLSA(object):
 
 if __name__ == '__main__':
 	doc_path = 'titlesUnderCS.txt'
-	# doc_path = 'test.txt'
 	stop_word_path = 'stopwords.txt'
 	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
