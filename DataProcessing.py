@@ -100,17 +100,18 @@ def bfs(paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords
       for keyword in paper_to_keywords[curr]:
         if keyword in keywords_under_CS and len(papers_based_on_area[keyword]) < number_of_papers:
           papers_based_on_area[keyword].add(curr)
+
+          # Add the neighbors into queue
+          cnt = 0
+          if curr not in graph:
+            continue
+          for neighbor in graph[curr]:
+            if neighbor not in visited and cnt < 10:
+              queue.append(neighbor)
+              cnt += 1
           break
 
     visited.add(curr)
-
-    cnt = 0
-    if curr not in graph:
-      continue
-    for neighbor in graph[curr]:
-      if neighbor not in visited and cnt < 10:
-        queue.append(neighbor)
-        cnt += 1
   
 
 def get_1000_connected_papers(fields_file):
@@ -129,6 +130,7 @@ def get_1000_connected_papers(fields_file):
   for area, papers in seed_based_on_area.items():
     print ('start BFS for %s...' % area, len(papers))
     for degree, paper_id in papers:
+      print ('start at area %s paper_id %s with degree %d' % (area, paper_id, degree))
       bfs(paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords, visited)
       if len(papers_based_on_area[area]) >= number_of_papers:
         break
@@ -141,7 +143,7 @@ def get_1000_connected_papers(fields_file):
 
   create_adjacent_matrix(chosen_paper_ids)
 
-  #ㄋ TODO: 
+  # TODO: 
   # 1. paper_to_keywords
   # 2. paperidsUnderCS
   # 3. titleUnderCS
