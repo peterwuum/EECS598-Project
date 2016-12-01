@@ -8,11 +8,11 @@ from scipy.sparse import csr_matrix
 import pickle
 from sklearn.feature_extraction.text import TfidfTransformer
 
-
+# TODO: change the EM to distributed version
 
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, number_of_topic = 10, maxIteration = 30, 
-			threshold = 10.0, network = False, lambda_par = 0.5, gamma_par = 0.1):
+			threshold = 0.02, network = False, lambda_par = 0.5, gamma_par = 0.1):
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -227,7 +227,7 @@ class PLSA(object):
 			self._EStep()
 			self._MStep()
 			self._new = self._LogLikelihood()			
-			if(self._old != 1 and abs(self._new - self._old) < self._threshold):
+			if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
 				break
 			self._old = self._new
 
