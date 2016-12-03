@@ -15,7 +15,7 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		current_label = i
 		train_label_list = list()
 		for index in range(0, number_of_train):
-			if current_label in label_list[i]:
+			if current_label in label_list[index]:
 				train_label_list.append(1)
 			else:
 				train_label_list.append(0)
@@ -25,7 +25,7 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		X_test = doc_topic[number_of_train : ]
 		
 		class_dict = dict()
-		class_dict[1] = len(doc_topic) / (label_category * np.bincount(1))
+		class_dict[1] = np.bincount(train_label_list) / len(X_train)
 		
 		model = svm.SVC(kernel='linear', class_weight = class_dict)
 		model.fit(X_train, train_label_list)
