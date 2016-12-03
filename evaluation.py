@@ -24,10 +24,11 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		X_train = doc_topic[0 : number_of_train]
 		X_test = doc_topic[number_of_train : ]
 		
-		class_dict = dict()
-		class_dict[1] = np.bincount(train_label_list) / len(X_train)
+		# class_dict = dict()
+		# class_dict[1] = np.bincount(train_label_list) / len(X_train)
+		# model = svm.SVC(kernel='linear', class_weight = class_dict)
 		
-		model = svm.SVC(kernel='linear', class_weight = class_dict)
+		model = svm.SVC(kernel='linear')
 		model.fit(X_train, train_label_list)
 		predict = model.predict(X_test)
 		
