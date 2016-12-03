@@ -8,11 +8,15 @@ from scipy.sparse import csr_matrix
 import pickle
 from sklearn.feature_extraction.text import TfidfTransformer
 
+from nltk.stem import WordNetLemmatizer
+
+
+
 # TODO: change the EM to distributed version
 
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, number_of_topic = 10, maxIteration = 30, 
-			threshold = 0.02, network = False, lambda_par = 0.5, gamma_par = 0.1):
+			threshold = 0.02, network = False, lambda_par = 0.5, gamma_par = 0.1, lemmatize = True):
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -31,6 +35,10 @@ class PLSA(object):
 		self._probability = 0
 		self._numDoc = 0
 		self._numWord = 0
+
+		self._wordnet_lemmatizer = False
+		if lemmatize:
+			self._wordnet_lemmatizer = WordNetLemmatizer()
 
 		with open(path_to_adj, 'r') as INFILE:
 			self._adj = pickle.load(INFILE)
@@ -70,19 +78,44 @@ class PLSA(object):
 		with open (self._doc_path, 'r') as INFILE:
 			for line in INFILE.readlines():
 				temp = Counter(re.split(' ', line.strip()))
-				for key, val in temp.items():
-					if key in self._stopword:
-						temp.pop(key)
-						continue
-					elif len(key) < 3:
-						temp.pop(key)
-						continue
+				
+				temp = temp.items()
+				temp_list = list()
+				
+				for item in temp:
+					key = item[0]
+					val = item[1]
+
+					if self._wordnet_lemmatizer:
+						try:
+							word = self._wordnet_lemmatizer.lemmatize(key)
+						except:
+							word = key
 					else:
-						word_doc_list[key] += 1
-						if key not in self._CommonWordList:
-							self._CommonWordList.append(key)
-							# print key
-				list_of_doc_word_count.append(temp)
+						word = key
+					
+					if word in self._stopword:
+						temp.pop(temp.index(item))
+						continue
+					
+					elif len(word) < 3:
+						temp.pop(temp.index(item))
+						continue
+					
+					else:
+						word_doc_list[word] += 1
+						if word not in self._CommonWordList:
+							self._CommonWordList.append(word)
+						if self._wordnet_lemmatizer:
+							temp_item = list(item)
+							temp_item[0] = word
+							temp_list.append(tuple(temp_item))
+				
+				if not self._wordnet_lemmatizer:
+					list_of_doc_word_count.append(temp)
+				else:
+					list_of_doc_word_count.append(temp_list)
+	
 
 		self._numDoc = len(list_of_doc_word_count)
 		print 'document'
@@ -113,9 +146,9 @@ class PLSA(object):
 		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
 		
 		for i in range(0, len(list_of_doc_word_count)):
-			for key, val in list_of_doc_word_count[i].items():
-				if key in self._CommonWordList:
-					self.doc_term_matrix[i][self._CommonWordList.index(key)] = val
+			for item in list_of_doc_word_count[i]:
+				if item[0] in self._CommonWordList:
+					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] = item[1]
 
 		# Select words which have top k highest entropy
 		col_sum = self.doc_term_matrix.sum(axis=0)
@@ -130,9 +163,9 @@ class PLSA(object):
 		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
 
 		for i in range(0, len(list_of_doc_word_count)):
-			for key, val in list_of_doc_word_count[i].items():
-				if key in _CommonWordListSet:
-					self.doc_term_matrix[i][self._CommonWordList.index(key)] = val		
+			for item in list_of_doc_word_count[i]:
+				if item[0] in _CommonWordListSet:
+					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] = item[1]		
 
 		print 'Built processed adjacent matrix with size (%d, %d)' % self.doc_term_matrix.shape
 
@@ -291,11 +324,11 @@ class PLSA(object):
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
-	doc_path = 'PROCESSED/titlesUnderCS.txt'
+	doc_path = 'titlesUnderCS.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS'
+	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PROCESSED/PaperToKeywords.txt'
+	path_to_paperid = 'PaperToKeywords.txt'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network=True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
