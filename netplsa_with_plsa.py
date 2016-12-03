@@ -9,6 +9,8 @@ import pickle
 from sklearn.feature_extraction.text import TfidfTransformer
 
 from nltk.stem import WordNetLemmatizer
+from nltk.stem.lancaster import LancasterStemmer
+
 
 
 
@@ -16,7 +18,7 @@ from nltk.stem import WordNetLemmatizer
 
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, number_of_topic = 10, maxIteration = 30, 
-			threshold = 0.02, network = False, lambda_par = 0.5, gamma_par = 0.1, lemmatize = True):
+			threshold = 0.02, network = False, lambda_par = 0.5, gamma_par = 0.1, lemmatize = False, stemmer = True):
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -39,6 +41,10 @@ class PLSA(object):
 		self._wordnet_lemmatizer = False
 		if lemmatize:
 			self._wordnet_lemmatizer = WordNetLemmatizer()
+		
+		self._lancaster_stemmer = False
+		if stemmer:
+			self._lancaster_stemmer = LancasterStemmer()
 
 		with open(path_to_adj, 'r') as INFILE:
 			self._adj = pickle.load(INFILE)
@@ -91,6 +97,11 @@ class PLSA(object):
 							word = self._wordnet_lemmatizer.lemmatize(key)
 						except:
 							word = key
+					elif self._lancaster_stemmer:
+						try:
+							word = self._lancaster_stemmer.stem(key)
+						except:
+							word = key
 					else:
 						word = key
 					
@@ -106,12 +117,12 @@ class PLSA(object):
 						word_doc_list[word] += 1
 						if word not in self._CommonWordList:
 							self._CommonWordList.append(word)
-						if self._wordnet_lemmatizer:
+						if self._wordnet_lemmatizer or self._lancaster_stemmer:
 							temp_item = list(item)
 							temp_item[0] = word
 							temp_list.append(tuple(temp_item))
 				
-				if not self._wordnet_lemmatizer:
+				if not self._wordnet_lemmatizer or self._lancaster_stemmer:
 					list_of_doc_word_count.append(temp)
 				else:
 					list_of_doc_word_count.append(temp_list)
