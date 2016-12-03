@@ -24,6 +24,7 @@ class PLSA(object):
 		self._threshold = threshold
 		self._CommonWordList = list()
 
+		self._numSelectedWord = 300
 		self.doc_term_matrix = 0
 		self._doc_topic = 0
 		self._word_topic = 0
@@ -97,28 +98,48 @@ class PLSA(object):
 			# 	count += 1
 		print '\n\n'
 
-		min_threhold = 0.005 * self._numDoc
-		max_threhold = 0.05 * self._numDoc
+		# min_threhold = 0.005 * self._numDoc
+		# max_threhold = 0.05 * self._numDoc
 
-		for key, val in word_doc_list.items():
-			if val < min_threhold or val > max_threhold:
-				self._CommonWordList.pop(self._CommonWordList.index(key))
+		# for key, val in word_doc_list.items():
+		# 	if val < min_threhold or val > max_threhold:
+		# 		self._CommonWordList.pop(self._CommonWordList.index(key))
 
 		self._numWord = len(self._CommonWordList)
 		print 'word'
 		print self._numWord
 		
+		# Create initial adjacent matrix
 		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
-		print 'finish build matrix'
 		
 		for i in range(0, len(list_of_doc_word_count)):
 			for key, val in list_of_doc_word_count[i].items():
 				if key in self._CommonWordList:
 					self.doc_term_matrix[i][self._CommonWordList.index(key)] = val
-		
+
+		# Select words which have top k highest entropy
+		col_sum = self.doc_term_matrix.sum(axis=0)
+		p_matrix = self.doc_term_matrix / col_sum[np.newaxis, :]
+		word_entropy = np.multiply(p_matrix, np.log(p_matrix)).sum(axis=0)
+
+		ind = np.argpartition(word_entropy, -self._numSelectedWord)[-self._numSelectedWord:]
+		self._CommonWordList = [self._CommonWordList[i] for i in ind]
+		_CommonWordListSet = set(self._CommonWordList)
+
+		self._numWord = self._numSelectedWord
+		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
+
+		for i in range(0, len(list_of_doc_word_count)):
+			for key, val in list_of_doc_word_count[i].items():
+				if key in _CommonWordListSet:
+					self.doc_term_matrix[i][self._CommonWordList.index(key)] = val		
+
+		print 'Built processed adjacent matrix with size (%d, %d)' % self.doc_term_matrix.shape
+
+
 		# transformer = TfidfTransformer(smooth_idf = False)
 		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
-		print self.doc_term_matrix
+		# print self.doc_term_matrix
 
 	def _initParameters(self):
 		normalization = np.sum(self._doc_topic, axis = 1)
@@ -220,15 +241,35 @@ class PLSA(object):
 		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic))
 		self._initParameters()
 		
+		doc_term_matrix = self.doc_term_matrix
+		_doc_topic = self._doc_topic
+		_word_topic = self._word_topic
+		_probability = self._probability
+
 		# until convergence
 		for i in range(0, self._maxIteration):
 			print 'number of iteration' + '\t' + str(i)
-			self._EStep()
-			self._MStep()
-			self._new = self._LogLikelihood()			
+			try:
+				self._EStep()
+				self._MStep()
+				self._new = self._LogLikelihood()			
+			except ZeroDivisionError:
+				print 'Division by zero! Break the loop'
+				break
+
+			doc_term_matrix = self.doc_term_matrix
+			_doc_topic = self._doc_topic
+			_word_topic = self._word_topic
+			_probability = self._probability
+
 			if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
 				break
 			self._old = self._new
+
+		self.doc_term_matrix = doc_term_matrix
+		self._doc_topic = _doc_topic
+		self._word_topic = _word_topic
+		self._probability = _probability
 
 	def print_topic_word_matrix(self, top_n_words):
 		# first, sort the words in each topic
@@ -250,12 +291,12 @@ class PLSA(object):
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
-	doc_path = 'titlesUnderCS.txt'
+	doc_path = 'PROCESSED/titlesUnderCS.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS'
+	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeyWords.txt'
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid)
+	path_to_paperid = 'PROCESSED/PaperToKeywords.txt'
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network=True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
 	path_to_save = 'plsa_data'
