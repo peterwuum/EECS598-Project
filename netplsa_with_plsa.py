@@ -93,14 +93,17 @@ class PLSA(object):
 
 					if self._wordnet_lemmatizer:
 						try:
-							word = str(self._wordnet_lemmatizer.lemmatize(key))
+							word = str(self._wordnet_lemmatizer.lemmatize(str(self._wordnet_lemmatizer.lemmatize(key)), pos = 'v'))
+
 						except:
 							word = key
+
 					elif self._lancaster_stemmer:
 						try:
 							word = str(self._lancaster_stemmer.stem(key))
 						except:
 							word = key
+
 					else:
 						word = key
 					
@@ -171,7 +174,7 @@ class PLSA(object):
 			temp = p_matrix[:, i][p_matrix[:, i] > 0]
 			word_entropy[i] = np.dot(temp, np.log(temp))
 
-		print 'word_entropy\t%s' % word_entropy
+		# print 'word_entropy\t%s' % word_entropy
 		ind = np.argpartition(word_entropy, -self._numWord)[-self._numWord:]
 		_CommonWordListTmp = []
 		_indexTmp = []
@@ -356,11 +359,11 @@ class PLSA(object):
 
 if __name__ == '__main__':
 	np.seterr(all='raise')
-	doc_path = 'PROCESSED/titlesUnderCS.txt'
+	doc_path = 'titlesUnderCS.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS'
+	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PROCESSED/PaperToKeywords.txt'
+	path_to_paperid = 'PaperToKeywords.txt'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network=True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
