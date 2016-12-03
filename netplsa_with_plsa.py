@@ -132,15 +132,15 @@ class PLSA(object):
 		print 'document'
 		print self._numDoc
 		
-		count = 0
-		temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
+		# count = 0
+		# temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
 		
-		for item in temp:
-			print item[0] + '\t' + str(item[1])
-			# if val >= 10:
-			# 	print key
-			# 	count += 1
-		print '\n\n'
+		# for item in temp:
+		# 	print item[0] + '\t' + str(item[1])
+		# 	# if val >= 10:
+		# 	# 	print key
+		# 	# 	count += 1
+		# print '\n\n'
 
 		# min_threhold = 0.005 * self._numDoc
 		# max_threhold = 0.05 * self._numDoc
@@ -164,11 +164,30 @@ class PLSA(object):
 		# Select words which have top k highest entropy
 		col_sum = self.doc_term_matrix.sum(axis=0)
 		p_matrix = self.doc_term_matrix / col_sum[np.newaxis, :]
-		word_entropy = np.multiply(p_matrix, np.log(p_matrix)).sum(axis=0)
 
-		ind = np.argpartition(word_entropy, -self._numSelectedWord)[-self._numSelectedWord:]
-		self._CommonWordList = [self._CommonWordList[i] for i in ind]
+		word_entropy = np.zeros(shape = self._numWord)
+
+		for i in range(0, len(self._CommonWordList)):
+			temp = p_matrix[:, i][p_matrix[:, i] > 0]
+			word_entropy[i] = np.dot(temp, np.log(temp))
+
+		print 'word_entropy\t%s' % word_entropy
+		ind = np.argpartition(word_entropy, -self._numWord)[-self._numWord:]
+		_CommonWordListTmp = []
+		_indexTmp = []
+		for i in ind:
+			if word_entropy[i] < 0 and len(_CommonWordListTmp) < self._numSelectedWord:
+				_CommonWordListTmp.append(self._CommonWordList[i])
+				_indexTmp.append(i)
+
+		self._CommonWordList = _CommonWordListTmp
 		_CommonWordListSet = set(self._CommonWordList)
+
+		print ''
+		print 'Selected words: '
+		for i in range(self._numSelectedWord):
+			print self._CommonWordList[i], '\t\t\t\t', word_entropy[_indexTmp[i]]
+		print ''
 
 		self._numWord = self._numSelectedWord
 		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
@@ -297,7 +316,7 @@ class PLSA(object):
 				self._EStep()
 				self._MStep()
 				self._new = self._LogLikelihood()			
-			except ZeroDivisionError:
+			except:
 				print 'Division by zero! Break the loop'
 				break
 
@@ -306,7 +325,8 @@ class PLSA(object):
 			_word_topic = self._word_topic
 			_probability = self._probability
 
-			if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
+			# if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
+			if self._old != 1 and abs(self._new - self._old < 1):
 				break
 			self._old = self._new
 
