@@ -1,19 +1,18 @@
-from collections import Counter
+from collections import Counter, defaultdict
 import re
 import numpy as np
 from scipy.sparse.csgraph import laplacian
 from sklearn.preprocessing import normalize
 
 from scipy.sparse import csr_matrix
-# from nltk.stem import WordNetLemmatizer
-# import enchant
 import pickle
+from sklearn.feature_extraction.text import TfidfTransformer
 
-# TODO:
-# do not remove the document with 0 word or remove the adjacency matrix with corresponding column or row
+
 
 class PLSA(object):
-	def __init__(self, doc_path, stop_word_path, path_to_adj, number_of_topic = 10, maxIteration = 30, threshold = 10.0, network = False, lambda_par = 0.1, gamma_par = 0.1):
+	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, number_of_topic = 10, maxIteration = 30, 
+			threshold = 10.0, network = False, lambda_par = 0.5, gamma_par = 0.1):
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -31,8 +30,7 @@ class PLSA(object):
 		self._probability = 0
 		self._numDoc = 0
 		self._numWord = 0
-		# self.lemmatizer = WordNetLemmatizer()
-		# self.check_eng = enchant.Dict("en_US")
+
 		with open(path_to_adj, 'r') as INFILE:
 			self._adj = pickle.load(INFILE)
 		
@@ -45,16 +43,33 @@ class PLSA(object):
 		self._old = 1
 		self._new = 1
 
+		self._docname_to_id = dict()
+		name2id = 0
+		with open(path_to_idname, 'r') as INFILE:
+			for line in INFILE.readlines():
+				self._docname_to_id[re.split('\t', line)[0]] = name2id
+				name2id += 1
+
+		# doc_label is a list of set of documents label ids
+		self._doc_label = list()
+		with open(path_to_paperid, 'r') as INFILE:
+			for line in INFILE.readlines():
+				ids = re.split('\t', line.strip())
+				temp = set()
+				for item in ids:
+					temp.add(item)
+				self._doc_label.append(temp)
+
+
 	def _preprocessing(self):
 		list_of_doc_word_count = list()
+		# document frequency
+		word_doc_list = defaultdict(int)
 		
 		with open (self._doc_path, 'r') as INFILE:
 			for line in INFILE.readlines():
 				temp = Counter(re.split(' ', line.strip()))
 				for key, val in temp.items():
-					# if self.check_eng.check(key):
-						# word = self.lemmatizer.lemmatize(key)
-					# word = key
 					if key in self._stopword:
 						temp.pop(key)
 						continue
@@ -62,26 +77,48 @@ class PLSA(object):
 						temp.pop(key)
 						continue
 					else:
+						word_doc_list[key] += 1
 						if key not in self._CommonWordList:
 							self._CommonWordList.append(key)
-							# print word
-					# else:
-					# 	temp.pop(key)
-				# if len(temp):
+							# print key
 				list_of_doc_word_count.append(temp)
-		
-		self._numWord = len(self._CommonWordList)
+
 		self._numDoc = len(list_of_doc_word_count)
 		print 'document'
 		print self._numDoc
+		
+		count = 0
+		temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
+		
+		for item in temp:
+			print item[0] + '\t' + str(item[1])
+			# if val >= 10:
+			# 	print key
+			# 	count += 1
+		print '\n\n'
+
+		min_threhold = 0.005 * self._numDoc
+		max_threhold = 0.05 * self._numDoc
+
+		for key, val in word_doc_list.items():
+			if val < min_threhold or val > max_threhold:
+				self._CommonWordList.pop(self._CommonWordList.index(key))
+
+		self._numWord = len(self._CommonWordList)
 		print 'word'
 		print self._numWord
+		
 		self.doc_term_matrix = np.zeros(shape = (self._numDoc, self._numWord))
 		print 'finish build matrix'
 		
 		for i in range(0, len(list_of_doc_word_count)):
 			for key, val in list_of_doc_word_count[i].items():
-				self.doc_term_matrix[i][self._CommonWordList.index(key)] = val
+				if key in self._CommonWordList:
+					self.doc_term_matrix[i][self._CommonWordList.index(key)] = val
+		
+		# transformer = TfidfTransformer(smooth_idf = False)
+		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
+		print self.doc_term_matrix
 
 	def _initParameters(self):
 		normalization = np.sum(self._doc_topic, axis = 1)
@@ -108,7 +145,7 @@ class PLSA(object):
 						self._probability[i, j, k] /= denominator;
 
 	def _MStep(self):
-
+		old_loglikelihood = self._LogLikelihood()
 		# update topic-word matrix
 		for k in range(0, self.number_of_topic):
 			denominator = 0
@@ -116,30 +153,30 @@ class PLSA(object):
 				self._word_topic[k, j] = 0
 				for i in range(0, self._numDoc):
 					self._word_topic[k, j] += self.doc_term_matrix[i, j] * self._probability[i, j, k]
-				denominator = np.sum(self._word_topic[k,:])
+			
+			denominator = np.sum(self._word_topic[k,:])
 			if denominator == 0:
 				self._word_topic[k, :] = 1.0 / self._numWord
 			else:
 				self._word_topic[k, :] /= denominator
 		# update document-topic matrix
 		for i in range(0, self._numDoc):
+			denominator = 0
 			for k in range(0, self.number_of_topic):
 				self._doc_topic[i, k] = 0
-				denominator = 0
 				for j in range(0, self._numWord):
 					self._doc_topic[i, k] += self.doc_term_matrix[i, j] * self._probability[i, j, k]
-				denominator = np.sum(self._doc_topic[i,:])
+			
+			denominator = np.sum(self._doc_topic[i,:])
 			if denominator == 0:
 				self._doc_topic[i,:] = 1.0 / self.number_of_topic
 			else:
 				self._doc_topic[i,:] /= denominator
 		
 		if self._network:
-			old_loglikelihood = self._old
+			# old_loglikelihood = self._old
 			new_loglikelihood = self._LogLikelihood()
-			if new_loglikelihood > old_loglikelihood:
-				return
-			else:
+			if new_loglikelihood < old_loglikelihood:
 				while True:
 					old_doc_topic = self._doc_topic
 					self._doc_topic = (1 - self._gamma) * old_doc_topic + self._gamma * self._adj.dot(old_doc_topic)
@@ -148,16 +185,16 @@ class PLSA(object):
 						break
 					else:
 						old_loglikelihood = new_loglikelihood
-				for i in range(0, 5):
+			for i in range(0, 5):
+				old_loglikelihood = new_loglikelihood
+				old_doc_topic = self._doc_topic
+				self._doc_topic = (1 - self._gamma) * old_doc_topic + self._gamma * self._adj.dot(old_doc_topic)
+				new_loglikelihood = self._LogLikelihood()
+				if new_loglikelihood < old_loglikelihood:
+					self._doc_topic = old_doc_topic
+					break
+				else:
 					old_loglikelihood = new_loglikelihood
-					old_doc_topic = self._doc_topic
-					self._doc_topic = (1 - self._gamma) * old_doc_topic + self._gamma * self._adj.dot(old_doc_topic)
-					new_loglikelihood = self._LogLikelihood()
-					if new_loglikelihood < old_loglikelihood:
-						self._doc_topic = old_doc_topic
-						break
-					else:
-						old_loglikelihood = new_loglikelihood
 
 
 	# calculate the log likelihood
@@ -167,7 +204,7 @@ class PLSA(object):
 			for j in range(0, self._numWord):
 				tmp = 0
 				for k in range(0, self.number_of_topic):
-					tmp += self._probability[i, j, k] * np.log(self._word_topic[k, j] * self._doc_topic[i, k])
+					tmp += self._probability[i, j, k] * (np.log(self._word_topic[k, j]) + np.log(self._doc_topic[i, k]))
 				loglikelihood += self.doc_term_matrix[i, j] * tmp
 
 		if self._network:
@@ -213,11 +250,13 @@ class PLSA(object):
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
-	doc_path = 'titlesUnderCSLayer1Sampled1000.txt'
+	doc_path = 'titlesUnderCS.txt'
 	# doc_path = 'test.txt'
 	stop_word_path = 'stopwords.txt'
 	path_to_adj = 'adjacentMatrixUnderCS'
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj)
+	path_to_idname = 'filtered_10_fields.txt' 
+	path_to_paperid = 'PaperToKeyWords.txt'
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
 	path_to_save = 'plsa_data'
