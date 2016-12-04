@@ -29,7 +29,7 @@ class PLSA(object):
 		self._threshold = threshold
 		self._CommonWordList = list()
 
-		self._numSelectedWord = 300
+		self._numSelectedWord = 1500
 		self.doc_term_matrix = 0
 		self._doc_topic = 0
 		self._word_topic = 0
@@ -57,12 +57,11 @@ class PLSA(object):
 		self._old = 1
 		self._new = 1
 
-		self._docname_to_id = dict()
-		name2id = 0
+		self._label_category = list()
+		# name2id = 0
 		with open(path_to_idname, 'r') as INFILE:
 			for line in INFILE.readlines():
-				self._docname_to_id[re.split('\t', line)[0]] = name2id
-				name2id += 1
+				self._label_category.append(re.split('\t', line)[0])
 
 		# doc_label is a list of set of documents label ids
 		self._doc_label = list()
@@ -182,14 +181,14 @@ class PLSA(object):
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
-			if word_entropy[i] < -1 and len(_CommonWordListTmp) < self._numSelectedWord:
+			if word_entropy[i] < -2 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
 		self._CommonWordList = _CommonWordListTmp
 		_CommonWordListSet = set(self._CommonWordList)
 
-
+		self._numSelectedWord = len(self._CommonWordList)
 		print ''
 		print 'Selected words: '
 		for i in range(self._numSelectedWord):
@@ -221,7 +220,7 @@ class PLSA(object):
 
 	
 	def _EStep(self):
-	  	for k in range(0, self.number_of_topic):
+		for k in range(0, self.number_of_topic):
 			self._probability[:, :, k] = np.outer(self._word_topic[k, :], self._doc_topic[:, k]).T
 		denominator = self._probability.sum(2)
 
@@ -277,27 +276,37 @@ class PLSA(object):
 					break
 				else:
 					old_loglikelihood = new_loglikelihood
+		
+		self._word_topic += 1e-20
+		self._doc_topic += 1e-20
+
 
 
 	# calculate the log likelihood
 	def _LogLikelihood(self):
+		# loglikelihood = 0
+		# for i in range(0, self._numDoc):
+		# 	for j in range(0, self._numWord):
+		# 		# tmp = 0
+		# 		# for k in range(0, self.number_of_topic):
+		# 		try:
+		# 			np.log(self._word_topic[:, j])
+		# 		except:
+		# 			print 'np.log(self._word_topic[i, :])', np.sum(self._word_topic[i, :] == 0), np.sum(self._word_topic == 0), self._word_topic.shape
+		# 			raise
+		# 		try:
+		# 			np.log(self._doc_topic[i, :])
+		# 		except:
+		# 			print 'np.log(self._doc_topic[i, :])', np.sum(self._doc_topic[i, :] == 0), np.sum(self._doc_topic == 0), self._doc_topic.shape
+		# 			raise
+		# 		loglikelihood += self.doc_term_matrix[i, j] * np.dot(self._probability[i, j, :], (np.log(self._word_topic[:, j]) + np.log(self._doc_topic[i, :])))
+		# 		# loglikelihood += self.doc_term_matrix[i, j] * tmp
+
+
 		loglikelihood = 0
-		for i in range(0, self._numDoc):
-			for j in range(0, self._numWord):
-				# tmp = 0
-				# for k in range(0, self.number_of_topic):
-				try:
-					np.log(self._word_topic[:, j])
-				except:
-					print 'np.log(self._word_topic[i, :])', np.sum(self._word_topic[i, :] == 0), np.sum(self._word_topic == 0), self._word_topic.shape
-					raise
-				try:
-					np.log(self._doc_topic[i, :])
-				except:
-					print 'np.log(self._doc_topic[i, :])', np.sum(self._doc_topic[i, :] == 0), np.sum(self._doc_topic == 0), self._doc_topic.shape
-					raise
-				loglikelihood += self.doc_term_matrix[i, j] * np.dot(self._probability[i, j, :], (np.log(self._word_topic[:, j]) + np.log(self._doc_topic[i, :])))
-				# loglikelihood += self.doc_term_matrix[i, j] * tmp
+		for k in range(0, self.number_of_topic):
+			loglikelihood += np.sum(self.doc_term_matrix * self._probability[:, :, k] * \
+				np.log(np.outer(self._word_topic[k, :], self._doc_topic[:, k]).T))
 
 		if self._network:
 			regular = np.trace(np.dot((self._lap.dot(self._doc_topic)).T, self._doc_topic))
@@ -307,9 +316,9 @@ class PLSA(object):
 
 	def RunPLSA(self):
 		self._preprocessing()
-		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic)
-		self._word_topic = np.random.rand(self.number_of_topic, self._numWord)
-		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic))
+		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
+		self._word_topic = np.random.rand(self.number_of_topic, self._numWord).astype('f')
+		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
 		self._initParameters()
 		
 		doc_term_matrix = self.doc_term_matrix
@@ -369,12 +378,14 @@ class PLSA(object):
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
-	np.seterr(all = 'raise')
-	doc_path = 'PROCESSED2/titlesUnderCS.txt'
+	# np.seterr(all = 'raise')
+	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
+	np.random.seed(0)
+	doc_path = 'titlesUnderCS_10000.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'PROCESSED2/adjacentMatrixUnderCS'
+	path_to_adj = 'adjacentMatrixUnderCS_10000'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PROCESSED2/PaperToKeywords.txt'
+	path_to_paperid = 'PaperToKeywords_10000.txt'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
