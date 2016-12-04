@@ -1,6 +1,8 @@
-# EECS598-Project
-Group Member:<br />
-Zheng Wu<br />
-Wei-Hsin Chen<br />
-Yuqi Gu<br />
-Xuefei Zhang<br />
+# EECS598 - Project
+## Group Members:
+ - Zheng Wu
+ - Wei-Hsin Chen
+ - Yuqi Gu
+ - Xuefei Zhang
+
+## Introduction:
