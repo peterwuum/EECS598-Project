@@ -33,7 +33,8 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		predict = model.predict(X_test)
 		
 		for index in range(0, len(predict)):
-			test_label[index].add(current_label)
+			if predict[index] == 1:
+				test_label[index].add(current_label)
 
 	if accuracy_measure == 'tight':
 		count = 0
