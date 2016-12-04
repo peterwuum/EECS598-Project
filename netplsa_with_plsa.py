@@ -1,3 +1,4 @@
+import time
 from collections import Counter, defaultdict
 import re
 import numpy as np
@@ -220,56 +221,39 @@ class PLSA(object):
 
 	
 	def _EStep(self):
-		for i in range(0, self._numDoc):
-			for j in range(0, self._numWord):
-				denominator = 0;
-				# optimize this part
-				'''
-				for k in range(0, self.number_of_topic):
-					self._probability[i, j, k] = self._word_topic[k, j] * self._doc_topic[i, k]
-					denominator += self._probability[i, j, k]
-				'''
-				self._probability[i, j, :] = np.multiply(self._word_topic[:, j], self._doc_topic[i, :])
-				denominator = np.sum(self._probability[i, j, :])
+	  	for k in range(0, self.number_of_topic):
+			self._probability[:, :, k] = np.outer(self._word_topic[k, :], self._doc_topic[:, k]).T
+		denominator = self._probability.sum(2)
 
-				if denominator == 0:
-					
-					# for k in range(0, self.number_of_topic):
-					# 	self._probability[i, j, k] = 0;
-					
-					self._probability[i, j, :] = np.zeros(self.number_of_topic)
-				else:
-					# for k in range(0, self.number_of_topic):
-					self._probability[i, j, :] /= denominator;
+		for k in range(0, self.number_of_topic):
+			# if denominator == 0:
+			self._probability[:, :, k][denominator == 0] = np.zeros((self._numDoc, self._numWord))[denominator == 0]	
+			self._probability[:, :, k][denominator > 0] /= denominator[denominator > 0]
 
 	def _MStep(self):
 		old_loglikelihood = self._LogLikelihood()
+
 		# update topic-word matrix
 		for k in range(0, self.number_of_topic):
-			denominator = 0
-			for j in range(0, self._numWord):
-				# self._word_topic[k, j] = 0
-				# # for i in range(0, self._numDoc):
-				self._word_topic[k, j] = np.dot(self.doc_term_matrix[:, j], self._probability[:, j, k])
-			
-			denominator = np.sum(self._word_topic[k,:])
-			if denominator == 0:
-				self._word_topic[k, :] = 1.0 / self._numWord
-			else:
-				self._word_topic[k, :] /= denominator
+		   self._word_topic[k, :] = (self.doc_term_matrix * self._probability[:, :, k]).sum(axis = 0)
+		#self._word_topic = normalize(self._word_topic, axis = 1, norm = 'l1')
+		denominator = np.sum(self._word_topic, axis = 1)
+		temp = np.zeros(self.number_of_topic)
+		temp[denominator != 0] = np.ones(sum(denominator!=0))/denominator[denominator!=0]
+		temp[denominator == 0] = np.ones(sum(denominator == 0))*1.0/self._numWord
+		self._word_topic[denominator==0, :] = np.ones((sum(denominator == 0), self._numWord)) 
+		self._word_topic = np.dot(np.diag(temp), self._word_topic)
+		
 		# update document-topic matrix
-		for i in range(0, self._numDoc):
-			denominator = 0
-			for k in range(0, self.number_of_topic):
-				# self._doc_topic[i, k] = 0
-				# for j in range(0, self._numWord):
-				self._doc_topic[i, k] = np.dot(self.doc_term_matrix[i, :], self._probability[i, :, k])
-			
-			denominator = np.sum(self._doc_topic[i,:])
-			if denominator == 0:
-				self._doc_topic[i,:] = 1.0 / self.number_of_topic
-			else:
-				self._doc_topic[i,:] /= denominator
+		for k in range(0,self.number_of_topic):
+		   self._doc_topic[:, k] = (self.doc_term_matrix * self._probability[:, :, k]).sum(axis = 1)
+		#self._doc_topic = normalize(self._doc_topic, axis = 1, norm = 'l1')
+		denominator = np.sum(self._doc_topic, axis = 1)
+		temp = np.zeros(self._numDoc)
+		temp[denominator != 0] = np.ones(sum(denominator!=0))/denominator[denominator!=0]
+		temp[denominator == 0] = np.ones(sum(denominator == 0)) * 1.0/self.number_of_topic
+		self._doc_topic[denominator == 0, :] = np.ones((sum(denominator == 0),self.number_of_topic))
+		self._doc_topic = np.dot(np.diag(temp), self._doc_topic)
 		
 		if self._network:
 			# old_loglikelihood = self._old
@@ -302,6 +286,16 @@ class PLSA(object):
 			for j in range(0, self._numWord):
 				# tmp = 0
 				# for k in range(0, self.number_of_topic):
+				try:
+					np.log(self._word_topic[:, j])
+				except:
+					print 'np.log(self._word_topic[i, :])', np.sum(self._word_topic[i, :] == 0), np.sum(self._word_topic == 0), self._word_topic.shape
+					raise
+				try:
+					np.log(self._doc_topic[i, :])
+				except:
+					print 'np.log(self._doc_topic[i, :])', np.sum(self._doc_topic[i, :] == 0), np.sum(self._doc_topic == 0), self._doc_topic.shape
+					raise
 				loglikelihood += self.doc_term_matrix[i, j] * np.dot(self._probability[i, j, :], (np.log(self._word_topic[:, j]) + np.log(self._doc_topic[i, :])))
 				# loglikelihood += self.doc_term_matrix[i, j] * tmp
 
@@ -323,16 +317,18 @@ class PLSA(object):
 		_word_topic = self._word_topic
 		_probability = self._probability
 
+		total_start_time = time.time()
 		# until convergence
 		for i in range(0, self._maxIteration):
 			print 'number of iteration' + '\t' + str(i)
-			try:
-				self._EStep()
-				self._MStep()
-				self._new = self._LogLikelihood()			
-			except:
-				print 'Division by zero! Break the loop'
-				break
+			start_time = time.time()
+			# try:
+			self._EStep()
+			self._MStep()
+			self._new = self._LogLikelihood()			
+			# except:
+			# 	print 'Division by zero! Break the loop'
+			# 	break
 
 			doc_term_matrix = self.doc_term_matrix
 			_doc_topic = self._doc_topic
@@ -344,6 +340,10 @@ class PLSA(object):
 				break
 			self._old = self._new
 
+			print("--- takes %s seconds ---" % (time.time() - start_time))
+			print 
+
+		print("--- %s seconds in total ---" % (time.time() - total_start_time))
 		self.doc_term_matrix = doc_term_matrix
 		self._doc_topic = _doc_topic
 		self._word_topic = _word_topic
@@ -370,11 +370,11 @@ class PLSA(object):
 
 if __name__ == '__main__':
 	np.seterr(all = 'raise')
-	doc_path = 'titlesUnderCS.txt'
+	doc_path = 'PROCESSED2/titlesUnderCS.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS'
+	path_to_adj = 'PROCESSED2/adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeywords.txt'
+	path_to_paperid = 'PROCESSED2/PaperToKeywords.txt'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
