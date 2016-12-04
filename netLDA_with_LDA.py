@@ -67,11 +67,13 @@ class LDA(object):
 
 		self._CommonWordList = list()
 
+		
 		# parameter for online LDA
 		self._tau = tau + 1
 		self._kappa = kappa
 		self._t = 0
 
+		# parameter for update alpha and eta version
 		if auto_set_hyperparameter:
 			alpha = float(1) / self._topic
 			eta = float(1) / self._topic
@@ -194,7 +196,7 @@ class LDA(object):
 		
 
 		# Select words which have top k highest entropy
-		col_sum = self.doc_term_matrix.sum(axis=0)
+		col_sum = self.doc_term_matrix.sum(axis = 0)
 		p_matrix = self.doc_term_matrix / col_sum[np.newaxis, :]
 
 
@@ -312,14 +314,8 @@ class LDA(object):
 		return self._eta
 	
 
-
-
-	# TODO: need to change the format of EM algorithm
-	# _EStep _Mstep _LogLikelihood
-
-	
 	# get the document - topic distribution matrix without updating the hyperparameter and topic - word matrix
-	def Inference(self, wordindex, wordcount):
+	def _EStep(self, wordindex, wordcount):
 		# temp gamma is initialized in the E_step function
 		corpus_size = len(wordcount)
 		gamma = np.random.gamma(100.0, 1.0 / 100.0, (corpus_size, self._topic))
@@ -356,26 +352,39 @@ class LDA(object):
 		sufficient_stats *= self._beta
 		return gamma, sufficient_stats
 
-	# do e step which will be used in m step function
-	def _E_Step(self, wordindex, wordcount):
-		gamma, sufficient_stats = self.Inference(wordindex, wordcount)
-		return gamma, sufficient_stats
 
-	def _perplexity(self, wordindex, wordcount, gamma, total_document = None):
+	def _MStep(self, wordindex, wordcount):
+		self._rhot = pow(self._tau + self._t, -self._kappa)
+		# update lamda.
+		gamma, sufficient_stats = self._E_Step(wordindex, wordcount)
+		# update alpha based on the new gamma (just based on partial data not the whole dataset)
+		if self._update_alpha:
+			self._alpha = self._alpha_update(gamma)
+		# Estimate held-out likelihood for current values of lambda.(perplexity)
+		# loglikelihood = self._loglikelihood_Function(wordindex, wordcount, gamma)
+		perplexity = self._perplexity(wordindex, wordcount, gamma, total_document = None)
+		# Update lambda based on documents.
+		self._topic_word = (1 - self._rhot) * self._topic_word + self._rhot * (self._eta + self._document * sufficient_stats / self._batch)
+		self._logbeta = self._DirichletExpectation(self._topic_word)
+		self._beta = np.exp(self._logbeta)
+		self._t += 1
+		
+		# update eta based on the new lambda
+		if self._update_eta:
+			self._eta = self._eta_update(self._topic_word)
+
+		return gamma, perplexity
+
+	def _LogLikelihood(self, wordindex, wordcount, gamma, total_document = None):
 		corpus_word = sum(count for document in wordcount for count in document)
 		if total_document == None:
 			sample_rate = self._document * 1.0 / len(wordcount)
 		else:
 			sample_rate = total_document * 1.0 / len(wordcount)
 
-		# note: change perword_bound to perplexity
-		perplexity = self._approximate(wordindex, wordcount, gamma, subsampling = sample_rate / (sample_rate * corpus_word))
-		# perplexity = np.exp2(-perword_bound)
-		return perplexity
+		subsampling = sample_rate / (sample_rate * corpus_word)
 
-
-	def _approximate(self, wordindex, wordcount, gamma, subsampling = 1.0):
-		loss = 0
+		loglikelihood = 0
 		logtheta = self._DirichletExpectation(gamma)
 		theta = np.exp(logtheta)
 
@@ -390,51 +399,27 @@ class LDA(object):
 			for i in range(0, len(index)):
 				# phi[i] = np.log(np.sum(np.exp(logtheta[d, :] + self._logbeta[:, index[i]]))) 
 				phi[i] = np.log(sum(np.exp(logtheta[d, :] + self._logbeta[:, index[i]] - max(logtheta[d, :] + self._logbeta[:, index[i]])))) + max(logtheta[d, :] + self._logbeta[:, index[i]])
-			loss += np.sum(count * phi)
-			loss += np.sum((self._alpha - gamma_d) * logtheta[d, :])
-			loss += np.sum(gammaln(gamma_d) - gammaln(self._alpha))
-			loss += gammaln(np.sum(self._alpha)) - gammaln(np.sum(gamma_d))
+			loglikelihood += np.sum(count * phi)
+			loglikelihood += np.sum((self._alpha - gamma_d) * logtheta[d, :])
+			loglikelihood += np.sum(gammaln(gamma_d) - gammaln(self._alpha))
+			loglikelihood += gammaln(np.sum(self._alpha)) - gammaln(np.sum(gamma_d))
 
-		# tradition version of update loss function
-		# loss += np.sum((self._alpha - gamma) * logtheta)
-		# loss += np.sum(gammaln(gamma) - gammaln(self._alpha))
-		# loss += sum(gammaln(self._alpha * self._topic) - gammaln(np.sum(gamma, 1)))
+		# tradition version of update loglikelihood function
+		# loglikelihood += np.sum((self._alpha - gamma) * logtheta)
+		# loglikelihood += np.sum(gammaln(gamma) - gammaln(self._alpha))
+		# loglikelihood += sum(gammaln(self._alpha * self._topic) - gammaln(np.sum(gamma, 1)))
 		
-		loss = loss * subsampling
-		loss += np.sum((self._eta - self._topic_word) * self._logbeta)
-		loss += np.sum(gammaln(self._topic_word) - gammaln(self._eta))
+		loglikelihood = loglikelihood * subsampling
+		loglikelihood += np.sum((self._eta - self._topic_word) * self._logbeta)
+		loglikelihood += np.sum(gammaln(self._topic_word) - gammaln(self._eta))
 		# self._eta is a scalar
 		if np.ndim(self._eta) == 0:
-			loss += np.sum(gammaln(self._eta * self._numWord) - gammaln(np.sum(self._topic_word, 1)))
+			loglikelihood += np.sum(gammaln(self._eta * self._numWord) - gammaln(np.sum(self._topic_word, 1)))
 		else:
-			loss += np.sum(gammaln(np.sum(self._eta, 1)) - gammaln(np.sum(self._topic_word, 1)))
-		# loss += np.sum(gammaln(np.sum(self._eta, 1)) - gammaln(np.sum(self._topic_word, 1)))
-		return loss
+			loglikelihood += np.sum(gammaln(np.sum(self._eta, 1)) - gammaln(np.sum(self._topic_word, 1)))
+		# loglikelihood += np.sum(gammaln(np.sum(self._eta, 1)) - gammaln(np.sum(self._topic_word, 1)))
+		return loglikelihood
 
-
-
-
-	def _M_Step(self, wordindex, wordcount):
-		self._rhot = pow(self._tau + self._t, -self._kappa)
-		# update lamda.
-		gamma, sufficient_stats = self._E_Step(wordindex, wordcount)
-		# update alpha based on the new gamma (just based on partial data not the whole dataset)
-		if self._update_alpha:
-			self._alpha = self._alpha_update(gamma)
-		# Estimate held-out likelihood for current values of lambda.(perplexity)
-		# loss = self._Loss_Function(wordindex, wordcount, gamma)
-		perplexity = self._perplexity(wordindex, wordcount, gamma, total_document = None)
-		# Update lambda based on documents.
-		self._topic_word = (1 - self._rhot) * self._topic_word + self._rhot * (self._eta + self._document * sufficient_stats / self._batch)
-		self._logbeta = self._DirichletExpectation(self._topic_word)
-		self._beta = np.exp(self._logbeta)
-		self._t += 1
-		
-		# update eta based on the new lambda
-		if self._update_eta:
-			self._eta = self._eta_update(self._topic_word)
-
-		return gamma, perplexity
 
 	def run_topic_model(self):
 		self._preprocessing()
@@ -576,26 +561,5 @@ class LDA(object):
 	def save_all_data(self, path_to_save):
 		with open(path_to_save, 'w') as outfile:
 			pickle.dump(self, outfile)
-
-	def feature_for_new_documents(self, corpus_matrix, update = False):
-		number_of_document = len(corpus_matrix)
-		wordindex = list()
-		wordcount = list()
-		for doc_word_list in corpus_matrix:
-			temp_index = list()
-			temp_count = list()
-			for i, val in enumerate(doc_word_list): 
-				if (val != 0):
-					temp_index.append(i)
-					temp_count.append(val)
-			wordindex.append(temp_index)
-			wordcount.append(temp_count)
-
-		if not update:
-			# just return the topic feature of the new document
-			return self.Inference(wordindex, wordcount)[0]
-		else:
-			# need to update the topic word matrix
-			return self._M_Step(wordindex, wordcount)[0]
 
 			
