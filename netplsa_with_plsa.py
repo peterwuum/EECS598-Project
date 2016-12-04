@@ -29,7 +29,7 @@ class PLSA(object):
 		self._threshold = threshold
 		self._CommonWordList = list()
 
-		self._numSelectedWord = 1000
+		self._numSelectedWord = 300
 		self.doc_term_matrix = 0
 		self._doc_topic = 0
 		self._word_topic = 0
@@ -181,7 +181,7 @@ class PLSA(object):
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
-			if word_entropy[i] < -1.5 and len(_CommonWordListTmp) < self._numSelectedWord:
+			if word_entropy[i] < -2 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
@@ -381,11 +381,11 @@ if __name__ == '__main__':
 	# np.seterr(all = 'raise')
 	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
 	np.random.seed(0)
-	doc_path = 'titlesUnderCS_10000.txt'
+	doc_path = 'titlesUnderCS.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS_10000'
+	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeywords_10000.txt'
+	path_to_paperid = 'PaperToKeywords.txt'
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
