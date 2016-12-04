@@ -29,7 +29,7 @@ class PLSA(object):
 		self._threshold = threshold
 		self._CommonWordList = list()
 
-		self._numSelectedWord = 1500
+		self._numSelectedWord = 1000
 		self.doc_term_matrix = 0
 		self._doc_topic = 0
 		self._word_topic = 0
@@ -181,7 +181,7 @@ class PLSA(object):
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
-			if word_entropy[i] < -2 and len(_CommonWordListTmp) < self._numSelectedWord:
+			if word_entropy[i] < -1.5 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
