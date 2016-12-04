@@ -1,20 +1,26 @@
 import numpy as np
 from sklearn import svm
 from collections import defaultdict
+import pickle
+from netplsa_with_plsa import PLSA
+from random import shuffle
 
-def classification(doc_topic, label_list, label_category, percentage, accuracy_measure = 'tight'):
+def classification(doc_topic, label_list, label_category_list, percentage, accuracy_measure = 'both'):
 	classifier_list = list()
+	number_of_train = int(len(doc_topic) * percentage)
+	shuffle(label_list)
 
-	number_of_train = len(doc_topic) * percentage
 	test_true_label = label_list[number_of_train : ]
 
 	# doc -> list of label
 	test_label = defaultdict(set)
 	# label list is doc -> set of label
-	for i in range(0, label_category):
+	for i in label_category_list:
 		current_label = i
 		train_label_list = list()
 		for index in range(0, number_of_train):
+			# print current_label
+			# print label_list[index]
 			if current_label in label_list[index]:
 				train_label_list.append(1)
 			else:
@@ -28,7 +34,8 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		# class_dict[1] = np.bincount(train_label_list) / len(X_train)
 		# model = svm.SVC(kernel='linear', class_weight = class_dict)
 		
-		model = svm.SVC(kernel='linear', class_weight = 'auto')
+		model = svm.SVC(kernel='linear', class_weight = 'balanced')
+		# print train_label_list
 		model.fit(X_train, train_label_list)
 		predict = model.predict(X_test)
 		
@@ -65,4 +72,11 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		print 'loose accuracy: ' + str(float(count_loose) / len(test_label))
 		return (float(count_tight)/len(test_label), float(count_loose)/len(test_label))
 
-
+if __name__ == '__main__':
+	data_file = './plsa_data'
+	with open(data_file, 'r') as INFILE:
+		data = pickle.load(INFILE)
+	data_percentage = [0.5, 0.6, 0.7, 0.8, 0.9]
+	for i in data_percentage:
+		print 'data_percentage: ' + str(i)
+		classification(data.doc_term_matrix, data._doc_label, data._label_category, i)
