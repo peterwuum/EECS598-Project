@@ -134,22 +134,24 @@ class PLSA(object):
 		print 'document'
 		print self._numDoc
 		
-		# count = 0
-		# temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
+		"""
+		count = 0
+		temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
 		
-		# for item in temp:
-		# 	print item[0] + '\t' + str(item[1])
-		# 	# if val >= 10:
-		# 	# 	print key
-		# 	# 	count += 1
-		# print '\n\n'
+		for item in temp:
+			print item[0] + '\t' + str(item[1])
+			# if val >= 10:
+			# 	print key
+			# 	count += 1
+		print '\n\n'
 
-		# min_threhold = 0.005 * self._numDoc
-		# max_threhold = 0.05 * self._numDoc
+		min_threhold = 0.005 * self._numDoc
+		max_threhold = 0.05 * self._numDoc
 
-		# for key, val in word_doc_list.items():
-		# 	if val < min_threhold or val > max_threhold:
-		# 		self._CommonWordList.pop(self._CommonWordList.index(key))
+		for key, val in word_doc_list.items():
+			if val < min_threhold or val > max_threhold:
+				self._CommonWordList.pop(self._CommonWordList.index(key))
+		"""
 
 		self._numWord = len(self._CommonWordList)
 		print 'word'
@@ -161,7 +163,8 @@ class PLSA(object):
 		for i in range(0, len(list_of_doc_word_count)):
 			for item in list_of_doc_word_count[i]:
 				if item[0] in self._CommonWordList:
-					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] = item[1]
+					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] += item[1]
+		
 
 		# Select words which have top k highest entropy
 		col_sum = self.doc_term_matrix.sum(axis=0)
@@ -174,17 +177,18 @@ class PLSA(object):
 			temp = p_matrix[:, i][p_matrix[:, i] > 0]
 			word_entropy[i] = np.dot(temp, np.log(temp))
 
-		# print 'word_entropy\t%s' % word_entropy
-		ind = np.argpartition(word_entropy, -self._numWord)[-self._numWord:]
+		print 'word_entropy size\t%s' % word_entropy.shape
+		ind = np.argsort(word_entropy)
 		_CommonWordListTmp = []
 		_indexTmp = []
-		for i in ind:
-			if word_entropy[i] < 0 and len(_CommonWordListTmp) < self._numSelectedWord:
+		for i in ind[::-1]:
+			if word_entropy[i] < -1 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
 		self._CommonWordList = _CommonWordListTmp
 		_CommonWordListSet = set(self._CommonWordList)
+
 
 		print ''
 		print 'Selected words: '
@@ -198,10 +202,9 @@ class PLSA(object):
 		for i in range(0, len(list_of_doc_word_count)):
 			for item in list_of_doc_word_count[i]:
 				if item[0] in _CommonWordListSet:
-					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] = item[1]		
+					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] += item[1]		
 
 		print 'Built processed adjacent matrix with size (%d, %d)' % self.doc_term_matrix.shape
-
 
 		# transformer = TfidfTransformer(smooth_idf = False)
 		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
@@ -329,7 +332,7 @@ class PLSA(object):
 			_probability = self._probability
 
 			# if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
-			if self._old != 1 and abs(self._new - self._old < 1):
+			if self._old != 1 and abs(self._new - self._old < 4):
 				break
 			self._old = self._new
 
