@@ -28,24 +28,41 @@ def classification(doc_topic, label_list, label_category, percentage, accuracy_m
 		# class_dict[1] = np.bincount(train_label_list) / len(X_train)
 		# model = svm.SVC(kernel='linear', class_weight = class_dict)
 		
-		model = svm.SVC(kernel='linear')
+		model = svm.SVC(kernel='linear', class_weight = 'auto')
 		model.fit(X_train, train_label_list)
 		predict = model.predict(X_test)
 		
 		for index in range(0, len(predict)):
-			test_label[index].add(current_label)
+			if predict[index] == 1:
+				test_label[index].add(current_label)
 
 	if accuracy_measure == 'tight':
 		count = 0
 		for i in range(0, len(test_label)):
 			if test_label[i] == test_true_label[i]:
 				count += 1
-		print 'tight accuracy: ' + str(count)
-		return count
-	else:
+		print 'tight accuracy: ' + str(float(count) / len(test_label))
+		return float(count) / len(test_label)
+	
+	elif accuracy_measure == 'loose':
 		count = 0
 		for i in range(0, len(test_label)):
 			if len(test_label[i].intersection(test_true_label[i])) >= 1:
 				count += 1
-		print 'loose accuracy: ' + str(count)
-		return count
+		print 'loose accuracy: ' + str(float(count) / len(test_label))
+		return float(count) / len(test_label)
+	
+	else:
+		count_tight = 0
+		count_loose = 0
+		for i in range(0, len(test_label)):
+			if test_label[i] == test_true_label[i]:
+				count_tight += 1
+			if len(test_label[i].intersection(test_true_label[i])) >= 1:
+				count_loose += 1
+		
+		print 'tight accuracy: ' + str(float(count_tight) / len(test_label))
+		print 'loose accuracy: ' + str(float(count_loose) / len(test_label))
+		return (float(count_tight)/len(test_label), float(count_loose)/len(test_label))
+
+
