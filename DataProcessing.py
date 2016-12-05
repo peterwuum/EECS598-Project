@@ -19,13 +19,6 @@ optional input:
 
 """
 
-
-
-# Initialization
-number_of_papers = 100
-DEFAULT_OPERATION = ""
-DEFAULT_CHOSEN_FIELD_FILE = "filtered_10_fields.txt"
-
 def parse_fields(chosen_fields_file):
   keywords = set()
   with open(chosen_fields_file, 'r') as data:
@@ -72,7 +65,7 @@ def create_graph_based_on_paper_ids(paper_ids):
 
   return graph
 
-def get_seeds_from_each_keyword(graph, keyword_to_papers):
+def get_seeds_from_each_keyword(number_of_papers_per_field, graph, keyword_to_papers):
   seed_based_on_area = {}
   for area, papers in keyword_to_papers.items():
     max_degree_papers = []
@@ -81,24 +74,24 @@ def get_seeds_from_each_keyword(graph, keyword_to_papers):
         continue
       degree = len(graph[paper])
       max_degree_papers.append((degree, paper))
-      if len(max_degree_papers) >= number_of_papers:
-        max_degree_papers = sorted(max_degree_papers, key=lambda x: -x[0])[:number_of_papers]
+      if len(max_degree_papers) >= number_of_papers_per_field:
+        max_degree_papers = sorted(max_degree_papers, key=lambda x: -x[0])[:number_of_papers_per_field]
     seed_based_on_area[area] = max_degree_papers
 
   return seed_based_on_area
 
-def bfs(paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords_under_CS, visited):
+def bfs(number_of_papers_per_field, paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords_under_CS, visited):
   queue = deque()
   queue.append(paper_id)
 
   while len(queue) > 0:
     curr = queue.popleft()
 
-    if len(papers_based_on_area[area]) >= number_of_papers:
+    if len(papers_based_on_area[area]) >= number_of_papers_per_field:
       break
     elif curr not in visited and curr in paper_to_keywords:
       for keyword in paper_to_keywords[curr]:
-        if keyword in keywords_under_CS and len(papers_based_on_area[keyword]) < number_of_papers:
+        if keyword in keywords_under_CS and len(papers_based_on_area[keyword]) < number_of_papers_per_field:
           papers_based_on_area[keyword].add(curr)
 
           # Add the neighbors into queue
@@ -114,13 +107,13 @@ def bfs(paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords
     visited.add(curr)
   
 
-def get_1000_connected_papers(fields_file):
+def get_connected_papers(number_of_papers_per_field, fields_file):
   keywords = parse_fields(fields_file)
   paper_ids, paper_to_keywords, keyword_to_papers = get_paper_id_under_field(keywords)
   graph = create_graph_based_on_paper_ids(paper_ids)
-  seed_based_on_area = get_seeds_from_each_keyword(graph, keyword_to_papers)
+  seed_based_on_area = get_seeds_from_each_keyword(number_of_papers_per_field, graph, keyword_to_papers)
 
-  print ('start get_1000_connected_papers()...')
+  print ('start get_connected_papers() with %d papers per field...' % number_of_papers_per_field)
   papers_based_on_area = {}
   # initialize paper_to_keywords
   for area, paper in seed_based_on_area.items():
@@ -131,11 +124,11 @@ def get_1000_connected_papers(fields_file):
     print ('start BFS for %s...' % area, len(papers))
     for degree, paper_id in papers:
       print ('start at area %s paper_id %s with degree %d' % (area, paper_id, degree))
-      bfs(paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords, visited)
-      if len(papers_based_on_area[area]) >= number_of_papers:
+      bfs(number_of_papers_per_field, paper_id, area, paper_to_keywords, graph, papers_based_on_area, keywords, visited)
+      if len(papers_based_on_area[area]) >= number_of_papers_per_field:
         break
 
-  pickle.dump(papers_based_on_area, open('PROCESSED/connected_papers', 'wb'))
+  pickle.dump(papers_based_on_area, open('PROCESSED/connected_papers_%d' % (number_of_papers_per_field * 10), 'wb'))
   chosen_paper_ids = []
   for area, papers in papers_based_on_area.items():
     for paper in papers:
@@ -151,17 +144,17 @@ def get_1000_connected_papers(fields_file):
   create_title_list(chosen_paper_ids)
   create_paper_to_keywords(chosen_paper_ids, paper_to_keywords)
 
-def create_paper_id_list(chosen_paper_ids):
-  ids = open('PROCESSED/PaperIdsUnderCS.txt', 'w')  
+def create_paper_id_list(number_of_papers_per_field, chosen_paper_ids):
+  ids = open('PROCESSED/PaperIdsUnderCS_%d.txt' % (number_of_papers_per_field * 10), 'w')  
   for paper_id in chosen_paper_ids:
     ids.write('%s\n' % (paper_id))
   ids.close()
 
-def create_title_list(chosen_paper_ids):
+def create_title_list(number_of_papers_per_field, chosen_paper_ids):
   chosen_paper_ids_set = set(chosen_paper_ids)
 
   paper_to_title = {}
-  titles = open('PROCESSED/titlesUnderCS.txt', 'w')
+  titles = open('PROCESSED/titlesUnderCS_%d.txt' % (number_of_papers_per_field * 10), 'w')
   with open('DATA/Papers.txt', 'r') as data:
     for line in data:
       tmp = line.strip().split('\t')
@@ -175,8 +168,8 @@ def create_title_list(chosen_paper_ids):
     titles.write('%s\n' % (paper_to_title[paper_id]))
   titles.close()
 
-def create_paper_to_keywords(chosen_paper_ids, paper_to_keywords):
-  file = open('PROCESSED/PaperToKeywords.txt', 'w')
+def create_paper_to_keywords(number_of_papers_per_field, chosen_paper_ids, paper_to_keywords):
+  file = open('PROCESSED/PaperToKeywords_%d.txt' % (number_of_papers_per_field * 10), 'w')
   for paper_id in chosen_paper_ids:
     keywords = ''
     for keyword in paper_to_keywords[paper_id]:
@@ -184,7 +177,7 @@ def create_paper_to_keywords(chosen_paper_ids, paper_to_keywords):
     keywords = keywords[:-1] + '\n'
     file.write(keywords)
 
-def create_adjacent_matrix(chosen_paper_ids):
+def create_adjacent_matrix(number_of_papers_per_field, chosen_paper_ids):
   id_count = 0
   ids_under_CS = {}
   #with open('paperIdsUnderCSLayer1Sampled1000Evenly.txt', 'r') as data:
@@ -205,8 +198,14 @@ def create_adjacent_matrix(chosen_paper_ids):
         adj_matrix[id1, id2] = 1.0
         adj_matrix[id2, id1] = 1.0
 
-  pickle.dump(adj_matrix, open('PROCESSED/adjacentMatrixUnderCS', 'wb'))
+  pickle.dump(adj_matrix, open('PROCESSED/adjacentMatrixUnderCS_%d' % (number_of_papers_per_field * 10), 'wb'))
 
+
+
+# Initialization
+DEFAULT_NUM_OF_PAPERS_PER_FIELD = 100
+DEFAULT_OPERATION = ""
+DEFAULT_CHOSEN_FIELD_FILE = "filtered_10_fields.txt"
 
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -220,10 +219,14 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
     default=DEFAULT_CHOSEN_FIELD_FILE,
     help="The file that contains chosen fields")
 
-def main(operation=DEFAULT_OPERATION, fields_file=DEFAULT_CHOSEN_FIELD_FILE):
+@click.option("--number_of_papers_per_field", "-nppf", "number_of_papers_per_field",
+    default=DEFAULT_NUM_OF_PAPERS_PER_FIELD,
+    help="Number of papers you want to fetch in each field")
+
+def main(operation=DEFAULT_OPERATION, number_of_papers_per_field = DEFAULT_NUM_OF_PAPERS_PER_FIELD, fields_file=DEFAULT_CHOSEN_FIELD_FILE):
   if operation == 'get_adj_matrix':
-    get_1000_connected_papers(fields_file)
+    get_connected_papers(number_of_papers_per_field, fields_file)
     
 
 if __name__ == "__main__":
-  main()
+    main()

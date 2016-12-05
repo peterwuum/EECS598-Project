@@ -11,6 +11,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.lancaster import LancasterStemmer
+import click
 
 
 # TODO: change the EM to distributed version
@@ -377,7 +378,25 @@ class PLSA(object):
 		with open(path_to_save, 'wb') as outfile:
 			pickle.dump(self, outfile)
 
-if __name__ == '__main__':
+
+
+DEFAULT_RESULT_FILE = "plsa_data"
+DEFAULT_LAMBDA = 0.5
+DEFAULT_GAMMA = 0.1
+
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("--result_file", "-rf", "result_file",
+	default=DEFAULT_RESULT_FILE,
+	help="The path of result file")
+@click.option("--lambda_par", "-l", "lambda_par",
+	default=DEFAULT_LAMBDA,
+	help="lambda parameter")
+@click.option("--gamma_par", "-g", "gamma_par",
+	default=DEFAULT_GAMMA,
+	help="gamma parameter")
+
+def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_par = DEFAULT_GAMMA):
 	# np.seterr(all = 'raise')
 	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
 	np.random.seed(0)
@@ -386,13 +405,13 @@ if __name__ == '__main__':
 	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
 	path_to_paperid = 'PaperToKeywords.txt'
-	
-	# TODO: add a for loop to tune lambda and gamma parameter
-	# for lambda in (list)
-	# for gamma in (list)
-	
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True)
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True, lambda_par= lambda_par, gamma_par = gamma_par)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
-	path_to_save = 'plsa_data'
+	path_to_save = result_file
 	plsa.save_all_data(path_to_save)
+	
+
+if __name__ == "__main__":
+	main()
+
