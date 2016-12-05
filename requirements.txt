@@ -1,0 +1,5 @@
+numpy
+scipy
+sklearn
+nltk
+click
