@@ -409,7 +409,7 @@ def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_p
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
 	path_to_save = result_file
-	plsa.save_all_data(path_to_save)
+	plsa.save_all_data(str(path_to_save))
 	
 
 if __name__ == "__main__":

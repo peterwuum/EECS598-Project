@@ -6,6 +6,7 @@ import statistics
 from netplsa_with_plsa import PLSA
 from random import shuffle
 from sklearn.model_selection import KFold
+import click
 
 def classification(doc_topic, label_list, label_category_list, percentage, accuracy_measure = 'both'):
 	label_list = np.array(label_list)
@@ -118,21 +119,28 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 
 
 DEFAULT_SOURCE_FILE = "plsa_data"
+DEFAULT_RESULT_FILE = "plsa_data_evaluation"
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.option("--source_file", "-sf", "source_file",
 	default=DEFAULT_SOURCE_FILE,
 	help="The path of source file")
+@click.option("--result_file", "-rf", "result_file",
+	default=DEFAULT_RESULT_FILE,
+	help="The path of result file")
 
-def main(source_file=DEFAULT_SOURCE_FILE):
-	data_file = source_file
+def main(source_file=DEFAULT_SOURCE_FILE, result_file = DEFAULT_RESULT_FILE):
+	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
 	data_percentage = [0.8]
 	for i in data_percentage:
 		print 'data_percentage: ' + str(i)
-		classification(data.doc_term_matrix, data._doc_label, data._label_category, i)
+		with open(str(result_file), 'w') as res_file:
+			res_file.write('train_loose_accuracy\ttest_loose_accuracy\n')
+			[train_loose_accuracy, test_loose_accuracy] = classification(data.doc_term_matrix, data._doc_label, data._label_category, i)
+			res_file.write('%f\t%f' % (train_loose_accuracy, test_loose_accuracy))
 	
 
 if __name__ == "__main__":
