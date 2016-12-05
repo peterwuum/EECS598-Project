@@ -117,9 +117,24 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy))
 
 
-if __name__ == '__main__':
-	data_file = './plsa_data'
-	with open(data_file, 'rb') as INFILE:
+DEFAULT_SOURCE_FILE = "plsa_data"
+
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("--source_file", "-sf", "source_file",
+	default=DEFAULT_SOURCE_FILE,
+	help="The path of source file")
+
+def main(source_file=DEFAULT_SOURCE_FILE):
+	data_file = source_file
+	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
-	data_percentage = 0.8
-	classification(data.doc_term_matrix, data._doc_label, data._label_category, data_percentage)
+	data_percentage = [0.8]
+	for i in data_percentage:
+		print 'data_percentage: ' + str(i)
+		classification(data.doc_term_matrix, data._doc_label, data._label_category, i)
+	
+
+if __name__ == "__main__":
+	main()
+
