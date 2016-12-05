@@ -35,7 +35,8 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		# class_dict[1] = np.bincount(train_label_list) / len(X_train)
 		# model = svm.SVC(kernel='linear', class_weight = class_dict)
 		
-		model = svm.SVC(kernel='linear', class_weight = 'balanced')
+		model = svm.SVC(kernel='rbf', class_weight = 'balanced')
+		# model = svm.SVC(kernel='linear', class_weight = 'auto')
 		# print train_label_list
 		model.fit(X_train, train_label_list)
 
@@ -87,12 +88,12 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		count_tight = 0
 		count_loose = 0
 		for i in range(0, len(test_label)):
-			if test_label[i] == test_true_label[i]:
-				count_tight += 1
+			# if test_label[i] == test_true_label[i]:
+			# 	count_tight += 1
 			if len(test_label[i].intersection(test_true_label[i])) >= 1:
 				count_loose += 1
 		
-		print 'test tight accuracy: ' + str(float(count_tight) / len(test_label))
+		# print 'test tight accuracy: ' + str(float(count_tight) / len(test_label))
 		print 'test loose accuracy: ' + str(float(count_loose) / len(test_label))
 
 		test_tight_accuracy = float(count_tight) / len(test_label)
@@ -101,12 +102,12 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		count_tight = 0
 		count_loose = 0
 		for i in range(0, len(train_label_list)):
-			if train_label[i] == train_true_label[i]:
-				count_tight += 1
+			# if train_label[i] == train_true_label[i]:
+			# 	count_tight += 1
 			if len(train_label[i].intersection(train_true_label[i])) >= 1:
 				count_loose += 1
 		
-		print 'train tight accuracy: ' + str(float(count_tight) / len(train_label_list))
+		# print 'train tight accuracy: ' + str(float(count_tight) / len(train_label_list))
 		print 'train loose accuracy: ' + str(float(count_loose) / len(train_label_list))
 
 		return (test_tight_accuracy, test_loose_accuracy)

@@ -386,6 +386,11 @@ if __name__ == '__main__':
 	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
 	path_to_paperid = 'PaperToKeywords.txt'
+	
+	# TODO: add a for loop to tune lambda and gamma parameter
+	# for lambda in (list)
+	# for gamma in (list)
+	
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True)
 	plsa.RunPLSA()
 	plsa.print_topic_word_matrix(20)
