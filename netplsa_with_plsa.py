@@ -45,7 +45,7 @@ class PLSA(object):
 		if stemmer:
 			self._lancaster_stemmer = LancasterStemmer()
 
-		with open(path_to_adj, 'r') as INFILE:
+		with open(path_to_adj, 'rb') as INFILE:
 			self._adj = pickle.load(INFILE)
 		
 		self._lap = laplacian(self._adj)
@@ -374,7 +374,7 @@ class PLSA(object):
 
 
 	def save_all_data(self, path_to_save):
-		with open(path_to_save, 'w') as outfile:
+		with open(path_to_save, 'wb') as outfile:
 			pickle.dump(self, outfile)
 
 if __name__ == '__main__':
