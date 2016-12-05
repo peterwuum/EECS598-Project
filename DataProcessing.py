@@ -134,15 +134,15 @@ def get_connected_papers(number_of_papers_per_field, fields_file):
     for paper in papers:
       chosen_paper_ids.append(paper)
 
-  create_adjacent_matrix(chosen_paper_ids)
+  create_adjacent_matrix(number_of_papers_per_field, chosen_paper_ids)
 
   # TODO: 
   # 1. paper_to_keywords
   # 2. paperidsUnderCS
   # 3. titleUnderCS
-  create_paper_id_list(chosen_paper_ids)
-  create_title_list(chosen_paper_ids)
-  create_paper_to_keywords(chosen_paper_ids, paper_to_keywords)
+  create_paper_id_list(number_of_papers_per_field, chosen_paper_ids)
+  create_title_list(number_of_papers_per_field, chosen_paper_ids)
+  create_paper_to_keywords(number_of_papers_per_field, chosen_paper_ids, paper_to_keywords)
 
 def create_paper_id_list(number_of_papers_per_field, chosen_paper_ids):
   ids = open('PROCESSED/PaperIdsUnderCS_%d.txt' % (number_of_papers_per_field * 10), 'w')  
