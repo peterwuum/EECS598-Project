@@ -13,4 +13,5 @@
  - sklearn
  - nltk
  - click
+
 Please run 'pip install -r requirements.txt' in terminal before running the code
