@@ -51,7 +51,7 @@ class PLSA(object):
 		
 		self._lap = laplacian(self._adj)
 		self._adj = normalize(self._adj, norm='l1', axis=1)
-		self._network = network
+		self.network = network
 		self._lambda = lambda_par
 		self._gamma = gamma_par
 
@@ -255,7 +255,7 @@ class PLSA(object):
 		self._doc_topic[denominator == 0, :] = np.ones((sum(denominator == 0),self.number_of_topic))
 		self._doc_topic = np.dot(np.diag(temp), self._doc_topic)
 		
-		if self._network:
+		if self.network:
 			# old_loglikelihood = self._old
 			new_loglikelihood = self._LogLikelihood()
 			if new_loglikelihood < old_loglikelihood:
@@ -309,7 +309,7 @@ class PLSA(object):
 			loglikelihood += np.sum(self.doc_term_matrix * self._probability[:, :, k] * \
 				np.log(np.outer(self._word_topic[k, :], self._doc_topic[:, k]).T))
 
-		if self._network:
+		if self.network:
 			regular = np.trace(np.dot((self._lap.dot(self._doc_topic)).T, self._doc_topic))
 			loglikelihood = (1 - self._lambda) * loglikelihood - self._lambda / 2 * regular
 		print loglikelihood
@@ -317,10 +317,12 @@ class PLSA(object):
 
 	def RunPLSA(self):
 		self._preprocessing()
-		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
-		self._word_topic = np.random.rand(self.number_of_topic, self._numWord).astype('f')
-		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
-		self._initParameters()
+
+		if self._doc_topic == 0 and self._word_topic == 0 and self._probability == 0:
+			self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
+			self._word_topic = np.random.rand(self.number_of_topic, self._numWord).astype('f')
+			self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
+			self._initParameters()
 		
 		doc_term_matrix = self.doc_term_matrix
 		_doc_topic = self._doc_topic
@@ -405,8 +407,18 @@ def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_p
 	path_to_adj = 'adjacentMatrixUnderCS'
 	path_to_idname = 'filtered_10_fields.txt' 
 	path_to_paperid = 'PaperToKeywords.txt'
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = True, lambda_par= lambda_par, gamma_par = gamma_par)
+
+	# Set "network = False" to get a good initialization from PLSA
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = False, lambda_par= lambda_par, gamma_par = gamma_par)
 	plsa.RunPLSA()
+
+	# Run NetPLSA
+	plsa.network = True
+	plsa._old = 1
+	plsa._new = 1
+	plsa.RunPLSA()
+
+	# Print result
 	plsa.print_topic_word_matrix(20)
 	path_to_save = result_file
 	plsa.save_all_data(str(path_to_save))
