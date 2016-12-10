@@ -7,6 +7,7 @@ from netplsa_with_plsa import PLSA
 from random import shuffle
 from sklearn.model_selection import KFold
 import click
+from sklearn.metrics.cluster import normalized_mutual_info_score
 
 def classification(doc_topic, label_list, label_category_list, percentage, accuracy_measure = 'both'):
 	label_list = np.array(label_list)
@@ -15,6 +16,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	kf = KFold(n_splits = 5, shuffle = True)
 	train_loose_accuracy = []
 	test_loose_accuracy = []
+	pred_label_list = [0]*len(label_list)
 	for train, test in kf.split(doc_index):
 		train_true_label = label_list[train]
 		test_true_label = label_list[test]
@@ -56,6 +58,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		if accuracy_measure == 'tight':
 			count = 0
 			for i in range(0, len(test_label)):
+				pred_label_list[test[i]] = test_label[i]
 				if test_label[i] == test_true_label[i]:
 					count += 1
 			print 'test tight accuracy: ' + str(float(count) / len(test_label))
@@ -73,6 +76,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		elif accuracy_measure == 'loose':
 			count = 0
 			for i in range(0, len(test_label)):
+				pred_label_list[test[i]] = test_label[i]
 				if len(test_label[i].intersection(test_true_label[i])) >= 1:
 					count += 1
 			print 'test loose accuracy: ' + str(float(count) / len(test_label))
@@ -89,6 +93,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 			#count_tight = 0
 			count_loose = 0
 			for i in range(0, len(test_label)):
+				pred_label_list[test[i]] = test_label[i]
 				#if test_label[i] == test_true_label[i]:
 				#	count_tight += 1
 				if len(test_label[i].intersection(test_true_label[i])) >= 1:
@@ -113,9 +118,14 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 			train_loose_accuracy.append(float(count_loose) / len(train_label_list))
 	#train_loose_accuracy = np.array(train_loose_accuracy)
 	#test_loose_accuracy = np.array(test_loose_accuracy)
+
+	# Calculate NMI
+	label_true_unique = [random.sample(temp,1)[0] for temp in label_list if len(temp) > 1]
+	label_pred_unique = [random.sample(temp,1)[0] for temp in pred_label_list if len(temp) > 1]
+    NMI = normalized_mutual_info_scorel(label_treu_unique, label_pred_unique)
 	print 'Mean train accuracy: ' + str(statistics.mean(train_loose_accuracy))
 	print 'Mean test accuracy: ' + str(statistics.mean(test_loose_accuracy))
-	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy))
+	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy), NMI)
 
 
 DEFAULT_SOURCE_FILE = "plsa_data"
