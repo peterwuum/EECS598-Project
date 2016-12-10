@@ -4,10 +4,12 @@ from collections import defaultdict
 import pickle
 import statistics
 from netplsa_with_plsa import PLSA
-from random import shuffle
+from random import shuffle, sample, randint
 from sklearn.model_selection import KFold
 import click
 from sklearn.metrics.cluster import normalized_mutual_info_score
+import networkclustering
+
 
 # classification evaluation
 def classification(doc_topic, label_list, label_category_list, percentage, accuracy_measure = 'both'):
@@ -17,7 +19,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	kf = KFold(n_splits = 5, shuffle = True)
 	train_loose_accuracy = []
 	test_loose_accuracy = []
-	pred_label_list = [0]*len(label_list)
+	pred_label_list = [0] * len(label_list)
 	for train, test in kf.split(doc_index):
 		train_true_label = label_list[train]
 		test_true_label = label_list[test]
@@ -26,12 +28,15 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		train_label = defaultdict(set)
 		test_label = defaultdict(set)
 		# label list is doc -> set of label
-		for i in label_category_list:
+		label_temp = list()
+		for key, val in label_category_list.items():
+			label_temp.append(val)
+
+		for i in label_temp:
 			current_label = i
 			train_label_list = list()
+
 			for index in train:
-				# print current_label
-				# print label_list[index]
 				if current_label in label_list[index]:
 					train_label_list.append(1)
 				else:
@@ -42,7 +47,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 			X_test = doc_topic[test]
 		
 			model = svm.SVC(kernel='rbf', class_weight = 'balanced')
-			# print train_label_list
+
 			model.fit(X_train, train_label_list)
 			predict_train = model.predict(X_train)
 
@@ -55,6 +60,8 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 			for index in range(0, len(predict)):
 				if predict[index] == 1:
 					test_label[index].add(current_label)
+				else:
+					test_label[index]
 
 		if accuracy_measure == 'tight':
 			count = 0
@@ -93,6 +100,7 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 		else:
 			#count_tight = 0
 			count_loose = 0
+			# print "test lable length" + str(len(test_label))
 			for i in range(0, len(test_label)):
 				pred_label_list[test[i]] = test_label[i]
 				#if test_label[i] == test_true_label[i]:
@@ -120,10 +128,24 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	#train_loose_accuracy = np.array(train_loose_accuracy)
 	#test_loose_accuracy = np.array(test_loose_accuracy)
 
-	# Calculate NMI
-	label_true_unique = [random.sample(temp,1)[0] for temp in label_list if len(temp) > 1]
-	label_pred_unique = [random.sample(temp,1)[0] for temp in pred_label_list if len(temp) > 1]
-    NMI = normalized_mutual_info_scorel(label_treu_unique, label_pred_unique)
+	# Calculate 
+	label_true_unique = list()
+	label_pred_unique = list()
+	# print pred_label_list
+	for i in range(len(label_list)):
+		if len(label_list[i]) > 1:
+			label_true_unique.append(sample(label_list[i], 1)[0])
+		else:
+			label_true_unique.append(list(label_list[i])[0])
+		if len(pred_label_list[i]) > 1:
+			label_pred_unique.append(sample(pred_label_list[i], 1)[0])
+		elif len(pred_label_list[i]) == 0:
+			label_pred_unique.append(randint(0, 9))
+		else:
+			# print pred_label_list[i]
+			label_pred_unique.append(list(pred_label_list[i])[0])
+
+	NMI = normalized_mutual_info_score(label_true_unique, label_pred_unique)
 	print 'Mean train accuracy: ' + str(statistics.mean(train_loose_accuracy))
 	print 'Mean test accuracy: ' + str(statistics.mean(test_loose_accuracy))
 	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy), NMI)
@@ -138,10 +160,12 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 	with open(stop_word_path, 'r') as INFILE:
 		for line in INFILE.readlines():
 			StopWords.add(line.strip())
+	
 	row = list()
 	col = list()
 	data = list()
 	wordlist = list()
+	
 	with open(doc_path, 'r') as INFILE:
 		count = 0
 		for line in INFILE.readlines():
@@ -163,7 +187,6 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 				else:
 					word = key
 				
-
 				if word in StopWords:
 					continue
 				
@@ -179,93 +202,93 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 				col.append(wordlist.index(word))
 				data.append(val)
 			count += 1
+	
 	doc_term_matrix = csr_matrix((data, (row, col)), shape = (count, len(wordlist)))
 	# return value is a density matrix, we would like to change it the sparse matrix
 	return (doc_term_matrix.toarray(), count, wordlist) 
 
-def WordIntrusion(doc_term_matrix, number_of_topic = 10, number_of_word, word_topic, num_topwords = 10, intruder_ind = 200, num_instances_per_topic = 10):
-	#unigram_freq = self.doc_term_matrix.sum(axis = 0)
-	#unigram_prob = unigram_freq / np.sum(self.doc_term_matrix)
-	binary_doc_term = doc_term_matrix
-	binary_doc_term[binary_doc_term > 0] = 1
-	bigram_freq = np.dot(binary_doc_term.T, binary_doc_term)
-	unigram_prob = np.diag(bigram_freq) / np.trace(bigram_freq)
-	#np.fill_diagonal(bigram_freq, 0)
-	bigram_prob = bigram_freq / (np.sum(bigram_freq) - np.trace(bigram_freq))
-	PMI_denominator = np.outer(unigram_prob, unigram_prob)
-	PMI_mat = np.log(bigram_prob / PMI_denominator)
-	PMI = PMI_mat.sum(axis=0)
-	CP1 = (PMI_mat.dot(1.0 / unigram_prob)).sum(axis=0)
-	CP2 = ((1.0 / unigram_prob).dot(PMI_mat)).sum(axis=0)
-	# change 3 column vector to a n * 3 matrix
-	word_intrusion_features = np.column_stack((PMI, CP1, CP2))
+# def WordIntrusion(doc_term_matrix, number_of_topic = 10, number_of_word, word_topic, num_topwords = 10, intruder_ind = 200, num_instances_per_topic = 10):
+# 	#unigram_freq = self.doc_term_matrix.sum(axis = 0)
+# 	#unigram_prob = unigram_freq / np.sum(self.doc_term_matrix)
+# 	binary_doc_term = doc_term_matrix
+# 	binary_doc_term[binary_doc_term > 0] = 1
+# 	bigram_freq = np.dot(binary_doc_term.T, binary_doc_term)
+# 	unigram_prob = np.diag(bigram_freq) / np.trace(bigram_freq)
+# 	#np.fill_diagonal(bigram_freq, 0)
+# 	bigram_prob = bigram_freq / (np.sum(bigram_freq) - np.trace(bigram_freq))
+# 	PMI_denominator = np.outer(unigram_prob, unigram_prob)
+# 	PMI_mat = np.log(bigram_prob / PMI_denominator)
+# 	PMI = PMI_mat.sum(axis=0)
+# 	CP1 = (PMI_mat.dot(1.0 / unigram_prob)).sum(axis=0)
+# 	CP2 = ((1.0 / unigram_prob).dot(PMI_mat)).sum(axis=0)
+# 	# change 3 column vector to a n * 3 matrix
+# 	word_intrusion_features = np.column_stack((PMI, CP1, CP2))
 	
-	ind_words = np.ndarray((number_of_topic, number_of_word))
-	ind_topwords = np.ndarray((number_of_topic, num_topwords))
-	num_instances = num_instances_per_topic * number_of_topic
-	instances = np.ndarray((num_instances, 6))
-	responses = np.zeros(num_instances)
-	for k in range(number_of_topic):
-		# get the indices that will sort the array, from index of the smallest number to that of the largest
-		ind_words[k, :] = np.argsort(word_topic[:, k])
-		# get the indices of the top 10 words in each topic
-		ind_topwords[k, :] = ind_words[k, :][::-1][:num_topwords]
+# 	ind_words = np.ndarray((number_of_topic, number_of_word))
+# 	ind_topwords = np.ndarray((number_of_topic, num_topwords))
+# 	num_instances = num_instances_per_topic * number_of_topic
+# 	instances = np.ndarray((num_instances, 6))
+# 	responses = np.zeros(num_instances)
+# 	for k in range(number_of_topic):
+# 		# get the indices that will sort the array, from index of the smallest number to that of the largest
+# 		ind_words[k, :] = np.argsort(word_topic[:, k])
+# 		# get the indices of the top 10 words in each topic
+# 		ind_topwords[k, :] = ind_words[k, :][::-1][:num_topwords]
 		
-		#topwords_feature = word_intrusion_features[ind_topwords[k, :], :]
-		#intruder_feature = word_intrusion_features[intruder_ind, ]
+# 		#topwords_feature = word_intrusion_features[ind_topwords[k, :], :]
+# 		#intruder_feature = word_intrusion_features[intruder_ind, ]
 		
 		
-	for k in range(number_of_topic):
-		#for i in range(num_instances_per_topic):
-			# randomly sample 5 words from the top 10 words in each topic
+# 	for k in range(number_of_topic):
+# 		#for i in range(num_instances_per_topic):
+# 			# randomly sample 5 words from the top 10 words in each topic
 		
-		other_topwords_ind = np.delete(ind_topwords, k, axis = 0).ravel()
-		last_50_ind = ind_words[k, :np.floor(0.5 * number_of_word)]
-		intersection = np.interset1d(other_topwords_ind, last_50_ind)
-		if intersection.size > 10:
-			for i in range(num_instances_per_topic):
-				topwords_ind = np.random.choice(ind_topwords[k, :], 0.5 * num_topwords)
-				indices_of_instances = np.append(topwords_ind, intersection[i])
-				instances[k * num_instances_per_topic + i, :] = \
-					word_intrusion_features[indices_of_instances, :]
-				responses[k * num_instances_per_topic + i] = \
-					word_topic[indices_of_instances, k]
+# 		other_topwords_ind = np.delete(ind_topwords, k, axis = 0).ravel()
+# 		last_50_ind = ind_words[k, :np.floor(0.5 * number_of_word)]
+# 		intersection = np.interset1d(other_topwords_ind, last_50_ind)
+# 		if intersection.size > 10:
+# 			for i in range(num_instances_per_topic):
+# 				topwords_ind = np.random.choice(ind_topwords[k, :], 0.5 * num_topwords)
+# 				indices_of_instances = np.append(topwords_ind, intersection[i])
+# 				instances[k * num_instances_per_topic + i, :] = \
+# 					word_intrusion_features[indices_of_instances, :]
+# 				responses[k * num_instances_per_topic + i] = \
+# 					word_topic[indices_of_instances, k]
 			
-#            for j in range(number_of_topic):
-#                if j != i:
-#                    # Check if any top word in some other topic j rank in
-#                    # the last 50% in the current topic i. If found, break the loop.
-#                    intersection = np.intersect1d(ind_words[k, :np.floor(0.5*number_of_word)], 
-#                                                  ind_topwords[j,:])
-#                    if intersection.size != 0:
-#                        indices_of_instances = np.append(topwords_ind, intersection[0])
-#                        instances[k*num_instances_per_topic + i, :] = \
-#                            word_intrusion_features[indices_of_instances, :]
-#                            
-#                        responses[k*num_instances_per_topic + i] = \
-#                            word_topic[indices_of_instances, k]
-#                    break
-#                else:
-#                    continue
+# #            for j in range(number_of_topic):
+# #                if j != i:
+# #                    # Check if any top word in some other topic j rank in
+# #                    # the last 50% in the current topic i. If found, break the loop.
+# #                    intersection = np.intersect1d(ind_words[k, :np.floor(0.5*number_of_word)], 
+# #                                                  ind_topwords[j,:])
+# #                    if intersection.size != 0:
+# #                        indices_of_instances = np.append(topwords_ind, intersection[0])
+# #                        instances[k*num_instances_per_topic + i, :] = \
+# #                            word_intrusion_features[indices_of_instances, :]
+# #                            
+# #                        responses[k*num_instances_per_topic + i] = \
+# #                            word_topic[indices_of_instances, k]
+# #                    break
+# #                else:
+# #                    continue
 			
-	data_frame = np.column_stack((instances, responses))
-	np.random.shuffle(data_frame)
-	num_train = np.floor(0.8 * num_instances)
-	train_set = data_frame[0:num_train, :]
-	test_set = data_frame[num_train:, :]
+# 	data_frame = np.column_stack((instances, responses))
+# 	np.random.shuffle(data_frame)
+# 	num_train = np.floor(0.8 * num_instances)
+# 	train_set = data_frame[0:num_train, :]
+# 	test_set = data_frame[num_train:, :]
 	
-	svr = svm.SVR(C = 1.0, epsilon = 0.2)
-	svr.fit(train_set[:, :-1], train_set[:, -1])
-	predict_train = svr.predict(train_set[:, :-1])
-	predict_test = svr.predict(test_set[:, :-1])
-	# predict test is a list of predicted word topic probability
+# 	svr = svm.SVR(C = 1.0, epsilon = 0.2)
+# 	svr.fit(train_set[:, :-1], train_set[:, -1])
+# 	predict_train = svr.predict(train_set[:, :-1])
+# 	predict_test = svr.predict(test_set[:, :-1])
+# 	# predict test is a list of predicted word topic probability
 	
 
 
-	index = list(predict_test).index(min(list(predict_test)))
-	index_true = list(test_set[:, -1]).index(min(list(test_set[:, -1])))
+# 	index = list(predict_test).index(min(list(predict_test)))
+# 	index_true = list(test_set[:, -1]).index(min(list(test_set[:, -1])))
 
-	if index == index_true:
 
 
 	
@@ -288,46 +311,51 @@ def WordIntrusion(doc_term_matrix, number_of_topic = 10, number_of_word, word_to
 DEFAULT_SOURCE_FILE = "plsa_data"
 DEFAULT_RESULT_FILE = "plsa_data_evaluation"
 
-CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-@click.command(context_settings=CONTEXT_SETTINGS)
-@click.option("--source_file", "-sf", "source_file",
-	default=DEFAULT_SOURCE_FILE,
-	help="The path of source file")
-@click.option("--result_file", "-rf", "result_file",
-	default=DEFAULT_RESULT_FILE,
-	help="The path of result file")
+# CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+# @click.command(context_settings=CONTEXT_SETTINGS)
+# @click.option("--source_file", "-sf", "source_file",
+# 	default=DEFAULT_SOURCE_FILE,
+# 	help="The path of source file")
+# @click.option("--result_file", "-rf", "result_file",
+# 	default=DEFAULT_RESULT_FILE,
+# 	help="The path of result file")
 
-def evaluationclassification(source_file=DEFAULT_SOURCE_FILE, result_file = DEFAULT_RESULT_FILE):
+def evaluation_classification(source_file=DEFAULT_SOURCE_FILE, result_file = DEFAULT_RESULT_FILE):
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
-	data_percentage = [0.8]
-	for i in data_percentage:
-		print 'data_percentage: ' + str(i)
-		with open(str(result_file), 'w') as res_file:
-			res_file.write('train_loose_accuracy\ttest_loose_accuracy\n')
-			[train_loose_accuracy, test_loose_accuracy] = classification(data.doc_term_matrix, data._doc_label, data._label_category, i)
-			res_file.write('%f\t%f' % (train_loose_accuracy, test_loose_accuracy))
+	# data_percentage = [0.8]
+	# for i in data_percentage:
+	# i is the data_percentage
+	data_percentage = 0.8
+	print 'data_percentage: ' + str(data_percentage)
+	with open(str(result_file), 'w') as res_file:
+		res_file.write('train_loose_accuracy\ttest_loose_accuracy\n')
+		train_loose_accuracy, test_loose_accuracy, NMI = classification(data.doc_term_matrix, data._doc_label, data._label_category, data_percentage)
+		res_file.write('%f\t%f' % (train_loose_accuracy, test_loose_accuracy))
+	print 'The NMI between topic model and true label is\t' + str(NMI)
+	return NMI
 
-
-
-
-
-def evaluationwordintrusion(doc_path, stop_word_path, lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
+def evaluation_word_intrusion(doc_path, stop_word_path, lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
 	doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, lemmatize = lemmatize, Stem = Stem)
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
 	word_topic = data._topic_word
-	accuracy = WordIntrusion(doc_term_matrix, number_of_topic = 10, len(wordlist), word_topic, num_topwords = 10, intruder_ind = 200, num_instances_per_topic = 10):
+	accuracy = WordIntrusion(doc_term_matrix, 10, len(wordlist), word_topic)
 
+def evaluation_clustering(source_file=DEFAULT_SOURCE_FILE, input_file = 'adjacentMatrixUnderCS_10000'):
+	data_file = str(source_file)
+	with open(data_file, 'r') as INFILE:
+		data = pickle.load(INFILE)
 
+	NMI_network = networkclustering.networkClustering(input_file, data)
 
+	return NMI_network
 
-
-	
 
 if __name__ == "__main__":
-	evaluationclassification()
-	evaluationwordintrusion()
+	NMI_topic_network = evaluation_classification()
+	NMI_network = evaluation_clustering()
+
 

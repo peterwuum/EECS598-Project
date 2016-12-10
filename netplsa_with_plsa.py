@@ -18,7 +18,8 @@ import click
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
 					number_of_topic = 10, maxIteration = 30, threshold = 0.02, network = False, 
-					lambda_par = 0.5, gamma_par = 0.1, lemmatize = True, stemmer = False):
+					lambda_par = 0.5, gamma_par = 0.1, lemmatize = True, stemmer = False, save = None):
+		self._save = save
 		self._doc_path = doc_path
 		self._stopword = set()
 		with open(stop_word_path, 'r') as INFILE:
@@ -58,11 +59,13 @@ class PLSA(object):
 		self._old = 1
 		self._new = 1
 
-		self._label_category = list()
-		# name2id = 0
+		self._label_category = dict()
+		
+		name2id = 0
 		with open(path_to_idname, 'r') as INFILE:
 			for line in INFILE.readlines():
-				self._label_category.append(re.split('\t', line)[0])
+				self._label_category[re.split('\t', line)[0]] = name2id
+				name2id += 1
 
 		# doc_label is a list of set of documents label ids
 		self._doc_label = list()
@@ -71,7 +74,7 @@ class PLSA(object):
 				ids = re.split('\t', line.strip())
 				temp = set()
 				for item in ids:
-					temp.add(item)
+					temp.add(self._label_category[item])
 				self._doc_label.append(temp)
 
 
@@ -317,24 +320,26 @@ class PLSA(object):
 
 	def RunPLSA(self):
 		self._preprocessing()
-<<<<<<< Updated upstream
+# <<<<<<< Updated upstream
 
-		if self._doc_topic == 0 and self._word_topic == 0 and self._probability == 0:
+		# if (self._doc_topic == 0 or len(self._doc_topic) == 0) and (self._topic_word == 0 or len(self._topic_word) == 0) and (self._probability == 0 or len(self._probability) == 0):
+		# 	self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
+		# 	self._topic_word = np.random.rand(self.number_of_topic, self._numWord).astype('f')
+		# 	self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
+		# 	self._initParameters()
+# ||||||| merged common ancestors
+		if self._save == None:
+			print 'random initialize three matrix'
 			self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
-			self._word_topic = np.random.rand(self.number_of_topic, self._numWord).astype('f')
+			self._topic_word = np.random.rand(self.number_of_topic, self._numWord).astype('f')
 			self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
-			self._initParameters()
-||||||| merged common ancestors
-		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
-		self._word_topic = np.random.rand(self.number_of_topic, self._numWord).astype('f')
-		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
 		self._initParameters()
-=======
-		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
-		self._topic_word = np.random.rand(self.number_of_topic, self._numWord).astype('f')
-		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
-		self._initParameters()
->>>>>>> Stashed changes
+# =======
+# 		self._doc_topic = np.random.rand(self._numDoc, self.number_of_topic).astype('f')
+# 		self._topic_word = np.random.rand(self.number_of_topic, self._numWord).astype('f')
+# 		self._probability = np.zeros((self._numDoc, self._numWord, self.number_of_topic), dtype='f')
+# 		self._initParameters()
+# >>>>>>> Stashed changes
 		
 		doc_term_matrix = self.doc_term_matrix
 		_doc_topic = self._doc_topic
@@ -414,11 +419,11 @@ def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_p
 	# np.seterr(all = 'raise')
 	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
 	np.random.seed(0)
-	doc_path = 'titlesUnderCS.txt'
+	doc_path = 'titlesUnderCS_10000.txt'
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS'
+	path_to_adj = 'adjacentMatrixUnderCS_10000'
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeywords.txt'
+	path_to_paperid = 'PaperToKeywords_10000.txt'
 
 	# Set "network = False" to get a good initialization from PLSA
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = False, lambda_par= lambda_par, gamma_par = gamma_par)
@@ -428,6 +433,7 @@ def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_p
 	plsa.network = True
 	plsa._old = 1
 	plsa._new = 1
+	plsa._save = not plsa._save
 	plsa.RunPLSA()
 
 	# Print result
