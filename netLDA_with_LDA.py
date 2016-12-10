@@ -208,6 +208,7 @@ class LDA(object):
 
 		print 'word_entropy size\t%s' % word_entropy.shape
 		ind = np.argsort(word_entropy)
+		
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
