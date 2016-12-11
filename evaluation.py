@@ -6,12 +6,16 @@ import statistics
 from netplsa_with_plsa import PLSA
 from random import shuffle, sample, randint
 from sklearn.model_selection import KFold
+from sklearn import linear_model
 import click
 from sklearn.metrics.cluster import normalized_mutual_info_score
 import networkclustering
 import re
 from scipy.sparse import csr_matrix
 import os
+from overlapNMI import overlapNMI
+
+np.random.seed(0)
 
 # classification evaluation
 def classification(doc_topic, label_list, label_category_list, percentage, accuracy_measure = 'both'):
@@ -131,29 +135,45 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	#test_loose_accuracy = np.array(test_loose_accuracy)
 
 	# Calculate 
-	label_true_unique = list()
-	label_pred_unique = list()
+	# label_true_unique = list()
+	# label_pred_unique = list()
 
 	# change pred_label_list to matrix
 	pred_label_matrix = np.zeros((len(pred_label_list), len(label_category_list)), dtype = 'f')
 	for index in range(len(pred_label_list)):
-		for item in pred_label_list[index]:
-			pred_label_matrix[index][item] = 1
-
-	for i in range(len(label_list)):
-		if len(label_list[i]) > 1:
-			label_true_unique.append(sample(label_list[i], 1)[0])
+		if len(pred_label_list[index]):
+			for item in pred_label_list[index]:
+				pred_label_matrix[index][item] = 1
 		else:
-			label_true_unique.append(list(label_list[i])[0])
-		if len(pred_label_list[i]) > 1:
-			label_pred_unique.append(sample(pred_label_list[i], 1)[0])
-		elif len(pred_label_list[i]) == 0:
-			label_pred_unique.append(randint(0, 9))
-		else:
-			# print pred_label_list[i]
-			label_pred_unique.append(list(pred_label_list[i])[0])
+			pred_label_matrix[index][randint(0, 9)] = 1
 
-	NMI = normalized_mutual_info_score(label_true_unique, label_pred_unique)
+
+	true_label_matrix = np.zeros((len(label_list), len(label_category_list)), dtype = 'f')
+	for index in range(0, len(label_list)):
+		for i in label_list[index]:
+			true_label_matrix[index][i] = 1
+
+	save = (pred_label_matrix, true_label_matrix)
+	with open('saved_matrix.pkl', 'wb') as OUTFILE:
+		pickle.dump(save, OUTFILE)
+
+
+
+	# for i in range(len(label_list)):
+	# 	if len(label_list[i]) > 1:
+	# 		label_true_unique.append(sample(label_list[i], 1)[0])
+	# 	else:
+	# 		label_true_unique.append(list(label_list[i])[0])
+	# 	if len(pred_label_list[i]) > 1:
+	# 		label_pred_unique.append(sample(pred_label_list[i], 1)[0])
+	# 	elif len(pred_label_list[i]) == 0:
+	# 		label_pred_unique.append(randint(0, 9))
+	# 	else:
+	# 		# print pred_label_list[i]
+	# 		label_pred_unique.append(list(pred_label_list[i])[0])
+
+	# NMI = normalized_mutual_info_score(label_true_unique, label_pred_unique)
+	NMI = overlapNMI(true_label_matrix, pred_label_matrix)
 	print 'Mean train accuracy: ' + str(statistics.mean(train_loose_accuracy))
 	print 'Mean test accuracy: ' + str(statistics.mean(test_loose_accuracy))
 	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy), NMI)
@@ -209,25 +229,35 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 				TODO: this part is a little bit slow, which is need to improve the next line
 				'''
 				col.append(wordlist.index(word))
-				data.append(val)
+				data.append(1)
 			count += 1
 	
 	doc_term_matrix = csr_matrix((data, (row, col)), shape = (count, len(wordlist)))
 	'''
 	TODO: return value is a density matrix, we would like to change it the sparse matrix
 	'''
-	saved = (doc_term_matrix.toarray(), count, wordlist)
+	# saved = (doc_term_matrix.toarray(), count, wordlist)
+	saved = (doc_term_matrix, count, wordlist)
+
 	with open('preprocessing_data.pkl', 'wb') as INFILE:
 		pickle.dump(saved, INFILE)
 
-	return (doc_term_matrix.toarray(), count, wordlist)
+	print doc_term_matrix.shape[1]
+	return (doc_term_matrix, count, wordlist)
 
 
 def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
-					number_of_topic = 10, num_topwords = 10, num_instances_per_topic = 20):
+					number_of_topic = 10, num_topwords = 10, num_instances_per_topic = 50):
+	# binary_doc_term = doc_term_matrix.toarray()
 	binary_doc_term = doc_term_matrix
-	binary_doc_term[binary_doc_term > 0] = 1
-	bigram_freq = np.dot(binary_doc_term.T, binary_doc_term)
+	print 'finish dense matrix'
+	# binary_doc_term[binary_doc_term > 0] = 1
+	# bigram_freq = np.dot(binary_doc_term.T, binary_doc_term)
+	bigram_freq = (doc_term_matrix.transpose()).dot(doc_term_matrix)
+	bigram_freq = bigram_freq.toarray()
+	
+	print 'finsh bigram freq matrix'
+
 	unigram_prob = (1.0 * np.diag(bigram_freq)) / np.trace(bigram_freq)
 	bigram_prob = (1.0 * bigram_freq) / (np.sum(bigram_freq) - np.trace(bigram_freq)) + 1e-10
 	PMI_denominator = np.outer(unigram_prob, unigram_prob)
@@ -244,10 +274,14 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
    
 	train_accuracy = np.zeros(number_of_topic)
 	test_accuracy = np.zeros(number_of_topic)
+	
 	for k in range(number_of_topic):
 		# get the indices that will sort the array, from index of the smallest number to that of the largest
 		ind_words[k, :] = np.argsort(word_topic[:, k])
-		# get the indices of the top 10 words in each topic
+		# print 'index sort in K topic'
+		# print ind_words[k, :]
+		# # get the indices of the top 10 words in each topic
+		# print 'top 10 index'
 		ind_topwords[k, :] = ind_words[k, :][::-1][:num_topwords]  
 		
 	for k in range(number_of_topic):
@@ -255,9 +289,12 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 		instances = np.ndarray((num_instances_per_topic, 18))
 		responses = np.ndarray((num_instances_per_topic, 6))
 		
-		other_topwords_ind = np.delete(ind_topwords, k, axis = 0).ravel()
+		other_topwords_ind = np.unique(np.delete(ind_topwords, k, axis = 0).ravel())
 		last_50_ind = ind_words[k, :int(np.floor(0.5 * number_of_word))]
 		intersection = np.intersect1d(other_topwords_ind, last_50_ind)
+		
+		# print intersection
+
 		if intersection.size > num_instances_per_topic:
 			for i in range(num_instances_per_topic):
 				topwords_ind = np.random.choice(ind_topwords[k, :], int(0.5 * num_topwords))
@@ -274,11 +311,16 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 			train_set = dataframe[0 : (num_instances_per_topic / 2), :]
 			test_set = dataframe[(num_instances_per_topic / 2):, :]
 					
-			svr = svm.SVR(C = 1.0, epsilon = 0.2)
-			svr.fit(train_set[:, :-1], train_set[:, -1])
-			predict_train[i, :] = svr.predict(train_set[:, :-1])
-			predict_test[i, :] = svr.predict(test_set[:, :-1])
+			regr = linear_model.LinearRegression()
+			regr.fit(train_set[:, :-1], train_set[:, -1])
+			predict_train[i, :] = regr.predict(train_set[:, :-1])
+			predict_test[i, :] = regr.predict(test_set[:, :-1])
 			
+		# print 'predict train'
+		# print predict_train
+		# print 'predict test'
+		# print predict_test
+
 		detected_intruder_ind_train = np.zeros((num_instances_per_topic / 2))
 		detected_intruder_ind_test = np.zeros((num_instances_per_topic / 2))
 
@@ -288,16 +330,22 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 		for j in range((num_instances_per_topic / 2)):
 			detected_intruder_ind_train[j] = predict_train[:, j].argsort()[0]
 			detected_intruder_ind_test[j] = predict_test[:, j].argsort()[0]
+			
+			# print 'intrusion train'
+			# print detected_intruder_ind_train
+			# print 'intrusion test'
+			# print detected_intruder_ind_test
+
 			if int(detected_intruder_ind_train[j]) == 5:
 				count_train += 1
 			if int(detected_intruder_ind_test[j]) == 5:
 				count_test += 1
 
-		print 'train'
-		print detected_intruder_ind_train
-		print 'test'
-		print detected_intruder_ind_test
-		print '\n'
+		# print 'train'
+		# print detected_intruder_ind_train
+		# print 'test'
+		# print detected_intruder_ind_test
+		# print '\n'
 
 		train_accuracy[k] = float(count_train) / (num_instances_per_topic * 0.5)
 		test_accuracy[k] = float(count_test) / (num_instances_per_topic * 0.5)
@@ -339,12 +387,12 @@ def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = D
 
 def evaluation_word_intrusion(doc_path = 'titlesUnderCS_10000.txt', stop_word_path = 'stopwords.txt', \
 								lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
-	if not os.path.exists('preprocessing_data.pkl'):
+	if not os.path.exists('preprocessing_data_20topic.pkl'):
 		doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, \
 				lemmatize = lemmatize, Stem = Stem)
 	else:
 		print 'load data'
-		with open('preprocessing_data.pkl', 'rb') as INFILE:
+		with open('preprocessing_data_20topic.pkl', 'rb') as INFILE:
 			temp = pickle.load(INFILE)
 			doc_term_matrix = temp[0]
 			number_of_topic = temp[1]
@@ -354,9 +402,10 @@ def evaluation_word_intrusion(doc_path = 'titlesUnderCS_10000.txt', stop_word_pa
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
 	word_topic = data._topic_word.T
+
 	accuracy = WordIntrusion(doc_term_matrix, len(wordlist), word_topic)
 
-def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjacentMatrixUnderCS_10000'):
+def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjacentMatrixUnderCS_1000'):
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)

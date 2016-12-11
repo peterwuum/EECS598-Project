@@ -34,7 +34,7 @@ def networkClustering(adj_file, data, number_of_topic = 10, edge_perturbation = 
 	# row_norm = norm(U, axis = 1, ord = 2)
 	U_norm = normalize(U, norm = 'l2', axis = 1)
 	kmeans = KMeans(n_clusters = number_of_topic, random_state = 0).fit(U_norm)  
-	label_pred = np.arange(kmeans.labels_)
+	label_pred = np.array(kmeans.labels_)
 	print Counter(label_pred)
 	label_true = data._doc_label
 	# if true label is more than one, randomly assign the document to one cluster, select the best results 
@@ -44,11 +44,11 @@ def networkClustering(adj_file, data, number_of_topic = 10, edge_perturbation = 
 	TODO: overlap cluster NMI
 	'''
 
-	pred_label_matrix = np.zeros(len(label_pred), number_of_topoc),dtype = 'f')
+	pred_label_matrix = np.zeros((len(label_pred), number_of_topic), dtype = 'f')
 	index_row = np.arange(len(label_pred))
 	pred_label_matrix[index_row, label_pred] = 1
 
-	true_label_matrix = np.zeros(len(label_true), number_of_topoc),dtype = 'f')
+	true_label_matrix = np.zeros((len(label_true), number_of_topic), dtype = 'f')
 	for index in range(0,len(label_true)):
 		for i in label_true[index]:
 			true_label_matrix[index][i] = 1
@@ -65,4 +65,4 @@ def networkClustering(adj_file, data, number_of_topic = 10, edge_perturbation = 
 	# 	NMI_list[i] = normalized_mutual_info_score(label_true_unique, label_pred)
 	# NMI_best = max(NMI_list)
 	print 'The NMI between spectral clustering and true label is\t' + str(NMI)
-	return NMI_best
+	return NMI
