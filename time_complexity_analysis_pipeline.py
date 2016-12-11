@@ -11,6 +11,9 @@ def folder_to_adj_matrix(folder_path):
     for f in os.listdir(folder_path):
       if os.path.isfile(os.path.join(folder_path, f)) and f.startswith('adjacentMatrixUnderCS_'):
         adjs.append(int(f.split('_')[1]))
+
+  adjs = list(range(1000, 10001, 1000))
+  adjs.extend([15000, 20000, 25000])
   return adjs
 
 def folder_to_avg_time(folder_path):
