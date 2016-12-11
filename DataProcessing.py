@@ -3,9 +3,8 @@ import numpy as np
 import scipy as sp
 from scipy.sparse import csc_matrix
 import click, os, random
-
 from collections import deque
-from Queue import PriorityQueue
+
 
 
 """
