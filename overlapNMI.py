@@ -70,7 +70,7 @@ def overlapNMI(cluster1, cluster2):
     H_Y_X_norm = H_Y/H_Y_marginal
     H_Y_X = np.sum(H_Y_X_norm)/K
 
-    NMI = 1 - 1/2(H_Y_X + H_X_Y)
+    NMI = 1 - 1/2*(H_Y_X + H_X_Y)
  
     # H_X_marginal = -np.sum(X_marginal_1 * np.log2(X_marginal_1_temp/n) + \
     # X_marginal_0 * np.log2(X_marginal_0_temp/n))
