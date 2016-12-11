@@ -5,20 +5,21 @@ import numpy as np
 from scipy.sparse.csgraph import laplacian
 from sklearn.preprocessing import normalize
 
-from scipy.sparse import csr_matrix
+from scipy.sparse import csr_matrix, lil_matrix
 import pickle
 from sklearn.feature_extraction.text import TfidfTransformer
 
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.lancaster import LancasterStemmer
 import click
+import random
 
 
 # TODO: change the EM to distributed version
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
 					number_of_topic = 10, maxIteration = 30, threshold = 0.02, network = False, 
-					lambda_par = 0.5, gamma_par = 0.1, lemmatize = True, stemmer = False, save = None):
+					lambda_par = 0.5, gamma_par = 0.1, synthetic_edge_prob = 0.0, lemmatize = True, stemmer = False, save = None):
 		self._save = save
 		self._doc_path = doc_path
 		self._stopword = set()
@@ -47,20 +48,8 @@ class PLSA(object):
 		if stemmer:
 			self._lancaster_stemmer = LancasterStemmer()
 
-		with open(path_to_adj, 'rb') as INFILE:
-			self._adj = pickle.load(INFILE)
-		
-		self._lap = laplacian(self._adj)
-		self._adj = normalize(self._adj, norm='l1', axis=1)
-		self.network = network
-		self._lambda = lambda_par
-		self._gamma = gamma_par
-
-		self._old = 1
-		self._new = 1
-
+		# read kid - keyword map
 		self._label_category = dict()
-		
 		name2id = 0
 		with open(path_to_idname, 'r') as INFILE:
 			for line in INFILE.readlines():
@@ -77,6 +66,42 @@ class PLSA(object):
 					temp.add(self._label_category[item])
 				self._doc_label.append(temp)
 
+		with open(path_to_adj, 'rb') as INFILE:
+			self._adj = pickle.load(INFILE)
+			self._adj = lil_matrix(self._adj)
+		
+		# Add synthetic edges
+		if synthetic_edge_prob > 0:
+			edges = []
+
+			for i in range(0, self._adj.shape[0]):
+				for j in range(i, self._adj.shape[0]):
+					if i == j:
+						continue
+
+					keywords_set1 = self._doc_label[i]
+					keywords_set2 = self._doc_label[j]
+					intersection_size = len(keywords_set1 & keywords_set2)
+					
+					# If two paper are not belong to the same area
+					if intersection_size == 0:
+						edges.append((i, j))
+
+			for i, j in edges:
+				if random.uniform(0, 1) < synthetic_edge_prob:
+					self._adj[i, j] = 1.0
+					self._adj[j, i] = 1.0
+
+		self._lap = laplacian(self._adj)
+		self._adj = normalize(self._adj, norm='l1', axis=1)
+		self.synthetic_edge_prob = synthetic_edge_prob
+		self.network = network
+		self._lambda = lambda_par
+		self._gamma = gamma_par
+		self._avg_iteration_time = []
+
+		self._old = 1
+		self._new = 1
 
 	def _preprocessing(self):
 		list_of_doc_word_count = list()
@@ -136,7 +161,9 @@ class PLSA(object):
 		self._numDoc = len(list_of_doc_word_count)
 		print 'document'
 		print self._numDoc
-		
+		# Check the number of document
+		if self._numDoc != self._adj.shape[0]:
+			raise Exception()
 		"""
 		count = 0
 		temp = sorted(word_doc_list.items(), key = lambda x : x[1], reverse = True)
@@ -207,7 +234,7 @@ class PLSA(object):
 				if item[0] in _CommonWordListSet:
 					self.doc_term_matrix[i][self._CommonWordList.index(item[0])] += item[1]		
 
-		print 'Built processed adjacent matrix with size (%d, %d)' % self.doc_term_matrix.shape
+		print 'Built processed doc term matrix with size (%d, %d)' % self.doc_term_matrix.shape
 
 		# transformer = TfidfTransformer(smooth_idf = False)
 		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
@@ -221,6 +248,8 @@ class PLSA(object):
 		normalization = np.sum(self._topic_word, axis = 1)
 		for i in range(0, len(normalization)):
 			self._topic_word[i] /= normalization[i]
+
+		self._avg_iteration_time.append(0)
 
 	
 	def _EStep(self):
@@ -369,10 +398,12 @@ class PLSA(object):
 				break
 			self._old = self._new
 
+			self._avg_iteration_time[-1] = (self._avg_iteration_time[-1] * i + (time.time() - start_time)) / (i+1)
 			print("--- takes %s seconds ---" % (time.time() - start_time))
 			print 
 
-		print("--- %s seconds in total ---" % (time.time() - total_start_time))
+		self._avg_iteration_time[-1] = str(self._avg_iteration_time[-1])
+		print ("--- %s seconds in total ---" % (time.time() - total_start_time))
 		self.doc_term_matrix = doc_term_matrix
 		self._doc_topic = _doc_topic
 		self._topic_word = _word_topic
@@ -397,14 +428,23 @@ class PLSA(object):
 		with open(path_to_save, 'wb') as outfile:
 			pickle.dump(self, outfile)
 
+		# save time complexity information
+		with open(path_to_save + '_avg_runtime_in_seconds', 'w') as outfile:
+			outfile.write('\t'.join(self._avg_iteration_time))
 
 
+
+DEFAULT_DATA_FILE_SUFFIX = "1000"
 DEFAULT_RESULT_FILE = "plsa_data"
 DEFAULT_LAMBDA = 0.5
 DEFAULT_GAMMA = 0.1
+DEFAULT_SYNTHETIC_EDGE_PROB = 0.0
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("--data_file_suffix", "-dfs", "data_file_suffix",
+	default=DEFAULT_DATA_FILE_SUFFIX,
+	help="The suffix of data file")
 @click.option("--result_file", "-rf", "result_file",
 	default=DEFAULT_RESULT_FILE,
 	help="The path of result file")
@@ -415,18 +455,24 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 	default=DEFAULT_GAMMA,
 	help="gamma parameter")
 
-def main(result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, gamma_par = DEFAULT_GAMMA):
+@click.option("--synthetic_edge_prob", "-sep", "synthetic_edge_prob",
+	default=DEFAULT_SYNTHETIC_EDGE_PROB,
+	help="synthetic edge probability")
+
+def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESULT_FILE, lambda_par = DEFAULT_LAMBDA, \
+			gamma_par = DEFAULT_GAMMA, synthetic_edge_prob = DEFAULT_SYNTHETIC_EDGE_PROB):
 	# np.seterr(all = 'raise')
 	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
 	np.random.seed(0)
-	doc_path = 'titlesUnderCS_10000.txt'
+	doc_path = 'PROCESSED/titlesUnderCS_%s.txt' % (data_file_suffix)
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS_10000'
+	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS_%s' % (data_file_suffix)
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeywords_10000.txt'
+	path_to_paperid = 'PROCESSED/PaperToKeywords_%s.txt' % (data_file_suffix)
 
 	# Set "network = False" to get a good initialization from PLSA
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = False, lambda_par= lambda_par, gamma_par = gamma_par)
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, network = False, \
+				lambda_par= lambda_par, gamma_par = gamma_par, synthetic_edge_prob = synthetic_edge_prob)
 	plsa.RunPLSA()
 
 	# Run NetPLSA
