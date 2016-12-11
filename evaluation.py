@@ -225,24 +225,16 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 						wordlist.append(word)
 
 				row.append(count)
-				'''
-				TODO: this part is a little bit slow, which is need to improve the next line
-				'''
 				col.append(wordlist.index(word))
 				data.append(1)
 			count += 1
 	
 	doc_term_matrix = csr_matrix((data, (row, col)), shape = (count, len(wordlist)))
-	'''
-	TODO: return value is a density matrix, we would like to change it the sparse matrix
-	'''
-	# saved = (doc_term_matrix.toarray(), count, wordlist)
 	saved = (doc_term_matrix, count, wordlist)
 
 	with open('preprocessing_data.pkl', 'wb') as INFILE:
 		pickle.dump(saved, INFILE)
 
-	print doc_term_matrix.shape[1]
 	return (doc_term_matrix, count, wordlist)
 
 
@@ -278,10 +270,6 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 	for k in range(number_of_topic):
 		# get the indices that will sort the array, from index of the smallest number to that of the largest
 		ind_words[k, :] = np.argsort(word_topic[:, k])
-		# print 'index sort in K topic'
-		# print ind_words[k, :]
-		# # get the indices of the top 10 words in each topic
-		# print 'top 10 index'
 		ind_topwords[k, :] = ind_words[k, :][::-1][:num_topwords]  
 		
 	for k in range(number_of_topic):
@@ -293,8 +281,6 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 		last_50_ind = ind_words[k, :int(np.floor(0.5 * number_of_word))]
 		intersection = np.intersect1d(other_topwords_ind, last_50_ind)
 		
-		# print intersection
-
 		if intersection.size > num_instances_per_topic:
 			for i in range(num_instances_per_topic):
 				topwords_ind = np.random.choice(ind_topwords[k, :], int(0.5 * num_topwords))
@@ -315,13 +301,6 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 			regr.fit(train_set[:, :-1], train_set[:, -1])
 			predict_train[i, :] = regr.predict(train_set[:, :-1])
 			predict_test[i, :] = regr.predict(test_set[:, :-1])
-
-			# clf = svm.SVR(C = 1.0, epsilon = 0.2)
-			# clf.fit(train_set[:, :-1], train_set[:, -1])
-			# predict_train[i, :] = clf.predict(train_set[:, :-1])
-			# predict_test[i, :] = clf.predict(test_set[:, :-1])
-			
-
 
 		detected_intruder_ind_train = np.zeros((num_instances_per_topic / 2))
 		detected_intruder_ind_test = np.zeros((num_instances_per_topic / 2))
@@ -364,9 +343,7 @@ def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = D
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
-	# data_percentage = [0.8]
-	# for i in data_percentage:
-	# i is the data_percentage
+
 	data_percentage = 0.8
 	print 'data_percentage: ' + str(data_percentage)
 	with open(str(result_file), 'w') as res_file:
@@ -383,8 +360,7 @@ def evaluation_word_intrusion(doc_path = 'titlesUnderCS_85000.txt', stop_word_pa
 		doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, \
 				lemmatize = lemmatize, Stem = Stem)
 	else:
-		print 'load data'
-		with open('preprocessing_data', 'rb') as INFILE:
+		with open('preprocessing_data.pkl', 'rb') as INFILE:
 			temp = pickle.load(INFILE)
 			doc_term_matrix = temp[0]
 			number_of_topic = temp[1]
@@ -396,6 +372,7 @@ def evaluation_word_intrusion(doc_path = 'titlesUnderCS_85000.txt', stop_word_pa
 	word_topic = data._topic_word.T
 
 	accuracy = WordIntrusion(doc_term_matrix, len(wordlist), word_topic)
+	return accuracy
 
 def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjacentMatrixUnderCS_1000'):
 	data_file = str(source_file)
@@ -408,8 +385,8 @@ def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjac
 
 
 if __name__ == "__main__":
-	NMI_topic_network = evaluation_classification()
-	NMI_network = evaluation_clustering()
-	evaluation_word_intrusion()
+	# NMI_topic_network = evaluation_classification()
+	# NMI_network = evaluation_clustering()
+	accuracy = evaluation_word_intrusion()
 
 
