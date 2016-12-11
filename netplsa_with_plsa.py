@@ -436,7 +436,6 @@ class PLSA(object):
 			outfile.write('\t'.join(self._avg_iteration_time))
 
 
-
 DEFAULT_DATA_FILE_SUFFIX = "1000"
 DEFAULT_RESULT_FILE = "plsa_data"
 DEFAULT_LAMBDA = 0.5
@@ -475,16 +474,16 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 
 	# Set "network = False" to get a good initialization from PLSA
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
-					network = True, lambda_par = lambda_par, gamma_par = gamma_par, 
+					network = False, lambda_par = lambda_par, gamma_par = gamma_par, 
 					synthetic_edge_prob = synthetic_edge_prob, optimal = False)
 	plsa.RunPLSA()
 
 	# # Run NetPLSA
-	# plsa.network = True
-	# plsa._old = 1
-	# plsa._new = 1
-	# plsa._save = not plsa._save
-	# plsa.RunPLSA()
+	plsa.network = True
+	plsa._old = 1
+	plsa._new = 1
+	plsa._save = not plsa._save
+	plsa.RunPLSA()
 
 	# Print result
 	plsa.print_topic_word_matrix(20)

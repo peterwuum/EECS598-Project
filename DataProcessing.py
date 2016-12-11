@@ -203,7 +203,7 @@ def create_adjacent_matrix(number_of_papers_per_field, chosen_paper_ids):
 
 # Initialization
 DEFAULT_NUM_OF_PAPERS_PER_FIELD = 100
-DEFAULT_OPERATION = ""
+DEFAULT_OPERATION = "get_adj_matrix"
 DEFAULT_CHOSEN_FIELD_FILE = "filtered_10_fields.txt"
 
 
