@@ -79,7 +79,7 @@ def overlapNMI(cluster1, cluster2):
     # Y_marginal_0 * np.log2(Y_marginal_0_temp/n))
 
     
-    NMI = 1 - 0.5*(H_X_Y/H_X_marginal + H_Y_X/H_Y_marginal)
+    # NMI = 1 - 0.5*(H_X_Y/H_X_marginal + H_Y_X/H_Y_marginal)
     print 'The NMI of the overlapping community detection is' + str(NMI)
     return NMI
     
