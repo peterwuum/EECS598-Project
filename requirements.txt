@@ -3,3 +3,7 @@ scipy
 sklearn
 nltk
 click
+statistics
+networkclustering
+multiprocessing
+matplotlib
