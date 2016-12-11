@@ -21,7 +21,7 @@ TODO: change the EM to distributed version
 
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
-					number_of_topic = 20, maxIteration = 30, threshold = 0.02, network = False, 
+					number_of_topic = 10, maxIteration = 30, threshold = 0.02, network = False, 
 					lambda_par = 0.5, gamma_par = 0.1, synthetic_edge_prob = 0.0, 
 					lemmatize = True, stemmer = False, 
 					save = None, optimal = False):
@@ -243,9 +243,9 @@ class PLSA(object):
 
 		print 'Built processed doc term matrix with size (%d, %d)' % self.doc_term_matrix.shape
 
-		print 'tfidf version'
-		transformer = TfidfTransformer(smooth_idf = False)
-		self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
+		# print 'tfidf version'
+		# transformer = TfidfTransformer(smooth_idf = False)
+		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
 		# print self.doc_term_matrix
 
 	def _initParameters(self):
@@ -438,7 +438,7 @@ class PLSA(object):
 
 
 DEFAULT_DATA_FILE_SUFFIX = "1000"
-DEFAULT_RESULT_FILE = "plsa_data_20topics"
+DEFAULT_RESULT_FILE = "plsa_data"
 DEFAULT_LAMBDA = 0.5
 DEFAULT_GAMMA = 0.1
 DEFAULT_SYNTHETIC_EDGE_PROB = 0.0
@@ -467,11 +467,11 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 	# np.seterr(all = 'raise')
 	np.seterr(divide = 'warn', over = 'warn', under = 'warn',  invalid = 'raise')
 	np.random.seed(0)
-	doc_path = 'titlesUnderCS_%s.txt' % (data_file_suffix)
+	doc_path = 'PROCESSED/titlesUnderCS_%s.txt' % (data_file_suffix)
 	stop_word_path = 'stopwords.txt'
-	path_to_adj = 'adjacentMatrixUnderCS_%s' % (data_file_suffix)
+	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS_%s' % (data_file_suffix)
 	path_to_idname = 'filtered_10_fields.txt' 
-	path_to_paperid = 'PaperToKeywords_%s.txt' % (data_file_suffix)
+	path_to_paperid = 'PROCESSED/PaperToKeywords_%s.txt' % (data_file_suffix)
 
 	# Set "network = False" to get a good initialization from PLSA
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 

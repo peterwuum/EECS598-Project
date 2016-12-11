@@ -315,11 +315,13 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 			regr.fit(train_set[:, :-1], train_set[:, -1])
 			predict_train[i, :] = regr.predict(train_set[:, :-1])
 			predict_test[i, :] = regr.predict(test_set[:, :-1])
+
+			# clf = svm.SVR(C = 1.0, epsilon = 0.2)
+			# clf.fit(train_set[:, :-1], train_set[:, -1])
+			# predict_train[i, :] = clf.predict(train_set[:, :-1])
+			# predict_test[i, :] = clf.predict(test_set[:, :-1])
 			
-		# print 'predict train'
-		# print predict_train
-		# print 'predict test'
-		# print predict_test
+
 
 		detected_intruder_ind_train = np.zeros((num_instances_per_topic / 2))
 		detected_intruder_ind_test = np.zeros((num_instances_per_topic / 2))
@@ -331,21 +333,11 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 			detected_intruder_ind_train[j] = predict_train[:, j].argsort()[0]
 			detected_intruder_ind_test[j] = predict_test[:, j].argsort()[0]
 			
-			# print 'intrusion train'
-			# print detected_intruder_ind_train
-			# print 'intrusion test'
-			# print detected_intruder_ind_test
 
 			if int(detected_intruder_ind_train[j]) == 5:
 				count_train += 1
 			if int(detected_intruder_ind_test[j]) == 5:
 				count_test += 1
-
-		# print 'train'
-		# print detected_intruder_ind_train
-		# print 'test'
-		# print detected_intruder_ind_test
-		# print '\n'
 
 		train_accuracy[k] = float(count_train) / (num_instances_per_topic * 0.5)
 		test_accuracy[k] = float(count_test) / (num_instances_per_topic * 0.5)
@@ -385,14 +377,14 @@ def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = D
 	print 'The NMI between topic model and true label is\t' + str(NMI)
 	return NMI
 
-def evaluation_word_intrusion(doc_path = 'titlesUnderCS_10000.txt', stop_word_path = 'stopwords.txt', \
+def evaluation_word_intrusion(doc_path = 'titlesUnderCS_85000.txt', stop_word_path = 'stopwords.txt', \
 								lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
-	if not os.path.exists('preprocessing_data_20topic.pkl'):
+	if not os.path.exists('preprocessing_data.pkl'):
 		doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, \
 				lemmatize = lemmatize, Stem = Stem)
 	else:
 		print 'load data'
-		with open('preprocessing_data_20topic.pkl', 'rb') as INFILE:
+		with open('preprocessing_data', 'rb') as INFILE:
 			temp = pickle.load(INFILE)
 			doc_term_matrix = temp[0]
 			number_of_topic = temp[1]
@@ -416,8 +408,8 @@ def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjac
 
 
 if __name__ == "__main__":
-	# NMI_topic_network = evaluation_classification()
-	# NMI_network = evaluation_clustering()
+	NMI_topic_network = evaluation_classification()
+	NMI_network = evaluation_clustering()
 	evaluation_word_intrusion()
 
 

@@ -1,0 +1,2000 @@
+netsolve a network server for solving computational science problems
+graph mining laws generators and algorithms
+evolutionary optimization of radial basis function classifiers for data mining applications
+netcfd a ninf cfd component for global computing and its java applet gui
+mitigating the insider threat with high dimensional anomaly detection
+on computer viral infection and the effect of immunization
+evolving fuzzy classifiers for intrusion detection
+a new local algorithm for detecting communities in networks
+a new economic generalized particle model for flow control
+introduction to distributed geographic information processing research
+global grids and software toolkits a study of four grid middleware technologies
+application and comparative performance of network modularity algorithms to ecological communities classification
+integrating local dynamic and global static information for routing traffic on networks
+computational and data grids in large scale science and engineering
+anomaly detection for application level network attacks using payload keywords
+using complex networks to quantify consistency in the use of words
+a network based feature selection approach to identify metabolic signatures in disease
+a comparison of phylogenetic network methods using computer simulation
+the topology of the federal funds market
+a taxonomy of biologically inspired research in computer networking
+mapping change in the overnight money market
+editor s introduction six themes of six degrees
+stochastic analysis of gene regulatory networks using finite state projections and singular perturbation
+wikipedia information flow analysis reveals the scale free architecture of the semantic space
+dynamical and correlation properties of the internet
+growth and structure of slovenia s scientific collaboration network
+statistical analysis of multiple sociometric relations
+firm dynamic governance of global innovation by means of flexible networks of connections
+detecting novel network attacks with a data field
+a hybridization of evolutionary fuzzy systems and ant colony optimization for intrusion detection
+anomaly based network intrusion detection techniques systems and challenges
+definition and implementation of a saml xacml profile for authorization interoperability across grid middleware implementations in osg and egee
+volunteer computing and desktop cloud the cloud home paradigm
+comprehensive reconstruction and visualization of non coding regulatory networks in human
+new approach for phylogenetic tree recovery based on genome scale metabolic networks
+performance evaluation of scheduling precedence constrained computations on message passing systems
+task scheduling and lightpath establishment in optical grids
+teaching complexity theory through student construction of a course wiki the self organization of a scale free network
+on nakhleh s metric for reduced phylogenetic networks
+dust transport model validation using satellite and ground based methods in the southwestern united states
+metaheuristics for optimization problems in computer communications
+uncovering and managing the impact of methodological choices for the computational construction of socio technical networks from texts
+cornet 2 0 integrating plant coexpression protein protein interactions regulatory interactions gene associations and functional annotations
+decentralized control system for autonomous navigation based on an evolved artificial immune network
+automation on the generation of genome scale metabolic models
+a survey of state of the art biomedical text mining techniques for semantic analysis
+the i space a framework for analyzing the evolution of social computing
+modeling genetic regulatory networks using first order probabilistic logic
+collective dynamics of small world networks
+identifying intrusions in computer networks with principal component analysis
+identifying drivers of general arrangements through the use of network measures of centrality and hierarchy
+metabolic network modeling approaches for investigating the hungry cancer
+search in the formation of large networks how random are socially generated networks
+a nonparametric approach to pricing and hedging derivative securities via learning networks
+rotation scaling and deformation invariant scattering for texture discrimination
+intrusion detection testing and benchmarking methodologies
+environment adaptation mobile radio propagation prediction using radial basis function neural networks
+deterministic scale free networks
+modelling hierarchical and modular complex networks division and independence
+can complexity science support the engineering of critical network infrastructures
+structural semantic interconnections a knowledge based approach to word sense disambiguation
+a novel unsupervised classification approach for network anomaly detection by k means clustering and id3 decision tree learning methods
+comparison of tree child phylogenetic networks
+community structure in social and biological networks
+the structure and function of complex networks
+radial basis function networks with quantized parameters
+multiple sofms working cooperatively in a vote based ranking system for network intrusion detection
+coasters uniform resource provisioning and access for clouds and grids
+mean field theory for scale free random networks
+improving the load balancing within the data network via modified antnet algorithm
+the parallel optimization of network bandwidth allocation based on generalized particle model
+computation of switch time distributions in stochastic gene regulatory networks
+grid information services for distributed resource sharing
+why we don t know how to simulate the internet
+network mining applications to business data
+small world file sharing communities
+applications of genome scale metabolic reconstructions
+parallel computation in biological sequence analysis
+plant protein interactomes
+a data mining framework for building intrusion detection models
+hierarchical kohonenen net for anomaly detection in network security
+task scheduling considering fault probability for distributed computing applications over an optical network
+the large scale structure of semantic networks statistical analyses and a model of semantic growth
+analysis of genome wide coexpression and coevolution of aspergillus oryzae and aspergillus niger
+biomolecular path sampling enabled by processing in network storage
+network in a polymer inputs from experimental data
+location estimation of an intruder in wireless ad hoc networks
+a comparison of the static task graph scheduling algorithms
+ngce network graphs for computer epidemiologists
+the economics of social networks
+k means id3 a novel method for supervised anomaly detection by cascading k means clustering and id3 decision tree learning methods
+multiclass cancer classification by using fuzzy support vector machine and binary decision tree with gene selection
+joint group and topic discovery from relations and text
+complex financial networks and systemic risk a review
+the economics of small worlds
+semi supervised learning for false alarm reduction
+epidemic spreading in real networks an eigenvalue viewpoint
+drila a distributed relational inductive learning algorithm
+applying complexity science to air traffic management
+ant colony optimization for routing and load balancing survey and new directions
+molecular interaction networks for the analysis of human disease utility limitations and considerations
+an evolving scale free network with large clustering coefficient
+the sh2 domain interaction landscape
+bifurcation analysis of gene regulatory circuits subject to copy number variation
+cryptic species of the eucypris virens species complex ostracoda crustacea from europe have invaded western australia
+constraint networks in vision
+correlations in random apollonian network
+study of the topology and robustness of airline route networks from the complex network approach a survey and research agenda
+catching the network science bug insight and opportunity for the operations researcher
+signal propagation in cortical networks a digital signal processing approach
+privacy preserving distributed k means clustering over arbitrarily partitioned data
+robustness of the markov chain model for cyber attack detection
+bubble scheduling a quasi dynamic algorithm for static allocation of tasks to parallel architectures
+the structure of phonological networks across multiple languages
+contrasting views of complexity and their implications for network centric infrastructures
+swarm intelligence and the quest to solve a garbage and recycling collection problem
+designing a framework for active worm detection on global networks
+bayesian mixed membership models of complex and evolving networks
+scheduling communication aware tasks on distributed heterogeneous computing systems
+a model of large scale proteome evolution
+geospatial cyberinfrastructure past present and future
+scheduling divisible loads on heterogeneous linear daisy chain networks with arbitrary processor release times
+plant genome scale metabolic reconstruction and modelling
+systems analysis of metabolic phenotypes what have we learnt
+a multiple time interval finite state projection algorithm for the solution to the chemical master equation
+a detailed analysis of the kdd cup 99 data set
+the topology of a causal network for the chinese financial system
+replicating disease spread in empirical cattle networks by adjusting the probability of infection in random networks
+availability driven scheduling for real time directed acyclic graph applications in optical grids
+privacy preserving bayesian network structure computation on distributed heterogeneous data
+tvi a visual querying system for network monitoring and anomaly detection
+layering as optimization decomposition a mathematical theory of network architectures
+an algorithm of service selection based on qos preference in network computing environment
+biomet toolbox genome wide analysis of metabolism
+globus a metacomputing infrastructure toolkit
+memosys bioinformatics platform for genome scale metabolic models
+generating structure specific networks
+optflux an open source software platform for in silico metabolic engineering
+scalable graph clustering using stochastic flows applications to community discovery
+a graph matching approach to optimal task assignment in distributed computing systems using a minimax criterion
+routing table updating by using intelligent agents
+tools for large graph mining
+a fast learning algorithm for deep belief nets
+a new generalized particle approach to parallel bandwidth allocation
+parallax a tool for parallel program scheduling
+the grid a new infrastructure for 21st century science
+interbank tiering and money center banks
+how does europe make its mind up connections cliques and compatibility between countries in the eurovision song contest
+active disks remote execution for network attached storage
+unravelling plant molecular machineries through affinity purification coupled to mass spectrometry
+a community effort towards a knowledge base and mathematical model of the human pathogen salmonella typhimurium lt2
+information technology applications in biomedical research
+scale free characteristics of random networks the topology of the world wide web
+a lightweight scalable grid computing framework for parallel bioinformatics applications
+a contrasting look at network formation models and their application to the minimum spanning tree
+recursive tracking of vascular networks in angiograms based on the detection deletion scheme
+foodnet estimate of the burden of illness caused by nontyphoidal salmonella infections in the united states
+network analysis identifies weak and strong links in a metapopulation system
+nowy model detekcji zagrozen w sieci komputerowej
+analysis of the signal transduction network characteristics of non small cell lung cancer
+weaving computational grids how analogous are they with electrical grids
+on simultaneous resource bounds
+networks in extensive air showers
+online predicted human interaction database
+linking entries in protein interaction database to structured text the febs letters experiment
+radio planning of wireless local area networks
+goals guiding design pvm and mpi
+remoteeyes a remote low cost position sensing infrastructure for ubiquitous computing
+the role of interbank relationships and liquidity needs
+a generic tool for transcription factor target gene discovery in arabidopsis cell suspension cultures based on tandem chromatin affinity purification
+graphical multi task learning
+fens 1 and dfcp1 are fyve domain containing proteins with distinct functions in the endosomal and golgi compartments
+an automated approach to improve communication computation overlap in clusters
+gaming and simulation principles of a science of design
+towards multi swarm problem solving in networks
+deterministic convergence of an online gradient method for bp neural networks
+multiple ant colony optimization for network routing
+cedar a core extraction distributed ad hoc routing algorithm
+systems analysis of multiple regulator perturbations allows discovery of virulence factors in salmonella
+prediction of vle data using radial basis function network
+differential modeling for cancer microarray data
+stochastic protocol modeling for anomaly based network intrusion detection
+an anomaly detection scheme for ddos attack in grid computing
+swarm optimisation algorithms applied to large balanced communication networks
+modelling unknown nonlinear systems defined on a unbounded set via neural networks
+a problem specific fault tolerance mechanism for asynchronous distributed systems
+tree average distances on certain phylogenetic networks have their weights uniquely determined
+toward internet distributed computing
+networks and the best approximation property
+a metadata catalog service for data intensive applications
+parzen window network intrusion detectors
+mapping the structure of semantic memory
+forecasting network performance to support dynamic scheduling using the network weather service
+two degrees of separation in complex food webs
+the self organizing map
+a unified structural terminological interoperability framework based on lexevs application to transform
+metaheuristic procedure for a bi objective supply chain design problem with uncertainty
+the building of cloud computing environment for e health
+how homophily affects the speed of learning and best response dynamics
+visual attention and target detection in cluttered natural scenes
+comparing an aco algorithm with other heuristics for the single machine scheduling problem with sequence dependent setup times
+present positions and future prospects in management science
+a pilot study of problem structuring
+multimethodology the theory and practice of combining management science methodologies
+viable boundary critique
+operations management research methodologies using quantitative modeling
+methodological foundations of systems methodologies
+a general framework for modeling production
+managing the tensions created by mixing methods comments for eden et al from a critical systems perspective
+participatory sociotechnical design of organizations and information systems an adaptation of ethics methodology
+the importance of weltanschauung in operations research the case of the school busing problem
+ant local search and its efficient adaptation to graph colouring
+operations research in agriculture
+on becoming expert in the use of problem structuring methods
+introductory business or cases successful use of cases in introductory undergraduate business college operational research courses
+making decisions in the absence of clear facts
+information systems as a discipline in the making comparing ejis and misq between 1995 and 2008
+operations research and data mining
+the weighted region problem finding shortest paths through a weighted planar subdivision
+fifty years of operational research and emergency response
+defining real world problems a conceptual language
+methodology an analysis of its meaning and use
+a critique of statistical modelling in management science from a critical realist perspective its role within multimethodology
+greedy randomized adaptive search procedures
+the changing character of management science
+operational research changes tales from a parallel universe
+using foucault to analyse ethics in the practice of problem structuring methods
+broadening the boundaries an application of critical systems thinking to is planning in colombia
+how a professionally qualified doctoral student bridged the practice research gap a confessional account of collaborative practice research
+planning for disaster developing a multi agency counselling service
+an application of soft systems dynamics methodology ssdm
+evaluating systems thinking in housing
+operational research interdisciplinary synthesis
+recent developments in critical management science
+a modular approach for the modelling of a class of zone control conveyor system using timed petri nets
+mixing methodologies and paradigmatic commensurability
+the implementation of operations research
+undercover agency ndash ethics responsibility and the practice of or
+beyond problem structuring methods reinventing the future of or sol ms
+anticipation in supply chain operations planning
+information security policy decision making an analytic hierarchy process approach
+operations research as a profession
+researching practice and practicing research reflexively conceptualizing the relationship between research partners and researchers in longitudinal studies
+the natural drift what happened to operations research
+a two phase multiple objective approach to university timetabling utilising optimisation and evolutionary solution methodologies
+the design of organisational intervention choosing the approach
+the process of problem finding
+a heuristic approach for a scheduling problem with periodic maintenance and sequence dependent setup times
+towards a heuristic theory of problem structuring
+design planning scheduling and control problems of flexible manufacturing systems
+review and comparison of three methods for the solution of the car sequencing problem
+model legitimisation in operational research
+socially responsible modeling a stakeholder approach to the implementation of ethical modeling in operations research
+ms or projects and their interaction
+towards a system of systems methodologies
+quantitative problem structuring methods for multi actor problems an analysis of reported applications
+operational research in health services planning
+a review and classification of heuristics for permutation flow stop scheduling with makespan objective
+toward a buddhist systems methodology 2 an exploratory questioning approach
+decision support system for continuous production
+operations research applications opportunities and accomplishments
+paradigm change in operations research thirty years of debate
+towards a critical management science
+verification and validation in computational fluid dynamics
+operational research in urban planning
+a foundationalist perspective for management research a european trend and experience
+a foundational concept of science appropriate for validation in operational research
+the optimisation problem formulation criticism and overstepping
+a review of the recent contribution of systems thinking to operational research and management science
+the contribution of critical realism as an underpinning philosophy for or ms and systems
+soft or comes of age but not everywhere
+bellman s gap a declarative language for dynamic programming
+ant colonies for the quadratic assignment problem
+relevance and creativity through design driven action research introducing pragmatic adequacy
+is management science arcane
+bag rationalisation for a food manufacturer
+the effects of design changes and delays on project costs
+systemic problem structuring applied to community involvement in water conservation
+critical systems thinking and practice
+planning under uncertainty ii a methodology for robustness analysis
+rolling schedule approaches for supply chain operations planning
+a kuhnian crisis in management science
+modelling and reality
+using ant colony system and local search methods to solve vrptw
+the paucity of model validation in operational research projects
+the meta model of or ms
+rich picture building in the soft systems methodology
+examining the strategy development process through the lens of complex adaptive systems theory
+impact of the pheromone trail on the performance of aco algorithms for solving the car sequencing problem
+problem structuring mdash a literature review
+the multi methodology debate a response to harwood
+evolutionare algorithmen im marketing
+the death of the expert
+a literature analysis of the use of management science tools in strategic planning
+adventures in policy modeling operations research in the community and beyond
+seeking optimum project duration extensions
+a multi methodological approach to the development of a regional solid waste management system
+the marginal cost of complexity
+information in the operations research process
+interdisciplinarity in operational research in the past and in the future an invitation to ifors 84 in washington d c
+ant colony optimization for the total weighted tardiness problem
+pedagogy in operations research where has the discipline been where is it now and where should it go
+producing and socializing relevant management knowledge re turn to pragmatism
+voices and values linking values with participation in or ms in public policy making
+operator scheduling approaches in group technology cells information request analysis
+operations research in agriculture thornthwaite s classic revisited
+implementation the bottleneck of operations research the state of the art
+using the viable systems model to examine multi agency arrangements for combatting transnational organised crime
+the role of management science
+acting with systems intelligence integrating complex responsive processes with the systems perspective
+on the nature of problems in consulting practice
+a framework for research evaluation in management science
+can we have confidence in generic structures
+learning from projects
+rate control for communication networks shadow prices proportional fairness and stability
+or library distributing test problems by electronic mail
+managing reforms on a large scale what role for or ms
+is information systems a discipline quest foucauldian and toulminian insights
+towards coherent pluralism in management science
+a comparative study of heuristic algorithms on economic lot scheduling problem
+a comparison of operational research in the u s a and in great britain
+the future of operational research is past
+a hybrid evolutionary algorithm for the job shop scheduling problem
+disruption management for resource constrained project scheduling
+ethics and or operationalising discourse ethics
+structural analysis of the management science methodology
+the evolution of management as an interdisciplinary field
+a reply to the comments of keith chesterton robert goodsman jonathan rosenhead and colin thunhurst
+boundary critique and its implications for conflict prevention
+soft systems methodology a context within a 50 year retrospective of or ms
+the facets of the modeling and validation process in operations research
+ants can colour graphs
+collaborative problem structuring using marvel
+beyond a system of systems methodologies
+resurrecting the future of operational research
+hierarchical production planning a two stage system
+why the rigour relevance gap in management research is unbridgeable
+a discrete differential evolution algorithm for the single machine total weighted tardiness problem with sequence dependent setup times
+meta heuristic algorithms for wafer sorting scheduling problems
+the social responsibility of operational research
+evaluation and optimization of strongly ideal assemble to order systems
+teaching objectives the value of using cases in teaching operational research
+of kings and men especially o r men a methodological tale
+a comment on ackoff s the social responsibility of operational research
+operational research a role in strengthening community participation
+the management sciences and managerial skills
+on managing science in the systems age two schemas for the study of science as a whole systems phenomenon
+a genetic algorithm for flow shop scheduling problems
+ant colony optimization for the examination scheduling problem
+five sketches of post modernism implications for systems thinking and operational research
+is production outside management
+scheduling theory and its applications
+real world o r m s applications in journals
+management science and business practice
+a review of production planning and scheduling models in the semiconductor industry part i system characteristics performance evaluation and production planning
+heuristic problem solving the next advance in operations research
+minimizing maximum tardiness and number of tardy jobs on parallel machines subject to minimum flow time
+on macroscopic description of urban traffic speeds
+recent developments in operations research a personal perspective
+the power of multi methodology some thoughts for john mingers
+multimethodology in series and parallel strategic planning using hard and soft or
+using metaheuristic compromise programming for the solution of multiple objective scheduling problems
+management science theory relevance and practice in the 1980s
+implementation of the operations research management science process
+the viable system model its provenance development methodology and pathology
+preparing for evidence based management
+operations research in general clinical practice
+visions of community for community or
+the institute of management sciences progress report
+search heuristics for resource constrained project scheduling
+ants can solve constraint satisfaction problems
+operational research models and methods in cim
+robustness and optimality as criteria for strategic decisions
+ant colony optimization introduction and recent trends
+planning continuous production by linear programming
+perceptual differences and effects of managerial participation on project implementation
+who do you think you are quest a review of the complex interplay between information systems identification and identity
+mapping the changes in management science a review of soft or ms articles published in omega 1973 2008
+the political properties of crystalline h2o planning for snow emergencies in new york
+a new model and solution method for product line design with pricing
+scheduling to minimize maximum earliness and number of tardy jobs where machine idle time is allowed
+general concepts of quality for discrete event simulation
+the management science researcher between theory and practice
+a methodology for measuring response to media effects
+dynamic performance of hierarchical planning systems modeling and evaluation with dynamic planned lead times
+problem structuring methods and project management an example of stakeholder involvement using hierarchical process modelling methodology
+solution strategies for multi stage wafer probing scheduling problem with reentry
+supporting strategic conversations the significance of a quantitative model building process
+evolutionary optimization evopt a brief review and analysis
+shifting perspectives on organizational memory from storage to active remembering
+ant colony algorithms for permutation flowshop scheduling to minimize makespan total flowtime of jobs
+a classification of the philosophical assumptions of management science methods
+using a group support system to aid input ndash output identification in dea
+operations research trajectories the anglo american experience from the 1940s to the 1990s
+systems in o r editorial
+is management interdisciplinary the evolution of management as an interdisciplinary field of research and education in the netherlands
+a safety stock adjustment procedure to enable target service levels in simulation of generic inventory systems
+lsquo more dangerous than an unanswered question is an unquestioned answer rsquo a contribution to the ulrich debate
+which manufacturing logistics decisions are supported by operational research a literature survey
+a fast and elitist multiobjective genetic algorithm nsga ii
+boosting multi modal camera selection with semantic features
+thin slices of interaction predicting users task difficulty within 60 sec
+local search particle filter applied to human computer interaction
+3d human motion analysis in monocular video techniques and challenges
+information seeking can be social
+head gesture recognition based on bayesian network
+visual interpretation of hand gestures for human computer interaction a review
+vision based hand pose estimation a review
+competitive combination of multiple eye detection and tracking techniques
+segmentation based perceptual image quality assessment spiqa
+head gestures for computer control
+face detection by facial features with color images and face recognition using pca
+complex background subtraction for biometric identification
+novel eye gaze tracking techniques under natural head movement
+a framework for modeling the appearance of 3d articulated figures
+a probabilistic approach to online eye gaze tracking without explicit personal calibration
+an investigation on the feasibility of uncalibrated and unconstrained gaze tracking for human assistive applications by using head pose estimation
+reusing implicit cooperation a novel approach to knowledge management
+visual tracking of human back and shoulder for person following robot
+simultaneous 4 gestures 6 dof real time two hand tracking without any markers
+a design perspective on three technology heirlooms
+a web based framework for user centred evaluation of end user experience in adaptive and personalized e learning systems
+a fuzzy approach to skin color detection
+integrated person tracking using stereo color and pattern detection
+an interactive environment for a mobile robot using skin detection
+in the eye of the beholder a survey of models for eyes and gaze
+a real time approach to the spotting representation and recognition of hand gestures for human computer interaction
+foreground segmentation using adaptive mixture models in color and depth
+learning probabilistic classifiers for human computer interaction applications
+recent videogame console technologies
+a color based face tracking algorithm for enhancing interaction with mobile devices
+the life and times of files and information a study of desktop provenance
+social digital objects for grandparents
+real time eye tracking for human computer interfaces
+human presence detection by smart devices
+before i forget from personal memory to family history
+enhance flexibility in human agent interaction a case study on imas agent system
+geospatial agents agents everywhere
+reducing the dimensionality of hyperspectral data using diffusion maps
+five reasons for scenario based design
+navigating in virtual environments using a vision based interface
+heart rate variability indicator of user state as an aid to human computer interaction
+aam based hci for an intelligent wheelchair
+two step approach for real time eye tracking with a new filtering technique
+making public media personal nostalgia and reminiscence in the office
+3d freehand pose initialization based on operator s cognitive behavioral models
+a decision support system dedicated to discrete multiple criteria problems
+gaze tracking for multimodal human computer interaction
+head nod and shake recognition based on multi view model and hidden markov model
+evaluating head gestures for panning 2 d spatial information
+arm pointer 3d pointing interface for real world interaction
+extraction of visual features for lipreading
+a multi gesture interaction system using a 3 d iris disk model for gaze estimation and an active appearance model for 3 d hand pointing
+analysis of composite gestures with a coherent probabilistic graphical model
+retaining body language in subjective virtual environments using artifact centred coordinate systems
+a model based gaze tracking system
+visualpen a physical interface for natural human computer interaction
+interacting with 21st century computers
+from conversational tooltips to grounded discourse head posetracking in interactive dialog systems
+visual tracking of high dof articulated structures an application to human hand tracking
+the future of personal information management part i our information always and forever
+lowering the barriers to cancer imaging
+gwindows towards robust perception based ui
+face detection a survey
+gaze data collection with the off the shelf devices
+a multimodal perceptual user interface for video surveillance environments
+eye controlled human computer interaction for severely motor disabled children two clinical case studies
+jeremiah the face of computer vision
+on designing task oriented intelligent interfaces an e mail based design framework
+a human computer interface using symmetry between eyes to detect gaze direction
+a review of how space affords socio cognitive processes during collaboration
+handy ar markerless inspection of augmented reality objects using fingertip tracking
+performance evaluation of vision based high dof human movement tracking a survey and human computer interaction perspective
+detecting eye position and gaze from a single camera and 2 light sources
+emotional recognition in computing
+non intrusive gaze tracking for human computer interaction
+the isometric self organizing map for 3d hand pose estimation
+human computer interaction
+combining environmental cues head gestures to interact with wearable devices
+measuring and understanding user comfort with resource borrowing
+head pose recognition for a game system based on nose s relative position
+self interruption on the computer a typology of discretionary task interleaving
+video user interfaces
+socio technical lifelogging deriving design principles for a future proof digital past
+open hand detection in a cluttered single image using finger primitives
+sensecam a retrospective memory aid
+face detection using a modified svm based classifier
+using head poses to control a virtual robot walking in a virtualmaze
+model based tracking of self occluding articulated objects
+realization of stress detection using psychophysiological signals for improvement of human computer interactions
+pfaam an active appearance model based particle filter for both robust and precise tracking
+vision based human motion analysis an overview
+computation of emotions
+head gestures for perceptual interfaces the role of context in improving recognition
+face responsive interfaces from direct manipulation to perceptive presence
+face detection in resource constrained wireless systems
+real time detection and interpretation of 3d deictic gestures for interactionwith an intelligent environment
+vishap augmented reality combining haptics and vision
+computer aids for production systems management in iron ore mining
+a general method for sensor planning in multi sensor systems extension to random occlusion
+transforming technologies to manage our information the future of personal information management part ii
+an fpga based smart camera for gesture recognition in hci applications
+augmented reality combining haptics and vision
+tracking and modeling focus of attention in meetings
+on human remains values and practice in the home archiving of cherished objects
+patient monitoring using personal area networks of wireless intelligent sensors
+real time inference of complex mental states from facial expressions and head gestures
+body brush a body driven interface for visual aesthetics
+monocular human motion capture with a mixture of regressors
+interface an evolving concept
+intelligent search on the internet
+comparative analysis of lip features for person identification
+applying models of visual search to map display design
+3d tracking classification interpolation
+the carnegie mellon university master of software engineering specialization tracks
+dying death and mortality towards thanatosensitivity in hci
+visualizing lifelog data for different interaction platforms
+gaze tracking based on run length coding
+web history visualisation for forensic investigations
+detecting faces in images a survey
+gesture recognition with a wii controller
+knowledge acquisition with supervised ontology population
+audio visual biometrics
+interaction with on screen objects using visual gesture recognition
+application of feature tracking in a vision based human machine interface for xbox
+computer vision based hand gesture interfaces for human computer interaction
+a new framework for theory based interaction design applied to serendipitous information retrieval
+robust hand tracking using a skin tone and depth joint probability model
+usim a user behavior simulation framework for training and testing idses in gui based systems
+human computer interaction based intrusion detection
+natural language processing in aid of flybase curators
+preprocessing of visual speech under real world conditions
+non haptic interaction system
+a smart camera for multimodal human computer interaction
+filochat handwritten notes provide access to recorded conversations
+usability evaluation of cloud based application
+recognition of multi pose head gestures in human conversations
+user centric design of a vision system for interactive applications
+airtouch interacting with computer systems at a distance
+computer vision in the interface
+chapter 1 an introduction to studying and designing technology for domestic life
+user interaction templates for the design of lifelogging systems
+real time 3d model based gesture tracking for multimedia control
+theories methods and current research on emotions in library and information science information retrieval and human computer interaction
+a 3d interactive kiosk system
+semantic level understanding of human actions and interactions using event hierarchy
+a comprehensive audio visual corpus for teaching sound persian phoneme articulation
+real time visual recognition of facial gestures for human computer interaction
+vics a modular vision based hci framework
+hardware interfaces for vr applications evaluation on prototypes
+user controlled overviews of an image library a case study of the visible human
+interacting with paper on the digitaldesk
+pedestrian detectability predicting human perception performance with machine vision
+dynamic disparity adjustment and histogram based filtering of range data for fast 3 d hand tracking
+a tool for wizard of oz studies of multimodal mobile systems
+gwindows robust stereo vision for gesture based control of windows
+recognition of manual actions using vector quantization and dynamic time warping
+embodied agents for multi party dialogue in immersive virtual worlds
+a multimodal perceptual user interface for collaborative environments
+patterns for safer human computer interfaces
+learning face localization using hierarchical recurrent networks
+human tracking using 3d surface colour distributions
+computer vision based gesture recognition for an augmented reality interface
+vision based sensor fusion for human computer interaction
+principles of mixed initiative user interfaces
+real time tracking of multiple fingertips and gesture recognition for augmented desk interface systems
+multi cue hand detection and tracking for a head mounted augmented reality system
+fuzzy domain ontology discovery for business knowledge management
+towards real time speech based facial animation applications built on huge architecture
+tracking and replication of hand movements by teleguided intelligent manipulator robot
+collagen applying collaborative discourse theory to human computer interaction
+quality versus quantity e mail centric task management and its relation with overload
+mining data with random forests a survey and results of new tests
+background modeling and subtraction of dynamic scenes
+real time tracking and reproduction of 3d human body motion
+gpu based particle system
+accommodating explicit user expressions of uncertainty in voice search or something like that
+toward movement invariant automatic lip reading and speech recognition
+wearable sensing for dynamic management of dense ubiquitous media
+tangible bits towards seamless interfaces between people bits and atoms
+a face and gesture recognition system based on an active stereo sensor
+a cognitive architecture for robotic hand posture learning
+hypermedia operating systems a new paradigm for computing
+beyond total capture a constructive critique of lifelogging
+head pose tracking with a time of flight camera
+development of a head gesture interface for a self portrait camera
+a survey of affect recognition methods audio visual and spontaneous expressions
+remembering rituals of remembrance capturing xantolo through sensecam
+automatic facial expression analysis a survey
+mailcat an intelligent assistant for organizing e mail
+challenges for privacy with ubiquitous sensor logging
+automatic detection of relevant head gestures in american sign language communication
+real time language independent lip synchronization method using a genetic algorithm
+automatic analysis of 3d gaze coordinates on scene objects using data from eye tracking and motion capture systems
+integrating technologies to support action
+reciprocity deep storage and letting go opportunities for designing interactions with inherited digital materials
+using multiple cues for hand tracking and model refinement
+five reasons for scenario based design
+three dimensional face pose detection and tracking using monocular videos tool and application
+recognizing human motion using parameterized models of optical flow
+energy efficient pons with service delay guarantees
+smart phones a powerful tool in the chemistry classroom
+mobile educational features in authoring tools for personalised tutoring
+the network utility function a practicable concept for assessing network impact on distributed services
+cloud computing over telecom network
+improving simulated annealing by recasting it as a non cooperative game
+conjoint analysis for mobile devices for ubiquitous learning in higher education the korean case
+testing the iqx hypothesis for exponential interdependency between qos and qoe of voice codecs ilbc and g 711
+forecasting with growth curves an empirical comparison
+mobile usability in educational contexts what have we learnt
+telecommunications regulation regulatory behavior and its impact a systems view
+hierarchical composition and aggregation of state based availability and performability models
+large capacity strictly nonblocking optical cross connects based on microelectrooptomechanical systems meoms switch matrices reliability performance analysis
+software architecture patterns for a context processing middleware framework
+multi timescale modelling of ethernet traffic
+quantification of quality of experience for edge based applications
+influence of the packet size on the one way delay in 3g networks
+product based software process improvement for embedded systems
+using short message service to encourage interactivity in the classroom
+protocols versus objects can models for telecommunications and distributed processing coexist
+toward reliable hybrid wdm tdm passive optical networks
+exploring the relationship between intention to use mobile phone as a visualization tool and regulation of cognition
+hybrid fiber and microwave protection for mobile backhauling
+mobile video sensitivity to packet loss and packet delay variation in terms of qoe
+existence and uniqueness results for neural network approximations
+green wdm pons exploiting traffic diversity to guarantee packet delay limitation
+decisive factors for quality of experience of openid authentication using eap sim
+quality evaluation in wireless imaging using feature based objective metrics
+application of the stochastic fluid flow model for bottleneck identification and classification
+effect of delay delay variation on qoe in video streaming
+development and evaluation of an rfid based ubiquitous learning environment for outdoor learning
+reflections on active networking
+geometric versus geographic models for the estimation of an ftth deployment
+perceptual based quality metrics for image and video services a survey
+evolution of optical access networks
+on user perception of web login a study on qoe in the context of security
+initial delay vs interruptions between the devil and the deep blue sea
+techno economic evaluation of fttc vdsl and ftth roll out scenarios discounted cash flows and real option valuation
+the relationship between competition law and sector specific regulation the case of electronic communications
+determination of critical success factors affecting mobile learning a meta analysis approach
+analysis of protection schemes in pon compatible with smooth migration from tdm pon to hybrid wdm tdm pon
+application level measurement
+device enabled authorization in the grey system
+network impact on quality of experience of mobile video
+college students conceptions of context aware ubiquitous learning a phenomenographic analysis
+reliability performance analysis vs deployment cost of fiber access networks
+creating next generation cloud computing operation support services by social oss contribution with telecom ngn experience
+robustness surfaces of complex networks
+study of the potential saas platform provider in china
+network aware mitigation of data integrity attacks on power system state estimation
+empirical study of chinese telecommunication market development based on the diffusion model of the network innovations
+evaluation of delay performance of traffic shapers
+telecommunications demand forecasting a review
+some statistical issues in the comparison of speech recognition algorithms
+ifeeling vibrotactile rendering of human emotions on mobile phones
+a cost effective topology migration path towards fibre
+adoption and pricing the underestimated elements of a realistic iptv business case
+using rss to support mobile learning based on media richness theory
+a method to estimate the timestamp accuracy of measurement hardware and software tools
+game theoretic optimization of a fiber to the home municipality network rollout
+application perceived throughput process in wireless systems
+efficient and fine scheduling algorithm for bandwidth allocation in ethernet passive optical networks
+forecasting competitive behavior an assessment of at t s incentive to extend its u s network
+cloud computing as a tool to secure and manage information flow in swedish armed forces networks
+mobile service architecture in future mobile environments
+analysis of black hole attack on manets using different manet routing protocols
+an investigation of mobile learning readiness in higher education based on the theory of planned behavior
+mycobacterium tuberculosis dna detection using surface plasmon resonance modulated by telecommunication wavelength
+analysis of quality of experience by applying fuzzy logic a study on response time
+optical corridor routing protocols
+wavelength assignment method for wdm network of star topology
+corba integrating diverse applications within distributed heterogeneous environments
+efficient algorithms for infrastructure networks planning issues and economic impact
+techno economics of advanced optical subscriber networks
+a criteria based evaluation framework for authentication schemes in ims
+evaluation of authentication schemes based on security user friendliness and complexity
+geographic model for cost estimation of ftth deployment overcoming inaccuracy in uneven populated areas
+mapping of user quality of experience to application perceived performance for web application
+improving simulated annealing by replacing its variables with game theoretic utility maximizers
+real time live rtt analyzer
+design analysis and simultion for optical access and wide area networks
+kalman filtering as a tool to study the technological substitution in the telecommunications sector
+power savings versus network performance in dynamically provisioned wdm networks
+generic communication requirements of its related mobile services as basis for seamless communications
+video conferencing systems
+quality of experience hourglass model
+time is perception is money web response times in mobile networks with application to quality of experience
+study on new gis support platform of telecommunications
+identification of performance degradation in ip networks using throughput statistics
+general framework for techno economic analysis of next generation access networks
+pon protection architectures achieving total cost reduction
+quality of experience and quality of service in a service supply chain
+energybox a trace driven tool for data transmission energy consumption studies
+teledata data mining social network analysis and statistics analysis system based on cloud computing in telecommunication industry
+the computer for the 21st century
+the pitfalls of mobile devices in learning a different view and implications for pedagogical design
+a formal framework to integrate timed security rules within a tefsm based system specification
+innovation diffusion with generation substitution effects
+an investigation of attitudes of students and teachers about participating in a context aware ubiquitous learning activity
+next generation broadband wireless networks and navigation services guest editorial
+the role of telecommunications operators on smart home service platforms
+traffic measurement and timestamp accuracy evaluation of java me traffic generator on smartphone
+measurement and analysis of skype voip traffic in 3g umts systems
+high utilization of wavelengths and simple interconnection between users in a protection scheme for passive optical networks
+techno economic analysis of pon protection schemes
+a best practice guide to resource forecasting for computing systems
+novel architectures of asynchronous optical packet switch
+novel node architectures for wavelength routed wdm networks with wavelength conversion capability
+quality estimation of youtube video service
+add drop multiplexing and tdm signal transmission in an optical cdma ring network
+reliability and cost analysis of passive optical networks
+performance analysis of protection schemes compatible with smooth migration from tdm pon to hybrid wdm tdm pon
+the role of wibro filling the gaps in mobile broadband technologies
+measurement of application perceived throughput of an e2e vpn connection using a gprs network
+catching the download train energy efficient file downloading on smartphones
+secure software and communication on handheld devices
+self protection scheme against failures of distributed fiber links in an ethernet passive optical network
+towards quality of experience based reputation models for future web service provisioning
+a mathematical framework for designing a low loss low delay internet
+network selection box an implementation of seamless communication
+total cost reduction achieved by offering protection in pon architectures
+automatic synthesis of interfaces between incompatible protocols
+towards an approach to defining capacity driven web service
+economic analysis of future access network deployment and operation
+toward interactive mobile synchronous learning environment with context awareness service
+parametric semi parametric and non parametric models of telecommunications demand an investigation of residential calling patterns
+cost dependency on protection of optical access networks for dense urban areas
+a hybrid system identification method for forecasting telecommunications product demands
+functional verification methodology based on formal interface specification and transactor generation
+on user perception of safety in online social networks
+quality feedback flows in future networks
+entry in telecommunication customer loyalty price sensitivity and access prices
+the relevance of the bufferless analysis for traffic management in telecommunication networks
+a formative assessment based mobile learning approach to improving the learning attitudes and achievements of students
+ict platforms and regulatory concerns in europe
+bluetooth assisted context awareness in educational data networks
+quality of experience from user and network perspectives
+decisive factors for quality of experience of openid authentication using eap
+a distributed passive measurement infrastructure
+parameterisation of a reputation system for voip in p2p networks for improved communication quality and security
+intralata long distance demand carrier choice usage demand and price elasticities
+swarm intelligence in optimisation problems
+atm signaling transport network architectures and analysis
+on the quality of computer network measurements
+energy efficiency versus reliability performance in optical backbone networks invited
+competition in intralata long distance carrier choice models estimated from residential telephone bills
+performance of traffic engineering in operational ip networks an experimental study
+p2peace a p2p based simulation environment for autonomic content exchange networks
+on application perceived quality of service in wireless networks
+efficient resiliency mechanisms for next generation passive optical networks
+study on knowledge acquisition of the telecom customers consuming behaviour based on data mining
+traffic matrix estimation on a large ip backbone a comparison on real data
+modelling and optimal control of the market of a telecommunications operator
+mobile location sharing an energy consumption study
+towards quality of experience based reputation models for future web service provisioning
+estimations of additional delays for mobile application data from comparative output input throughput analysis
+characterizing the subjective performance of the itu t 8 kb s speech coding algorithm itu t g 729
+trends in the telecom industry and opportunities for service providers
+user perception and performance of authentication procedures
+when mice consume like elephants instant messaging applications
+fast optimized sun rpc using automatic program specialization
+game theoretic evaluation of a municipality ftth rollout
+a study of factors which influence qod of http video streaming based on adobe flash technology
+tutorial on telecommunications and security
+a mobile device and online system with contextual familiarity and its effects on english learning on campus
+are you ready for mobile learning
+seamless communication for its applications
+factors driving the adoption of m learning an empirical study
+staging telephony service creation a language approach
+supporting classroom activities with the bsul system
+influence of thermal effects on the performance of high power semiconductor lasers and pump laser modules
+modelling multinational telecommunications demand with limited data
+qoe based cross layer design of mobile video systems challenges and concepts
+security threats in mobile ad hoc network
+the convergence of telecommunications and computing what are the implications today
+convergence of telecommunications and computing to networking models for integrated services and applications
+cost vs reliability performance study of fiber access network architectures
+estimating ftth and fttcurb deployment costs using geometric models with enhanced parameters
+fast fault monitoring technique for reliable wdm pon achieving significant operational saving
+a joyful classroom learning system with robot learning companion for children to learn mathematics multiplication
+obtaining reliable bit rate measurements in snmp managed networks
+a flexible logistic growth model with applications in telecommunications
+unifying heterogeneous e learning modalities in a single platform cadi a case study
+cloud computing for telecom systems
+a generic quantitative relationship between quality of experience and quality of service
+hybrid wireless networks for civil military cooperation cimic and disaster management
+the throughput utility function assessing network impact on mobile services
+using mobile communication technology in high school education motivation pressure and learning performance
+delay performance in ip routers
+factors influencing quality of experience of commonly used mobile applications
+kernel level energy efficient 3g background traffic shaper for android smartphones
+energybox disclosing the wireless transmission energy cost for mobile devices
+a preliminary study of a cloud computing model for chronic illness self care support in an underdeveloped country
+secmon end to end quality and security monitoring system
+the design and evaluation of a computerized adaptive test on mobile devices
+grid cloud computing interoperability standardization and the next generation network ngn
+inferring user perceived performance of network by monitoring tcp interruptions
+quality of experience of multimedia services past present and future
+reliability study of fault tolerant multiwavelength nonblocking optical cross connect based on ingaasp inp laser amplifier gate switch arrays
+measurements of application perceived throughput in dab gprs umts and wlan environments
+gaze directed displays as an enabling technology for attention aware systems
+system challenges for ubiquitous pervasive computing
+quantifying the impact of architectural scaling on communication
+verifying arithmetic hardware in higher order logic
+systems directions for pervasive computing
+hardware software co design
+openvl towards a novel software architecture for computer vision
+a structural object programming model architecture chip and tools for reconfigurable computing
+software architecture for time constrained machine vision applications
+no silver bullet essence and accidents of software engineering
+cut through delivery in trapeze an exercise in low latency messaging
+gaze tracked crowdsourcing
+a hierarchical middleware architecture for efficient home control through an ipv6 based global network
+monsoon an explicit token store architecture
+simplefit a framework for analyzing design trade offs in raw architectures
+resource scaling effects on mpp performance the stap benchmark implications
+the impact of heterogeneous computing on workflows for biomolecular simulation and analysis
+a survey of media processing approaches
+real time context aware network security policy enforcement system rc nspes
+software storming combining rapid prototyping and knowledge engineering
+high performance reconfigurable hardware architecture for restricted boltzmann machines
+adapting a message driven parallel application to gpu accelerated clusters
+to accelerate multiple sequence alignment using fpgas
+towards trojan free trusted ics problem analysis and detection scheme
+face detection for automatic exposure control in handheld camera
+implementation of a medical image file accessing system on cloud computing
+exploiting statistical information for implementation of instruction scratchpad memory in embedded system
+ant colony optimizations for resource and timing constrained operation scheduling
+joint probabilistic techniques for tracking multi part objects
+drawing lessons in the design of tangible media from a study of interactions with mechanical products
+efficient and flexible xml based data exchange in microcontroller based sensor actor networks
+enhancing data privacy and integrity in the cloud
+hardware virtualization for rapid and secure ce product development and life cycle management
+hardware support for secure processing in embedded systems
+a survey of hardware trojan taxonomy and detection
+powerscope a tool for profiling the energy usage of mobile applications
+a high performance algorithm for scheduling and hardware software partitioning on mpsocs
+advanced risk analytics on the cell broadband engine
+a note on the complexity of reliability in neural networks
+property based attestation and trusted computing analysis and challenges
+a specialized processor suitable for adaboost based detection with haar like features
+an fpga based parallel hardware architecture for real time face detection using a face certainty map
+minimal tcb code execution
+single packet ip traceback
+intel virtualization technology
+real time detection of nodding and head shaking by directly detecting and tracking the between eyes
+multi resolution real time stereo on commodity graphics hardware
+is anything really new in mechatronics education
+towards transactional memory for openmp
+forward secure content distribution to reconfigurable hardware
+investigation of obfuscation based anti reverse engineering for printed circuit boards
+design and implementation of data encryption for networked control systems
+gesture recognition with non referenced tracking
+gaia microserver an extendable mobile middleware platform
+radiation hardening by design of asynchronous logic for hostile environments
+a secure and reliable bootstrap architecture
+a system architecture for reconfigurable trusted platforms
+breaking the ice for agile development of embedded software an industry experience report
+graph reduction algorithm for hardware software partitioning
+a 100mhz hardware efficient boost cascaded face detection design
+a hardware design for camera based power management of computer monitor
+a trust enhanced email application using trusted computing
+semi automated hw sw co design for embedded systems from marte models to systemc simulators
+analyzing and modeling the performance in xen based virtual cluster environment
+a layout aware approach for improving localized switching to detect hardware trojans in integrated circuits
+improved twiddle access for fast fourier transforms
+portability extensibility and robustness in iros
+reconstructing the cross sections of coronary arteries from biplane angiograms
+energy efficient design of battery powered embedded systems
+rise of the hardware trojans
+are clouds ready to accelerate ad hoc financial simulations
+the architecture of virtual machines
+parallelized preprocessing algorithms for high density oligonucleotide arrays
+a preliminary system framework for silgam book
+rapid automated tracing and feature extraction from retinal fundus images using direct exploratory algorithms
+bootstrapping trust in commodity computers
+design of smart nodes for rfid wireless sensor networks
+depth directed hardware object detection
+incorporating on demand stereo for real time recognition
+a firm real time system implementation using commercial off the shelf hardware and free software
+an evaluation of the suitability of fpgas for embedded vision systems
+scientific cloud computing early definition and experience
+integrating security modeling into embedded system design
+protecting bus based hardware ip by secret sharing
+full body tracking from multiple views using stochastic sampling
+eros a fast capability system
+variated availability approach to the services manageable delivering
+software radio a modern approach to radio engineering book review
+scheduling for ic sort and test with preemptiveness via lagrangian relaxation
+partially parallel architecture for adaboost based detection with haar like features
+biologically inspired computing
+a matlab based control systems laboratory experience for undergraduate students toward standardization and shared resources
+atomistic protein folding simulations on the submillisecond time scale using worldwide distributed computing
+a suggestion for a fast multiplier
+pedestrian detection implemented on a fixed point parallel architecture
+a hardware accelerator for the fast retrieval of dialign biological sequence alignments in linear space
+physical unclonable functions and their applications to vehicle system security
+multilayered image processing for multiscale harris corner detection in digital realization
+towards the standardization of a matlab based control systems laboratory experience for undergraduate students
+a model of saliency based visual attention for rapid scene analysis
+pfinder real time tracking of the human body
+a self learning structure to improve the efficiency of bluechip software
+a power analysis based approach to detect trojan circuits
+domain specific codesign for embedded security
+new directions in cryptography
+a survey of fault detection isolation and reconfiguration methods
+pfinder real time tracking of the human body
+research on secure and reconfigurable architecture based on embedded hardware
+fpga design for user s presence detection
+a minimalist approach to remote attestation
+a trusted open platform
+value based clock gating and operation packing dynamic strategies for improving processor power and performance
+efficient migration of complex off line computer vision software to real time system implementation on generic computer hardware
+a parallel architecture for hardware face detection
+filtering reductions and synchronization in the anton 2 network
+realtime mpeg video via software decompression on a pa risc processor
+on the enforcement of software safety policies
+fast subword permutation instructions using omega and flip network stages
+a hardware threat modeling concept for trustable integrated circuits
+real time linux target a matlab based graphical control environment
+secured hardware design an overview
+fast and robust face detection on a parallel optimized architecture implemented on fpga
+an algorithm for real time stereo vision implementation of head pose and gaze direction measurement
+physically aware hw sw partitioning for reconfigurable architectures with partial dynamic reconfiguration
+low overhead design for improving hardware trojan detection efficiency
+extending stability beyond cpu millennium a micron scale atomistic simulation of kelvin helmholtz instability
+region of interest based h 264 encoder for videophone with a hardware macroblock level face detector
+a multi disciplinary undergraduate real time experimental control laboratory
+a trace driven simulator for palm os devices
+estimating the energy consumption in pervasive java based systems
+separating abstractions from resources in a tactical storage system
+measuring and modeling the energy cost of reconfiguration in sensor networks
+user friendly access control for public network ports
+a geospatial information grid framework for geological survey
+vim scan a low overhead scan design approach for protection of secret key in scan based secure chips
+picojava a direct execution engine for java bytecode
+efficient context aware service discovery in multi protocol pervasive environments
+a methodology for conversion of enterprise level information security policies to implementation level policies rule
+a hardware architecture for accelerating neuromorphic vision algorithms
+detecting malicious logic through structural checking
+access control for active spaces
+hot topics ubiquitous computing
+multiobjective evolutionary algorithms a comparative case study and the strength pareto approach
+user interfaces for network services what from where and how
+interactive control education with virtual presence on the web
+the case for datacentric grids
+securing the supply chain for commodity it devices by automated scenario generation
+security risks in hardware implementation and detection problem
+active messages a mechanism for integrated communication and computation
+the koala component model for consumer electronics software
+trojan detection using ic fingerprinting
+hpam an active message layer for a network of hp workstations
+blitzen a highly integrated massively parallel machine
+a sensitivity analysis of power signal methods for detecting hardware trojans under real process and environmental conditions
+design of hardware trojan horse based on counter
+a comparison of parallel language approaches to data representation and data transferral
+hardware trojan detection and isolation using current integration and localized current analysis
+hierarchical simulation based verification of anton a special purpose parallel machine
+simulation alternatives for modeling networked cyber physical systems
+a design space exploration methodology for allocating task precedence graphs to multi core system architectures
+virtual clusters for grid communities
+a fast integral image computing hardware architecture with high power and area efficiency
+enabling unauthorized rf transmission below noise floor with no detectable impact on primary communication performance
+on chip lookup tables for fast symmetric key encryption
+harpoon an obfuscation based soc design methodology for hardware protection
+cost benefit analysis of cloud computing versus desktop grids
+hardware efficient fixed point vlsi architecture for 2d kurtotic fastica
+estimating mobile application energy consumption using program analysis
+why systolic architectures
+a neural network component for an intrusion detection system
+a comprehensive overview of the applications of artificial life
+a prototype of trusted platform functionality on reconfigurable hardware for bitstream updates
+improving smart card security using self timed circuits
+how trusted computers can enhance privacy preserving mobile applications
+value of cloud computing by the view of information resources
+evaluating access terminal in trusted network
+using memory errors to attack a virtual machine
+3 d facial pose and gaze point estimation using a robust real time tracking paradigm
+the illiac iv system
+soc issues for rf smart dust
+image processing on high performance risc systems
+on optimal ierative schemes for high speed division
+trust enhanced cloud security for healthcare services
+development of distributed sensing systems of autonomous micro modules
+persistent access control to prevent piracy of digital information
+fast hand gesture recognition for real time teleconferencing applications
+an fpga based performance evaluation of the aes block cipher candidate algorithm finalists
+pervasive computing paradigm for new era computing
+superscalar simd architecture
+malicious hardware characteristics classification and formal models
+a compile time scheduling heuristic for interconnection constrained heterogeneous processor architectures
+very high speed computing systems
+embedded hardware face detection
+architecture for protecting critical secrets in microprocessors
+smart cameras 2d affine models for determining subject facial expressions
+novel hardware algorithms for row parallel integral image calculation
+an fpga run time system for dynamical on demand reconfiguration
+an efficient attestation for trustworthiness of computing platform
+computer as thinker doer problem solving environments for computational science
+dna sequence matching system based on hardware accelerators utilized efficiently in a multithreaded environment
+a domain decomposition parallelization strategy for molecular dynamics simulations on distributed memory machines
+a universal computer capable of executing an arbitrary number of sub programs simultaneously
+development of programming language espace and its application to parallel and distributed evolutionary computation
+exploiting two case delivery for fast protected messaging
+runtime optimization of vector operations on large scale smp clusters
+xtremweb a generic global computing system
+pro a model for parallel resource optimal computation
+quasi real time simulation of rotating drum using discrete element method with parallel gpu computing
+a resource management and fault tolerance services in grid computing
+pvm parallel virtual machine a users guide and tutorial for networked parallel computing
+toward formally based design of message passing programs
+aphid an architecture for private high performance integrated data mining
+differential evolution a simple and efficient adaptive scheme for global optimization over continuous spaces
+mrpc a high performance rpc system for mpmd parallel computing
+a 32x32x32 spatially distributed 3d fft in four microseconds on anton
+loggps a parallel computational model for synchronization analysis
+a parallel implementation of ant colony optimization
+ninf a network based information library for global world wide computing infrastructure
+an evaluation of the myrinet gm2 two port networks
+an efficient parallelization scheme for molecular dynamics simulations with many body flexible polarizable empirical potentials application to water
+sprint a new parallel framework for r
+manycore performance analysis using timed configuration graphs
+data redistribution and remote method invocation in parallel component architectures
+markov chains and martingale theory based convergence proof of ant colony algorithm and its simulation platform
+scalable algorithms for molecular dynamics simulations on commodity clusters
+a parallel computational model for heterogeneous clusters
+clustalxeed a gui based grid computation version for high performance and terabyte size multiple sequence alignment
+towards a complexity theory of synchronous parallel computation
+a reduction of the elastic net to support vector machines with an application to gpu computing
+an index model of global subdivision in cloud computing environment
+a parallel implementation of the smith waterman algorithm for massive sequences searching
+performance modeling of communication and computation in hybrid mpi and openmp applications
+diagnosis of aerospace structure defects by a hpc implemented soft computing algorithm
+state of the art in parallel computing with r
+exploiting graphical processing units for data parallel scientific applications
+an efficient gpu based parallel algorithm for pricing multi asset american options
+a system for parallel media processing
+molecular dynamics on hypercube parallel computers
+parallel multiclass classification using svms on gpus
+biodoop bioinformatics on hadoop
+retargeting image processing algorithms to varying processor grain sizes
+parallel algorithm for pricing american asian options with multi dimensional assets
+glypnir a programming language for illiac iv
+an ontology enhanced parallel svm for scalable spam filter training
+a survey of r software for parallel computing
+parallel and grid based data mining algorithms models and systems for high performance kdd
+distributed frameworks and parallel algorithms for processing large scale geographic data
+introduction to the configurable highly parallel computer
+clustalw mpi clustalw analysis using distributed and parallel computing
+exploring simd for molecular dynamics using intel xeon processors and intel xeon phi coprocessors
+multiple alignment of sequences on parallel computers
+parallel architectures for vision
+automatic parallelization of scripting languages toward transparent desktop parallel computing
+loggp incorporating long messages into the logp model one step closer towards a realistic model for parallel computation
+conflicting criteria cooperating processors some experiments on implementing a multicriteria decision support method on a parallel computer
+a bridging model for parallel computation
+a simulator for parallel applications with dynamically varying compute node allocation
+randomized and deterministic simulations of prams by parallel machines with restricted granularity of parallel memories
+a grid enabled mpi message passing in heterogeneous distributed computing systems
+legion a view from 50 000 feet
+an approach to portable parallel programs
+subword parallelism with max 2
+mpi phylip parallelizing computationally intensive phylogenetic analysis routines for the analysis of large protein families
+parallel processing on heterogeneous networks for gis applications
+high performance computing for the simulation of dust storms
+databases of homologous gene families for comparative genomics
+implementations of blast for parallel computers
+parallel computing in biomedical research
+letters fast training of support vector machines on the cell processor
+high performance computing tools for the integrated assessment and modelling of social ecological systems
+lazy checkpoint coordination for bounding rollback propagation
+large displacement stability analysis of thin plate structures scope of mpi openmp parallelization in harmonic coupled finite strip analysis
+parallel homologous sequence searching in large databases
+adaptive performance modeling on hierarchical grid computing environments
+a novel parallel genetic algorithm for the graph coloring problem in vlsi channel routing
+a parallel solver for large quadratic programs in training support vector machines
+using a computational grid for geographic information analysis a reconnaissance
+a survey of data intensive scientific workflow management
+clip a checkpointing tool for message passing parallel programs
+the use of feedback in scheduling parallel computations
+an efficient parallel neural network based multi instance learning algorithm
+accelerating molecular modeling applications with graphics processors
+algorithmic techniques for computer vision on a fine grained parallel machine
+parallel software for training large scale support vector machines on multiprocessor systems
+logp towards a realistic model of parallel computation
+efficient clustering of large est data sets on parallel computers
+accelerating molecular dynamic simulation on the cell processor and playstation 3
+processor autonomy and its effect on parallel program execution
+sever a modification of the lpj global dynamic vegetation model for daily time step and parallel computation
+ipython a system for interactive scientific computing
+namd biomolecular simulation on thousands of processors
+fast folding and comparison of rna secondary structures
+message passing over windows based desktop grids
+tranquil a language for an array processing computer
+parallel computing for chromosome reconstruction via ordering of dna sequences
+experiments with parallel algorithms for combinatorial problems
+computer aided programming for message passing systems problems and solutions
+a parallel multi start search algorithm for dynamic traveling salesman problem
+9 6 new technologies for molecular dynamics simulations
+a note on the parallel computation thesis
+parallel implementation of geometric shortest path algorithms
+designing grid services for distributed knowledge discovery
+gemm based level 3 blas high performance model implementations and performance evaluation benchmark
+gromacs fast flexible and free
+algorithm engineering for parallel computation
+on the construction of parallel computers from various bases of boolean functions
+parallel neural network training on multi spert
+mapping of parallel tasks to multiprocessors with duplication
+molecular phylogenetics parallelized parameter estimation and quartet puzzling
+massively parallel spatial point pattern analysis ripley s k function accelerated using graphics processing units
+parallel computation with threshold functions
+logp a practical model of parallel computation
+can shared memory model serve as a bridging model for parallel computation
+demonstrating the scalability of a molecular dynamics application on a petaflops computer
+static scheduling using task replication for logp and bsp models
+on parallelization of static scheduling algorithms
+pomelo ii finding differentially expressed genes
+distributed data mining on the grid
+edge scheduling algorithms in parallel and distributed systems
+a heuristic algorithm for dynamic task scheduling in highly parallel computing systems
+skil an imperative language with algorithmic skeletons for efficient distributed programming
+parallelizing and optimizing a bioinformatics pairwise sequence alignment algorithm for many core architecture
+predicting the performance of synchronous discrete event simulation
+high performance compilers for parallel computing
+parallel multi objective ant programming for classification using gpus
+parallel interior point solver for structured linear programs
+a novel parallel ant colony optimization algorithm with dynamic transition probability
+application of parallel computing to speed up chemometrics for gc gc tofms based metabolic fingerprinting
+tree puzzle maximum likelihood phylogenetic analysis using quartets and parallel computing
+comparison of contention aware list scheduling heuristics for cluster computing
+conservative scheduling using predicted variance to improve scheduling decisions in dynamic environments
+scalable parallel programming with cuda
+a high performance portable implementation of the mpi message passing interface standard
+parallel multitask cross validation for support vector machine using gpu
+a fast scalable method for the parallel evaluation of distance limited pairwise particle interactions
+scalable molecular dynamics with namd
+blue matter approaching the limits of concurrency for classical molecular dynamics
+paroc a requirement driven parallel object oriented programming language
+serial arithmetic techniques
+genetic algorithms a nature inspired tool survey of applications in materials science and related fields
+hardware complexity and parallel computation
+towards building a cloud for scientific applications
+high performance latent dirichlet allocation for text mining
+parallelizing molecular dynamics using spatial decomposition
+the ucsc kestrel parallel processor
+methods for multilevel parallelism on gpu clusters application to a multigrid accelerated navier stokes solver
+list scheduling extension for contention awareness and evaluation of node priorities for heterogeneous cluster architectures
+approximate block coordinate descent for large scale hierarchical classification
+a special purpose parallel computer for solving partial differential equations
+adacgh a parallelized web based application and r package for the analysis of acgh data
+toward a realistic task scheduling model
+introduction to numerical methods for parallel computers
+adding the easy button to the cloud with snowflock and mpi
+data mining and kdd promise and challenges
+towards an architecture independent analysis of parallel algorithms
+mpi versus mpi openmp on ibm sp for the nas benchmarks
+parallel boosted regression trees for web search ranking
+fast parallel maximum likelihood based protein phylogeny
+a nuclear reactor core fuel reload optimization using artificial ant colony connective networks
+parallel computation and supercomputers and applications
+the parallel system for integrating impact models and sectors psims
+a universal interconnection pattern for parallel computers
+high performance rdma based mpi implementation over infiniband
+g cnv a gpu based tool for preparing data to detect cnvs with read depth methods
+dialign p fast pair wise and multiple sequence alignment using parallel processors
+modifications and additions to ant colony optimisation to solve the set partitioning problem
+cloud computing a new business paradigm for biomedical information sharing
+parallabel an r library for generalized parallelization of genome wide association studies
+an ant colony optimization based routing algorithm in mobile ad hoc networks and its parallel implementation
+fault tolerant parallel applications with dynamic parallel schedules
+parallel heap a practical priority queue for fine to medium grained applications on small multiprocessors
+compilation techniques for parallel systems
+an improved parallel ant colony optimization based on message passing interface
+a method that determines optimal grain size and inherent parallelism concurrently
+grain size determination for parallel processing
+distributed parallel support vector machines in strongly connected networks
+r parallel speeding up bioinformatics analysis with r
+a performance study of multiprocessor task scheduling algorithms
+a versatile cost modelling approach for multicomputer task scheduling
+exploiting unused time slots in list scheduling considering communication contention
+introduction to parallel computing design and analysis of algorithms
+parsa a parallel program software development tool
+a platform for biological sequence comparison on parallel computers
+a performance evaluation of cp list scheduling heuristics for communication intensive task graphs
+scheduling task graphs optimally with a
+scheduling task graphs on arbitrary processor architectures considering contention
+fast training of support vector machines on the cell processor
+high throughput pairwise point interactions in anton a specialized machine for molecular dynamics simulation
+planet massively parallel learning of tree ensembles with mapreduce
+psvm parallelizing support vector machines on distributed computers
+space and time efficient parallel algorithms and software for est clustering
+parallel short range molecular dynamics using the ādhāra runtime system
+on the parallelisation of bioinformatics applications
+communication contention in task scheduling
+bayanihan building and studying web based volunteer computing systems using java
+from parallel data mining to grid enabled distributed knowledge discovery
+list scheduling of general task graphs under logp
+atls a parallel loop scheduling scheme for dynamic environments
+fault tolerant dynamic parallel schedules
+papyrus a system for data mining over local and wide area clusters and super clusters
+true positive cost curve a cost based evaluation method for high interaction client honeypots
+issues 94 public key trials and tribulations
+reducing timing channels with fuzzy time
+virtual enterprise access control requirements
+gem a distributed goal evaluation algorithm for trust management
+research on quantitative evaluation for integrity
+trusted directory services for secure internet connectivity transport layer security using dnssec
+frequency and ordering based similarity measure for host based intrusion detection
+efficient and leakage resilient authenticated key transport protocol based on rsa
+admit anomaly based data mining for intrusions
+geometry of network security
+a logic for multi domain authorization considering administrators
+a secure control framework for resource limited adversaries
+security rules specification and analysis based on passive testing
+a generalized temporal role based access control model for developing secure systems
+internet of things new security and privacy challenges
+the chinese wall security policy
+defense trees for economic evaluation of security investments
+the sisterhood of the traveling packets
+a framework for quantitative security analysis of machine learning
+masquerade detection based upon gui user profiling in linux systems
+a formalization of distributed authorization with delegation
+providing software integrity using type managers
+the discrete logarithm problem in cyclic subgroups of not necessary cyclic groups
+advances in topological vulnerability analysis
+hidden price of user authentication cost analysis and stakeholder motivation
+information security culture
+a methodology for defining application specific security requirements for c sup 3 systems
+research on distributed and dynamic trust transfer and measurement
+handling distributed authorization with delegation through answer set programming
+which security policies are enforceable by runtime monitors a survey
+an aspect oriented approach for the systematic security hardening of code
+context sensitive access control model for government services
+enhanced topic based vector space model for semantics aware spam filtering
+test generation from security policies specified in or bac
+a flexible trust based access control mechanism for security and privacy enhancement in ubiquitous systems
+component middleware to support non repudiable service interactions
+improving user interface dependability through mitigation of human error
+a metamodel for web application injection attacks and countermeasures
+a comparison of commercial and military computer security policies
+sat solving approaches to context aware enterprise network security management
+analyzing and managing role based access control policies
+on information flow forensics in business application scenarios
+artificial immune system based intrusion detection in a distributed hierarchical network architecture of smart grid
+prospect on security paradigms
+network security basics
+authorization and trust in software systems
+anagram a content anomaly detector resistant to mimicry attack
+apply measurable risk to strengthen security of a role based delegation supporting workflow system
+a methodology for secure interactive systems
+trust and security in dynamic systems
+model based security metrics using adversary view security evaluation advise
+identifying understanding and analyzing critical infrastructure interdependencies
+malware variant detection using similarity search over sets of control flow graphs
+usability challenges in security and privacy policy authoring interfaces
+human and organizational factors in computer and information security pathways to vulnerabilities
+user controllable security and privacy for pervasive computing
+security for emerging ubiquitous networks
+articulating and enforcing authorisation policies with uml and ocl
+analysis of the security and privacy requirements of cloud based electronic health records systems
+mark elm application of a novel multiple kernel learning framework for improving the robustness of network intrusion detection
+a temporal logic extension of role based access control covering dynamic separation of duties
+security models and information flow
+simulating midlet s security claims with automata modulo theory
+improving end user security and trustworthiness of tcg platforms
+adaboost based algorithm for network intrusion detection
+enforcing secure service composition
+usability of security a case study
+proposal for a security management in cloud computing for health care
+a flexible parallel hardware architecture for adaboost based real time object detection
+an aspect oriented approach to securing distributed systems
+block level added redundancy explicit authentication for parallelized encryption and integrity checking of processor memory transactions
+wireless local area network in a prehospital environment
+assuring security and privacy for digital library transactions on the web client and server security policies
+dtt a distributed trust toolkit for pervasive systems
+negotiating trust in the web
+looking for trouble understanding end user security management
+enforceable security policies
+micro firewalls for dynamic network security with distributed intrusion detection
+estimates of success rates of remote arbitrary code execution attacks
+a temporal description logic based access control model for expressing history constrained policies in semantic web
+the ucon abc usage control model
+property based attestation for computing platforms caring about properties not mechanisms
+specification and analysis of dynamic authorisation policies
+lattice based access control models
+risk analysis modelling with the use of fuzzy logic
+flexible authorizations with logic program
+a brief introduction to usable security
+learning to filter spam e mail a comparison of a naive bayesian and a memory based approach
+generalized role based access control for securing future applications
+a proof carrying file system
+multivariate statistical analysis of audit trails for host based intrusion detection
+security analysers administrator assistants or hacker helpers
+security in the wild user strategies for managing security as an everyday practical problem
+linear time computation of similarity measures for sequential data
+certified in lined reference monitoring on net
+a case study in rapid introduction of an information assurance track into a software engineering curriculum
+computer security threat monitoring and surveillance
+the internet of things the future or the end of mechatronics
+some conundrums concerning separation of duty
+separation of duty in role based access control model through fuzzy relations
+measuring a system s attack surface
+secure information flow for inter organisational collaborative environments
+user interface dependability through goal error prevention
+novel evaluation framework of intrusion detection systems with respect to security policies
+belief information acquisition and trust in multi agent systems a modal logic formulation
+corporate system security towards an integrated management approach
+delegation logic a logic based approach to distributed authorization
+a formal definition for trust in distributed systems
+secure e government services towards a framework for integrating it security services into e government maturity models
+a quantitative evaluation of vulnerability scanning
+usage control enforcement present and future
+a video game for cyber security training and awareness
+virtual enterprise security importance challenges and solutions
+secure context sensitive authorization
+expandable grids for visualizing and authoring computer security policies
+security analysis of online centroid anomaly detection
+dkal distributed knowledge authorization language
+approaches to online learning and concept drift for user identification in computer security
+a logic based knowledge representation for authorization with delegation
+why johnny can t encrypt a usability evaluation of pgp 5 0
+polyorbac a security framework for critical infrastructures
+a taxonomy of computer program security flaws
+p 2 cysemol predictive probabilistic cyber security modeling language
+vulnerability assessment of cyber security in power industry
+an optimum path forest framework for intrusion detection in computer networks
+adaptive trust negotiation and access control for grids
+relevance lost the rise and fall of management accounting
+role based access controls
+a time luck tradeoff in cryptography
+mathematics technology and trust formal verification computer security and the u s military
+practical approaches to creating a security culture
+the impact of unlinkability on adversarial community detection effects and countermeasures
+know why your access was denied regulating feedback for usable security
+gaining flexibility and compliance in rescue processes with bpm
+computer security in the real world
+trust based security in pervasive computing environments
+architecture of trustworthy networks
+optimal authentification protocols resistant to password guessing attacks
+securing context aware applications using environment roles
+applying kaos services to ensure policy compliance for semantic web services workflow composition and enactment
+robust real time face detection
+an access control architecture for distributing trust in pervasive computing environments
+detecting unknown attacks in wireless sensor networks that contain mobile nodes
+a novelty approach for checking consistency of security policy
+dynamic deployment of context aware access control policies for constrained security devices
+constructing role based access control and delegation based on hierarchical ibs
+a unified scheme for resource protection in automated trust negotiation
+an intelligent agent based framework for secure web services
+toward cyber secure and resilient networked control systems
+computer security impaired by legitimate users
+generating in line monitors for rabin automata
+position the user is the enemy
+trust and norms in the context of computer security a logical formalization
+a framework for organisational control principles
+a comparison of intrusion detection systems
+architecture for evaluating and correlating nids in real world networks
+quantifying the effectiveness of mobile phone virus response mechanisms
+learning single and multiple instance decision tree for computer security applications
+access control policies and languages in open environments
+trust and privacy in attribute based access control for collaboration environments
+testing intrusion detection systems a critique of the 1998 and 1999 darpa intrusion detection system evaluations as performed by lincoln laboratory
+formal models for computer security
+mathematical and statistical opportunities in cyber security
+improving computer security using extended static checking
+enterprise oriented cybersecurity management
+an intrusion and defense testbed in a cyber power system environment
+context aware security services in daa security model
+policies models and languages for access control
+information warfare using the viable system model as a framework to attack organisations
+preparation detection and analysis the diagnostic work of it security incident response
+computational issues in secure interoperation
+study on the effectiveness of anomaly detection for spam filtering
+host based intrusion detection using dynamic and static behavioral models
+facilitating access control at groupwork by means of an ontology of its organizational structure and concept of stage
+nested java processes os structure for mobile code
+toward a mathematical foundation for information flow security
+the algebra of security
+cybersecurity for critical infrastructures attack and defense modeling
+computer security art and science
+trustworthy pervasive computing the hard security problems
+an application of machine learning to anomaly detection
+data security in location aware applications an approach based on rbac
+prefix preserving ip address anonymization measurement based security evaluation and a new cryptography based scheme
+trusted computing security and applications
+crowds anonymity for web transactions
+security and access control for a human centric collaborative commerce system
+safe staging for computer security
+a prototype user interface for coarse grained desktop access control
+anomalous system call detection
+the pei framework for application centric security
+a guided approach for personalized information search and visualization
+a rule based framework for role based delegation
+a quantitative model of the security intrusion process based on attacker behavior
+pto a trust ontology for pervasive environments
+improving security for scada sensor networks with reputation systems and self organizing maps
+a bayesian network model for likelihood estimations of acquirement of critical software vulnerabilities and exploits
+separation of duty in role based environments
+violation of safeguards by trusted personnel and understanding related information security concerns
+toward a standard benchmark for computer security research the worldwide intelligence network environment wine
+differential proteome analysis of human embryonic kidney cell line hek 293 following mycophenolic acid treatment
+patterns of genomic variation in the poplar rust fungus melampsora larici populina identify pathogenesis related factors
+inspiration for optimization from social insect behaviour
+predicting protein protein binding sites in membrane proteins
+bgx a bioconductor package for the bayesian integrated analysis of affymetrix genechips
+classifying and scoring of molecules with the ngn new datasets significance tests and generalization
+conversion of mature b cells into t cells by dedifferentiation to uncommitted progenitors
+towards a hpc oriented parallel implementation of a learning algorithm for bioinformatics applications
+a random effect multiplicative heteroscedastic model for bacterial growth
+epigenetic control of signaling networks involved in interleukin 18 induced cardiac hypertrophy and its attenuation by pan histone deacetylase inhibitors
+probabilistic analysis of probe reliability in differential gene expression studies with short oligonucleotide arrays
+genome sequence of yersinia pestis the causative agent of plague
+genomic selection and complex trait prediction using a fast em algorithm applied to genome wide markers
+classification of transient behaviours in a time dependent toggle switch model
+dissecting systems wide data using mixture models application to identify affected cellular processes
+cghpro a comprehensive data analysis tool for array cgh
+clu a new algorithm for est clustering
+a phylogenomic gene cluster resource the phylogenetically inferred groups phigs database
+an interaction motif based scoring function for protein ligand docking
+a normalization strategy applied to hicep an aflp based expression profiling analysis toward the strict alignment of valid fragments across electrophoretic patterns
+unlocking the potential of publicly available microarray data using insilicodb and insilicomerging r bioconductor packages
+ranking the whole medline database according to a large training set using text indexing
+new statistical potential for quality assessment of protein models and a survey of energy functions
+unique features of apicoplast dna gyrases from toxoplasma gondii and plasmodium falciparum
+finding genomic ontology terms in text using evidence content
+human tra2 proteins jointly control a chek1 splicing switch among alternative and constitutive target exons
+a constructive approach for discovering new drug leads using a kernel methodology for the inverse qsar problem
+unique aspects of fiber degradation by the ruminal ethanologen ruminococcus albus 7 revealed by physiological and transcriptomic analysis
+sampling the conformation of protein surface residues for flexible protein docking
+the modeled structure of the rna dependent rna polymerase of gbv c virus suggests a role for motif e in flaviviridae rna polymerases
+pca2go a new multivariate statistics based method to identify highly expressed go terms
+bayesian random segmentation models to identify shared copy number aberrations for array cgh data
+a global gene evolution analysis on vibrionaceae family using phylogenetic profile
+minephos a literature mining system for protein phoshphorylation information extraction
+a database and api for variation dense genotyping and resequencing data
+an exploratory data analysis method to reveal modular latent structures in high throughput data
+biocreative iii interactive task an overview
+structure prediction for the helical skeletons detected from the low resolution protein density map
+assessment of genetic variation for the line 1 retrotransposon from next generation sequence data
+pdb uf database of predicted enzymatic functions for unannotated protein structures from structural genomics
+the labelhash algorithm for substructure matching
+selecting high dimensional mixed graphical models using minimal aic or bic forests
+the b6 database a tool for the description and classification of vitamin b6 dependent enzymatic activities and of the corresponding protein families
+progenexpress visualization of quantitative data on prokaryotic genomes
+genomeviz visualizing microbial genomes
+genome scale metabolic model of the fission yeast schizosaccharomyces pombe and the reconciliation of in silico in vivo mutant growth
+a new text mining approach for finding protein to disease associations
+bayesian hidden markov modeling of array cgh data
+microtar predicting microrna targets from rna duplexes
+galaxy tools and workflows for sequence analysis with applications in molecular plant pathology
+a deterministic map of waddington s epigenetic landscape for cell fate specification
+coxpress differential co expression in gene expression data
+alttrans transcript pattern variants annotated for both alternative splicing and alternative polyadenylation
+non linear dimensionality reduction of signaling networks
+structural models for the design of novel antiviral agents against greek goat encephalitis
+recent hits acquired by blast rehab a tool to identify new hits in sequence similarity searches
+visualization based discovery and analysis of genomic aberrations in microarray data
+correlation and prediction of gene expression level from amino acid and dipeptide composition of its protein
+native structure based modeling and simulation of biomolecular systems per mouse click
+nlstradamus a simple hidden markov model for nuclear localization signal prediction
+genomic multiple sequence alignments refinement using a genetic algorithm
+gromita a fully integrated graphical user interface to gromacs 4
+satellog a database for the identification and prioritization of satellite repeats in disease association studies
+genomic and transcriptome analyses reveal that mapk and phosphatidylinositol signaling pathways mediate tolerance to 5 hydroxymethyl 2 furaldehyde for industrial yeast saccharomyces cerevisiae
+probemaker an extensible framework for design of sets of oligonucleotide probes
+prominer rule based protein and gene entity recognition
+in vivo reprogramming of adult pancreatic exocrine cells to bgr cells
+in vitro reprogramming of fibroblasts into a pluripotent es cell like state
+seqhbase a big data toolset for family based sequencing data analysis
+model building by comparison at casp3 using expert knowledge and computer automation
+involvement of rrna biosynthesis in the regulation of cuc1 gene expression and pre meristematic cell mound formation during shoot regeneration
+leishcyc a biochemical pathways database for leishmania major
+computational solutions for omics data
+iod907 the first genome scale metabolic model for the milk yeast kluyveromyces lactis
+making sense of cancer genomic data
+comparison of genomic dna methylation pattern among septic and non septic newborns an epigenome wide association study
+microrna target predictions across seven drosophila species and comparison to mammalian targets
+potential use of sugar binding proteins in reactors for regeneration of co2 fixation acceptor d ribulose 1 5 bisphosphate
+bioconductor open software development for computational biology and bioinformatics
+a combined approach to data mining of textual and structured data to identify cancer related targets
+the bustle of bioinformatics cloudy with a chance for big data
+microbial ecology and global health
+detecting contaminated birthdates using generalized additive models
+f information measures for efficient selection of discriminative genes from microarray data
+detection of non coding rnas on the basis of predicted secondary structure formation free energy change
+clustering of high throughput gene expression data
+symbiomatics synergies in medical informatics and bioinformatics exploring current scientific literature for emerging topics
+a pre microrna classifier by structural and thermodynamic motifs
+rex a toolset for reproducing software experiments
+cloud based bioinformatics workflow platform for large scale next generation sequencing analyses
+splicing mutation analysis reveals previously unrecognized pathways in lymph node invasive breast cancer
+mircox a database of mirna mrna expression correlations derived from rna seq meta analysis
+a simple peak detection and label free quantitation algorithm for chromatography mass spectrometry
+homomint an inferred human network based on orthology mapping of protein interactions discovered in model organisms
+mapping transcription mechanisms from multimodal genomic data
+simultaneous prediction of transcription factor binding sites in a group of prokaryotic genomes
+using genomic signatures for hiv 1 sub typing
+computer modeling of the membrane interaction of fyve domains
+epigenetics in research and practice
+integrating alternative splicing detection into gene prediction
+using name internal and contextual features to classify biological terms
+the bioperl toolkit perl modules for the life sciences
+construction of an annotated corpus to support biomedical information extraction
+an fda bioinformatics tool for microbial genomics research on molecular characterization of bacterial foodborne pathogens using microarrays
+biomedical word sense disambiguation with ontologies and metadata automation meets accuracy
+an edit script for taxonomic classifications
+investigating heterogeneous protein annotations toward cross corpora utilization
+the textual characteristics of traditional and open access scientific journals are similar
+a hadoop galaxy adapter for user friendly and scalable data intensive bioinformatics in galaxy
+molecular modeling and pharmacophore elucidation study of the classical swine fever virus helicase as a promising pharmacological target
+osirisv1 2 a named entity recognition system for sequence variants of genes in biomedical literature
+bioinformatic analysis of autism positional candidate genes using biological databases and computational gene network prediction
+windows net network distributed basic local alignment search toolkit w nd blast
+in silico microdissection of microarray data from heterogeneous cell populations
+lack of efflux mediated quinolone resistance in salmonella enterica serovars typhi and paratyphi a
+identifying differential expression in multiple sage libraries an overdispersed log linear model approach
+deploying bioinformatics workflows on clouds with galaxy and globus provision
+projection to latent pathways plp a constrained projection to latent variables pls method for elementary flux modes discrimination
+cloudgene a graphical execution platform for mapreduce programs on private and public clouds
+genomic interplay in bacterial communities implications for growth promoting practices in animal husbandry
+optimal enumeration of state space of finitely buffered stochastic molecular networks and exact computation of steady state landscape probability
+the cog database an updated version includes eukaryotes
+novel aeromonas hydrophila ppd134 91 genes involved in o antigen and capsule biosynthesis
+a text mining system for extracting metabolic reactions from full text articles
+sitesidentify a protein functional site prediction tool
+tracing retinal vessel trees by transductive inference
+complete genome sequence of salmonella enterica serovar typhimurium lt2
+mistaken identifiers gene name errors can be introduced inadvertently when using excel in bioinformatics
+a bayesian calibration model for combining different pre processing methods in affymetrix chips
+phaccs an online tool for estimating the structure and diversity of uncultured viral communities using metagenomic information
+a translocation signal for delivery of oomycete effector proteins into host plant cells
+genetic interaction motif finding by expectation maximization a novel statistical model for inferring gene modules from synthetic lethality
+linnaeus a species name identification system for biomedical literature
+enhancement of cellular memory by reducing stochastic transitions
+of truth and pathways chasing bits of information through myriads of articles
+charting the nf κb pathway interactome map
+complete genome sequence of a multiple drug resistant salmonella enterica serovar typhi ct18
+a critical review of pasbio s argument structures for biomedical verbs
+robust salmonella metabolism limits possibilities for new antimicrobials
+on the cytotoxicity of hcr ntpase in the neuroblastoma cell line sh sy5y
+an organogenesis network based comparative transcriptome analysis for understanding early human development in vivo and in vitro
+integer programming based method for grammar based tree compression and its application to pattern extraction of glycan tree structures
+a scoring matrix approach to detecting mirna target sites
+transcription start site associated rnas tssarnas are ubiquitous in all domains of life
+cloudman as a platform for tool data and analysis distribution
+construction of a genetic toggle switch in escherichia coli
+translational bioinformatics in the cloud an affordable alternative
+a stochastic model of epigenetic dynamics in somatic cell reprogramming
+elite and stochastic models for induced pluripotent stem cell generation
+generalising semantic category disambiguation with large lexical resources for fun and profit
+hessian eigenmaps locally linear embedding techniques for high dimensional data
+new resampling method for evaluating stability of clusters
+sequence and annotation of the wizard007 mycobacterium phage genome
+cwrml representing crop wild relative conservation and use data in xml
+recent trends in knowledge and data integration for the life sciences
+opportunities and challenges of cloud computing to improve health care services
+growth comparison of several escherichia coli strains exposed to various concentrations of lactoferrin using linear spline regression
+a review on computational systems biology of pathogen host interactions
+learning statistical models for annotating proteins with function information using biomedical text
+cloud biolinux pre configured and on demand bioinformatics computing for the genomics community
+genome sequence and analysis of the irish potato famine pathogen phytophthora infestans
+the genomic blueprint of salmonella enterica subspecies enterica serovar typhi p stx 12
+chemical space and biology
+latent physiological factors of complex human diseases revealed by independent component analysis of clinarrays
+pseudomonas syringae type iii secretion system effectors repertoires in search of functions
+metabolic model integration of the bibliome genome metabolome and reactome of aspergillus niger
+clovr a virtual machine for automated and portable sequence analysis from the desktop using cloud computing
+computational workflow for analysis of gain and loss of genes in distantly related genomes
+various criteria in the evaluation of biomedical named entity recognition
+improving the imm904 s cerevisiae metabolic model using essentiality and synthetic lethality data
+salerno s model of dna re analysed could breather solitons have biological significance
+the yeast kinome displays scale free topology with functional hub clusters
+reproducible clusters from microarray research whither
+multiple sequence alignments of partially coding nucleic acid sequences
+atlas a data warehouse for integrative bioinformatics
+gene regulatory networks modelling using a dynamic evolutionary hybrid
+bioinfer a corpus for information extraction in the biomedical domain
+modelling the interaction of steroid receptors with endocrine disrupting chemicals
+dynamic range based distance measure for microarray expressions and a fast gene ordering algorithm
+the gene normalization task in biocreative iii
+single molecule dataset smd a generalized storage format for raw and processed single molecule data
+efficiency clustering for low density microarrays and its application to qpcr
+word sense disambiguation in biomedical ontologies with term co occurrence analysis and document clustering
+text mining approaches in molecular biology and biomedicine
+webarray an online platform for microarray data analysis
+extraction of transcript diversity from scientific literature
+protein structure prediction in the postgenomic era
+connecting extracellular metabolomic measurements to intracellular flux states in yeast
+genomic comparison of the closely related salmonella enterica serovars enteritidis and dublin
+a protocol for generating a high quality genome scale metabolic reconstruction
+reticular alignment a progressive corner cutting method for multiple sequence alignment
+miree mirna recognition elements ensemble
+correction determination of the differentially expressed genes in microarray experiments using local fdr
+construction and analysis of protein protein interaction networks
+identification of breast cancer prognosis markers via integrative analysis
+bioeve search a novel framework to facilitate interactive literature search
+a holistic evolutionary and structural study of flaviviridae provides insights into the function and inhibition of hcv helicase
+inference of mirna targets using evolutionary conservation and pathway analysis
+genomics virtual laboratory a practical bioinformatics workbench for the cloud
+gene expression variability as a unifying element of the pluripotency network
+gene name ambiguity of eukaryotic nomenclatures
+two learning approaches for protein name extraction
+kernels for vector valued functions a review
+support vector machine learning for interdependent and structured output spaces
+extracting and characterizing gene drug relationships from the literature
+learning the scope of hedge cues in biomedical texts
+combining multi species genomic data for microrna identification using a naive bayes classifier
+efficient hold out for subset of regressors
+applying text mining to search for protein patterns
+a multi strategy approach to biological named entity recognition
+hierarchical document categorization with support vector machines
+learning the kernel with hyperkernels
+gann genetic algorithm neural networks for the detection of conserved combinations of features in dna
+machine learning and word sense disambiguation in the biomedical domain design and evaluation issues
+effects of information and machine learning algorithms on word sense disambiguation with small datasets
+data fusion and multicue data matching by diffusion maps
+from support vector machines to hybrid system identification
+a flexible framework for deriving assertions from electronic medical records
+chemical compound classification with automatically mined structure patterns
+naive bayes at forty the independence assumption in information retrieval
+a generalized representer theorem
+a comparison and user based evaluation of models of textual information structure in the context of cancer risk assessment
+structure activity relationships derived by machine learning the use of atoms and their bond connectivities to predict mutagenicity by inductive logic programming
+solving large scale linear prediction problems using stochastic gradient descent algorithms
+biosmile a semantic role labeling system for biomedical verbs using a maximum entropy model with automatically generated template features
+active learning technique for biomedical named entity extraction
+boosting precision and recall of dictionary based protein name recognition
+learning ontological rules to extract multiple relations of genic interactions from text
+building a protein name dictionary from full text a machine learning term extraction approach
+biotagger gm a gene protein name recognition system
+kxtractor an effective biomedical information extraction technique based on mixture hidden markov models
+progressive data transmission for anatomical landmark detection in a cloud
+pattern recognition methods a novel analysis for the pupillographic sleepiness test
+5 programs for machine learning
+a theory and methodology of inductive learning
+using machine learning for concept extraction on clinical documents from multiple data sources
+structural detection of android malware using embedded call graphs
+cujo efficient detection and prevention of drive by download attacks
+chapter 7 from big data analytics and network inference to systems modeling
+a machine learning strategy for protein analysis
+sequence based prediction of type iii secreted proteins
+exploiting temporal information in functional magnetic resonance imaging brain data
+adapting existing natural language processing resources for cardiovascular risk factors identification in clinical notes
+lsat learning about alternative transcripts in medline
+optimizing 1 nearest prototype classifiers
+hybrid mpi openmp parallel linear support vector machine training
+hybridising genetic algorithm neural network gann in marker genes detection
+a family of novel graph kernels for structural pattern recognition
+wrap up a trainable discourse module for information extraction
+machine learning applications in proteomics research how the past can boost the future
+c4 5 programs for machine learning
+bottom up relational learning of pattern matching rules for information extraction
+pcanet a simple deep learning baseline for image classification
+principles and limitations of computational microrna gene and target finding
+a comparison study on algorithms of detecting long forms for short forms in biomedical text
+implicit surface modelling with a globally regularised basis of compact support
+machine learning approach for the prediction of protein secondary structure
+multi dimensional classification of biomedical text toward automated practical provision of high utility text to diverse users
+extracting medication information from clinical text
+modular toolkit for data processing mdp a python data processing framework
+boosted wrapper induction
+an incremental least squares algorithm for large scale linear classification
+feature space interpretation of svms with indefinite kernels
+when is there a representer theorem vector versus matrix regularizers
+a new 3d molecular structure representation using quantum topology with application to structure property relationships
+ensemble learning can significantly improve human microrna target prediction
+inexact graph matching based on kernels for object retrieval in image databases
+multiobjective optimization for biomedical named entity recognition and classification
+drugs and drug like compounds discriminating approved pharmaceuticals from screening library compounds
+the chemdner corpus of chemicals and drugs and its annotation principles
+logic based machine learning
+machine learning for clinical diagnosis from functional magnetic resonance imaging
+on spectral learning
+riemannian manifold learning
+coarse and fine grained models for proteins evaluation by decoy discrimination
+parallel implementation of decision tree learning algorithms
+pedestrian detection using stereo vision and graph kernels
+applying inductive logic programming to predicting gene function
+incremental selection of the neighborhood size for isomap
+comparative experiments on learning information extractors for proteins and their interactions
+analysis of variance of cross validation estimators of the generalization error
+a comparison of two learning algorithms for text categorization
+a maximum common substructure based algorithm for searching and predicting drug like compounds
+recognizing names in biomedical texts a machine learning approach
+fuzzy mutual information based min redundancy and max relevance heterogeneous feature selection
+application of latent semantic analysis to protein remote homology detection
+analyzing text in search of bio molecular events a high precision machine learning framework
+semi automatic conversion of bioprop semantic annotation to pasbio annotation
+protein structure and function prediction using kernel methods
+what makes a gene name named entity recognition in the biomedical literature
+analysis and prediction of leucine rich nuclear export signals
+mallet a machine learning for language toolkit
+new approaches to qsar neural networks and machine learning
+word sense disambiguation across two domains biomedical literature and clinical notes
+the eu adr corpus annotated drugs diseases targets and their relationships
+generalizing predicates with string arguments
+analysis and improved recognition of protein names using transductive svm
+libsvm a library for support vector machines
+kernel based learning for biomedical relation extraction
+geneways a system for extracting analyzing visualizing and integrating molecular pathway data
+scikit learn machine learning in python
+nerbio using selected word conjunctions term normalization and global patterns to improve biomedical named entity recognition
+mining adverse drug reactions from online healthcare forums using hidden markov model
+improving classification in protein structure databases using text mining
+machine learning methods for ecological applications
+molecular graph augmentation with rings and functional groups
+natural language processing an introduction
+all paths graph kernel for protein protein interaction extraction with evaluation of cross corpus learning
+an uncertainty managing batch relevance based approach to network anomaly detection
+learning to find graph pre images
+interpreting linear support vector machine models with heat map molecule coloring
+comparative experiments on disambiguating word senses an illustration of the role of bias in machine learning
+nonlinear dimensionality reduction by topologically constrained isometric embedding
+constructing biological knowledge bases by extracting information from text sources
+a hybrid model for automatic identification of risk factors for heart disease
+systematic artifacts in support vector regression based compound potency prediction revealed by statistical and activity landscape analysis
+classification of dog barks a machine learning approach
+machine learning techniques in disease forecasting a case study on rice blast prediction
+the first step in the development of text mining technology for cancer risk assessment identifying and organizing scientific evidence in risk assessment literature
+support vector machine classification on the web
+disease named entity recognition using semisupervised learning and conditional random fields
+chapter 6 prediction of intrapartum hypoxia from cardiotocography data using machine learning
+a machine learning information retrieval approach to protein fold recognition
+a study of micrornas in silico and in vivo bioinformatics approaches to microrna discovery and target identification
+concurrent multiple instance learning for image categorization
+open ended learning of visual and multi modal patterns
+fast training of support vector machines using sequential minimal optimization
+humitar a sequence based method for prediction of human microrna targets
+biochemical knowledge discovery using inductive logic programming
+learning the kernel matrix with semi definite programming
+learning in region based image retrieval with generalized support vector machines
+improving the performance of dictionary based approaches in protein name recognition
+mipred classification of real and pseudo microrna precursors using random forest prediction model with combined features
+hybrid genetic algorithm neural network feature extraction for unpreprocessed microarray data
+a comparative study in birds call type independent species and individual recognition using four machine learning methods and two acoustic features
+applications of machine learning to ecological modelling
+protein names precisely peeled off free text
+online dictionary learning for sparse coding
+enzyminer automatic identification of protein level mutations and their impact on target enzymes from pubmed abstracts
+predicting the effect of mutations on protein protein binding interactions through structure based interface profiles
+a quantitative assessment of sensational with an exploration of its applications
+automatic resolution of ambiguous terms based on machine learning and conceptual relations in the umls
+the role of fine grained annotations in supervised recognition of risk factors for heart disease from ehrs
+drug design by machine learning the use of inductive logic programming to model the structure activity relationships of trimethoprim analogues binding to dihydrofolate reductase
+gpm a graph pattern matching kernel with diffusion for chemical compound classification
+a multi pronged search for a common structural motif in the secretion signal of salmonella enterica serovar typhimurium type iii effector proteins
+mtar a computational microrna target prediction architecture for human transcriptome
+using a shallow linguistic kernel for drug drug interaction extraction
+benchmarking a wide range of chemical descriptors for drug target interaction prediction using a chemogenomic approach
+chapter 8 machine learning in computational chemistry
+a study of machine learning based approaches to extract clinical entities and their assertions from discharge summaries
+tod temporal outlier detection by using quasi functional temporal dependencies
+predicting building contamination using machine learning
+weighted sequence motifs as an improved seeding step in microrna target prediction algorithms
+causal protein signaling networks derived from multiparameter single cell data
+high accuracy information extraction of medication information from clinical notes 2009 i2b2 medication extraction challenge
+gboost a mathematical programming approach to graph classification and regression
+subcellular localization of the yeast proteome
+a study of active learning methods for named entity recognition in clinical text
+graph kernels for chemical informatics
+bicepp an example based statistical text mining method for predicting the binary characteristics of drugs
+a methodology towards effective and efficient manual document annotation addressing annotator discrepancy and annotation quality
+extracting interactions between proteins from the literature
+improving the prediction of human microrna target genes by using ensemble algorithm
+where we stand where we are moving surveying computational techniques for identifying mirna genes and uncovering their regulatory role
+solving the multiple instance problem with axis parallel rectangles
+fast n fold cross validation for regularized least squares
+detection of iupac and iupac like chemical names
+advance of peptide detectability prediction on mass spectrometry platform in proteomics
+relational learning of pattern match rules for information extraction
+a tutorial on support vector regression
+disambiguating ambiguous biomedical terms in biomedical narrative text an unsupervised method
+comprehensive modeling of microrna targets predicts functional non conserved and non canonical sites
+transfer learning based clinical concept extraction on data from multiple sources
+mba a literature mining system for extracting biomedical abbreviations
+svm based biological named entity recognition using minimum edit distance feature boosted by virtual examples
+prebind and textomy mining the biomedical literature for protein protein interactions using a support vector machine
+improving missing value estimation in microarray data with gene ontology
+peptide programs applying fragment programs to protein classification
+learning anchor verbs for biological interaction patterns from published text articles
+accurate prediction of enzyme mutant activity based on a multibody statistical potential
+textractor a hybrid system for medications and reason for their prescription extraction from clinical text documents
+randomized clustering forests for image classification
+a comparative study on sequence feature extraction for type iii secreted effector prediction
+using medline as a knowledge source for disambiguating abbreviations and acronyms in full text biomedical journal articles
+computational prediction of type iii secreted proteins from gram negative bacteria
+computational protein structure analysis kernel and spectral methods
+an ir aided machine learning framework for the biocreative ii 5 challenge
+genetic algorithm neural network gann a study of neural network activation functions and depth of genetic algorithm search applied to feature selection
+shallow semantic parsing using support vector machines
+learning the species of biomedical named entities from annotated corpora
+liblinear a library for large linear classification
+inductive learning algorithms and representations for text categorization
+exploiting the contextual cues for bio entity name recognition in biomedical literature
+a comparison study between one class and two class machine learning for microrna target detection
+disambiguating proteins genes and rna in text a machine learning approach
+global landscape of protein complexes in the yeast saccharomyces cerevisiae
+methodological review extracting interactions between proteins from the literature
+finding transport proteins in a general protein database
+enabling multi level relevance feedback on pubmed by integrating rank learning into dbms
+mibench a free commercially representative embedded benchmark suite
+fusing statecharts and java
+formal verification of component based designs
+a specification idiom for reactive systems
+citric a low bandwidth wireless camera network platform
+wireless network connectivity measure
+galsc a language for event driven embedded systems
+challenges to combining general purpose and multimedia processors
+wide area ubiquitous network the network operator s view of a sensor network
+wcrt algebra and interfaces for esterel style synchronous processing
+design challenges for secure implantable medical devices
+a framework for automatic parallelization static and dynamic memory optimization in mpsoc platforms
+modeling security aspects in distributed real time component based embedded systems
+profiling energy consumption of i o functions in embedded applications
+kitss a functional software testing system using a hybrid domain model
+cycle accurate simulation of energy consumption in embedded systems
+solar an open platform for context aware mobile applications
+adaptive energy aware design of a multi bank flash memory storage system
+vertaf multi core a sysml based application framework for multi core embedded software development
+on characterizing and analyzing diffusion tensor images by learning their underlying manifold structure
+self configuration of dependent tasks for dynamically reconfigurable automotive embedded systems
+fine grained tailoring of component behaviour for embedded systems
+computers as components principles of embedded computing system design
+multi layer bus optimization for real time task scheduling with chain based precedence constraints
+cache aware scratchpad allocation algorithm
+the discipline of embedded systems design
+a rule based model of computation for systemc integrating systemc and bluespec for co design
+power analysis and minimization techniques for embedded dsp software
+fragdb secure localized storage based on super distributed rfid tag infrastructures
+model integrated development of embedded software
+predictable programming on a precision timed architecture
+mapping adl specifications to an efficient and reconfigurable runtime component platform
+an evaluation of the dynamic and static multiprocessor priority ceiling protocol and the multiprocessor stack resource policy in an smp system
+cooperative computing for distributed embedded systems
+bottom up design patterns and the energy web
+an effectual elucidation of task scheduling and memory partitioning for mpsoc
+flexible integration of data qualities in wireless sensor networks
+a methodology for the analysis and modeling of security threats and attacks for systems of embedded components
+control and communication challenges in networked real time systems
+envirotrack towards an environmental computing paradigm for distributed sensor networks
+cyber physical systems design challenges
+power analysis of embedded software a first step towards software power minimization
+think a software framework for component based operating system kernels
+design verification in model based μ controller development using an abstract component
+a trojan resistant system on chip bus architecture
+software design patterns for tinyos
+the gsoap toolkit for web services and peer to peer computing networks
+gral a grouping algorithm to optimize application placement in wireless embedded systems
+scheduling of synchronous data flow models onto scratchpad memory based embedded processors
+egospaces facilitating rapid development of context aware mobile applications
+wireless sensor network operating systems a survey
+an optimal memory allocation scheme for scratch pad based embedded systems
+flexible multicast authentication for time triggered embedded control network applications
+aegis a single chip secure processor
+teaching embedded systems the berkeley way
+tamper resistance mechanisms for secure embedded systems
+on the transient response of open queueing networks using ad hoc distributed simulations
+service oriented architectures for embedded systems using devices profile for web services
+security in embedded systems design challenges
+an energy characterization platform for memory devices and energy aware data compression for multilevel cell flash memory
+incorporating semantics based search and policy based access control mechanism in context service delivery
+how to steer an embedded software project tactics for selecting the software process model
+supporting coordination in open computational systems with tucson
+hardware accelerator for run time learning adopted in object recognition with cascade particle filter
+toward a security architecture for smart messages challenges solutions and open issues
+impact of pixel per processor ratio on embedded simd architectures
+a real time object recognition system on cell broadband engine
+embedded system security
+wattch a framework for architectural level power analysis and optimizations
+cooperative tracking using mobile robots and environment embedded networked sensors
+energy aware memory allocation in heterogeneous non volatile memory systems
+algorithms for energy driven agent placement in wireless embedded systems with memory constraints
+programming computers embedded in the physical world
+secure software delivery and installation in embedded systems
+smews smart and mobile embedded web server
+realization of a flexible platform for fruit inspection and classification applications with emphasis in rapid prototyping and development
+moving application logic from the firmware to the cloud towards the thin server architecture for the internet of things
+spatial views iterative spatial programming for networks of embedded systems
+context based secure resource access in pervasive computing environments
+enabling cloud connectivity for mobile internet of things applications
+flash solid state drive with 6 mb s read write channel and data compression
+fast frequency aware static timing analysis
+security in embedded systems
+prest a rest based protocol for pervasive systems
+reliable embedded systems development
+energy aware demand paging on nand flash based embedded storages
+security as a new dimension in embedded system design
+a framework for incremental construction of real global smart space applications
+a generic component model for building systems software
+a flexible privacy preserving authentication framework for ubiquitous computing environments
+model based robust and pecise tracking embedded in smart cameras the pfaam cam
+taming heterogeneity the ptolemy approach
+energy aware error control coding for flash memories
+tgff task graphs for free
+declarative resource naming for macroprogramming wireless networks of embedded systems
+digital rights management in a 3g mobile phone and beyond
+reliability analysis for the advanced electric power grid from cyber control and communication to physical manifestations of failure
+kitss using knowledge based software engineering for functional testing
+an efficient prediction scheme for pedestrian tracking with cascade particle filter and its implementation on cell b e
+on deploying tree structured agent applications in networked embedded systems
+web services for the internet of things through coap and exi
+parallel integral image generation algorithm on multi core system
+the runes middleware for networked embedded systems and its application in a disaster management scenario
+code generation techniques for developing light weight xml web services for embedded devices
+a trusted computing base for embedded systems
+comprehensive design of cyber physical systems
+software transactional memory for multicore embedded systems
+a security architecture for reconfigurable networked embedded systems
+a high level model of embedded flash energy consumption
+spatial views space aware programming for networks of embedded systems
+distributed motion coordination with co fields a case study in urban traffic management
+the problem with threads
+tool for automated instruction set characterization for software power estimation
+an introductory capstone design course on embedded systems
+privilege based remote attestation towards integrity assurance for lightweight clients
+programming wireless sensor networks fundamental concepts and state of the art
+context aware computing applications
+java type confusion and fault attacks
+a light weight component model for peer to peer applications
+cloud based power estimation and power aware scheduling for embedded systems
+accurate online power estimation and automatic battery behavior based power model generation for smartphones
+a low cost mixed mode parallel processor architecture for embedded systems
+compiling java for low end embedded systems
+opencv implementation optimized for a cell broadband engine processor
+face detection on embedded systems
+querying the physical world
+a novel web page watermark scheme for html security
+reconfigurable hardware for high security high performance embedded systems the safes perspective
+co operation in the digital age engendering trust in electronic environments
+towards data centric security in ubiquitous computing environments
+energy efficiency of scratch pad memory at 65 nm and below an empirical study
+the resurrecting duckling security issues for ubiquitous computing
+integral image optimizations for embedded vision applications
+looci a loosely coupled component infrastructure for networked embedded systems
+reverse engineering for mobile systems forensics with ares
+study on embedded web server and realization
+design of a secure router system for next generation networks
+a reconfigurable component based middleware for networked embedded systems
+cooperative object tracking and composite event detection with wireless embedded smart cameras
+the swarm at the edge of the cloud
+connecting the physical world with pervasive networks
+system network design space exploration based on tlm for networked embedded systems
+cerberus a context aware security scheme for smart spaces
+smart messages a distributed computing platform for networks of embedded systems
+the time triggered architecture
+accurate on line prediction of processor and memoryenergy usage under voltage scaling
+a dynamic code placement technique for scratchpad memory using postpass optimization
+a security approach for off chip memory in embedded microprocessor systems
+model driven development of particle system families
+integrating rtl ips into tlm designs through automatic transactor generation
+many to many graph matching via metric embedding
+cumulative attestation kernels for embedded systems
+self organized data ecologies for pervasive situation aware services the knowledge networks approach
+integrating security mechanisms into embedded systems by domain specific modelling
+highly optimized implementation of opencv for the cell broadband engine
+the device service bus a solution for embedded device integration through web services
+medical cyber physical systems
+towards a software framework for building highly flexible component based embedded operating systems
+research of reliable trusted boot in embedded systems
+high efficiency protection solution for off chip memory in embedded systems
+embedded computer vision
+components for embedded software the pecos approach
+tec tree a low cost parallelizable tree for efficient defense against memory replay attacks
+model based security and dependability patterns in rces the teresa approach
+platforms for industrial cyber physical systems integration contradicting requirements as drivers for innovation
+authentication in time triggered systems using time delayed release of keys
+trusted computing systems the procos experience
+on the difficulty of software based attestation of embedded devices
+networking embedded agents
+gaiaos an infrastructure for active spaces
+energy and performance optimization of demand paging with onenand flash
+cascade adaboost classifiers with stage features optimization for cellular phone embedded face detection system
+a spatial programming model for real global smart space applications
+solar a pervasive computing infrastructure for context aware mobile applications
+engineering computer based systems meeting the challenge
+rdf based model for context aware reasoning in rich service environment
+a real time network at home
+analysis and implementation of secure console server based on embedded linux
+a programming language for ad hoc networks of mobile devices
+ipchinook an integrated ip based design framework for distributed embedded systems
+taming trusted platforms by operating system design
+dynamically configurable security for sram fpga bitstreams
+adaboost based face detection for embedded systems
+the nesc language a holistic approach to networked embedded systems
+programming sensor networks using remora component model
+implementing efficient 384 bit nist elliptic curve over prime fields on an arm946e
+spatial programming using smart messages design and implementation
+the runes architecture for reconfigurable embedded and sensor networks
+embedded web services
+estimating 3d hand pose from a cluttered image
+mica a wireless platform for deeply embedded networks
+faults injection methods and fault attacks
+scaling into ambient intelligence
+exip a framework for embedded web development
+embedded computation meets the world wide web
+toward a science of cyber physical system integration
+classes and inheritance in actor oriented design
+the runes middleware a reconfigurable component based approach to networked embedded systems
+securing the data path of next generation router systems
+high performance hardware monitors to protect network processors from data plane attacks

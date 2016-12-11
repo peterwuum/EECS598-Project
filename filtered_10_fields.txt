@@ -1,0 +1,10 @@
+028821BF	Operations research
+0724DFBA	Machine Learning
+008F4943	Computer hardware
+01DCF91B	Computer network
+039D5C06	Bioinformatics
+024DC8C8	Computer security
+048A0B89	Telecommunications
+0A590CEF	Parallel computing
+08EB4114	Embedded system
+0667AC6E	Human–computer interaction

@@ -15,7 +15,6 @@
  - nltk
  - click
  - statistics
- - networkclustering
  - multiprocessing
  - matplotlib
 
