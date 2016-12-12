@@ -5,7 +5,9 @@
  - Yuqi Gu
  - Xuefei Zhang
 
-# Introduction:
+# Introduction
+
+In this project, we model the text generating process in a large corpus with network structure through a joint model of PLSA and network regularization. Our contributions include the following things. Firstly, we implement the classical PLSA algorithm on the Microsoft Academic Graph as a baseline. We test its performance on different proportions of the entire dataset, each of which is randomly sampled from the entire graph. Then we implement NetPLSA model and also vary the parameter settings to compare the results. Then we use several methods to evaluate the NetPLSA algorithm, including document classification analysis and topic interpretability analysis. We compare the results to baseline approaches, the PLSA model and the spectral clustering model respectively.
 
 
 # Getting Started
