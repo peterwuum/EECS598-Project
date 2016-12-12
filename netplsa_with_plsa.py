@@ -20,7 +20,8 @@ class PLSA(object):
 					number_of_topic = 10, maxIteration = 30, threshold = 4, network = False, 
 					lambda_par = 0.5, gamma_par = 0.1, synthetic_edge_prob = 0.0, 
 					lemmatize = True, stemmer = False, 
-					save = None, optimal = False):
+					save = None, optimal = False, tfidf = False):
+		self._tfidf = tfidf
 		self._save = save
 		# optimal means using the true label as doc_topic matrix initialization
 		self._optimal = optimal
@@ -215,7 +216,7 @@ class PLSA(object):
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
-			if word_entropy[i] < -3.5 and len(_CommonWordListTmp) < self._numSelectedWord:
+			if word_entropy[i] < -1 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
@@ -239,10 +240,10 @@ class PLSA(object):
 
 		print 'Built processed doc term matrix with size (%d, %d)' % self.doc_term_matrix.shape
 
-		# print 'tfidf version'
-		# transformer = TfidfTransformer(smooth_idf = False)
-		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
-		# # print self.doc_term_matrix
+		if self._tfidf:
+			print 'tfidf version'
+			transformer = TfidfTransformer(smooth_idf = False)
+			self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
 
 	def _initParameters(self):
 		normalization = np.sum(self._doc_topic, axis = 1)
@@ -480,7 +481,7 @@ class PLSA(object):
 			outfile.write('\t'.join(self._avg_iteration_time))
 
 
-DEFAULT_DATA_FILE_SUFFIX = "10000"
+DEFAULT_DATA_FILE_SUFFIX = "1000"
 DEFAULT_RESULT_FILE = "plsa_data"
 DEFAULT_LAMBDA = 0.5
 DEFAULT_GAMMA = 0.1
@@ -522,19 +523,19 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 
 	# Set "network = False" to get a good initialization from PLSA
 	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid,
-					network = False, lambda_par = lambda_par, gamma_par = gamma_par, 
-					synthetic_edge_prob = synthetic_edge_prob, optimal = False)
+					network = True, lambda_par = lambda_par, gamma_par = gamma_par, 
+					synthetic_edge_prob = synthetic_edge_prob, optimal = False, tfidf = True)
 	plsa.RunPLSA()
 
-	# # # Run NetPLSA
-	plsa.network = True
-	plsa._old = 1
-	plsa._new = 1
-	plsa._save = not plsa._save
-	plsa.RunPLSA()
+	# # # # Run NetPLSA
+	# plsa.network = True
+	# plsa._old = 1
+	# plsa._new = 1
+	# plsa._save = not plsa._save
+	# plsa.RunPLSA()
 
 	# Print result
-	plsa.print_topic_word_matrix(5)
+	plsa.print_topic_word_matrix(20)
 	# plsa.print_doc_topic_matrix(doc_path, path_to_paperid, path_to_idname, show_doc, True)
 	path_to_save = result_file
 	plsa.save_all_data(str(path_to_save))
