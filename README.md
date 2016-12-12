@@ -28,17 +28,17 @@ pip install -r requirements.txt
 ```
 
 ## Running Example
-Get Data From Microsoft Academic Graph
+### Get Data From Microsoft Academic Graph
 ```
 python DataProcessingPipeline.py
 ```
 
-Fit NetPLSA Model or PLSA model on Selected Academic Graph
+### Fit NetPLSA Model or PLSA model on Selected Academic Graph
 ```
 python netplsa_with_plsa.
 ```
 
-Evaluate NetPLSA Model or PLSA Model
+### Evaluate NetPLSA Model or PLSA Model
 ```
 python evaluate.py
 ```
