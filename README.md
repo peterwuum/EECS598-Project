@@ -53,6 +53,8 @@ python evaluate.py
  - networkclustering.py: Cluster papers based on network structure
  - overlapNMI.py: Calculate overlap NMI score based on true labels and predict labels (differ from NMI score function in sklearn library)
  - word_intrusion.py: Evaluate topic interpretability
+ - proc.m: Generate heat map for accuracy of train and test
+ - visual.py: Visualize the network with true label of nodes
 
 # Pre-selected Dataset
 The files in PROCESSED folder are the data we used in our project
