@@ -328,19 +328,12 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 	print test_accuracy
 
 
-DEFAULT_SOURCE_FILE = "plsa_data"
-DEFAULT_RESULT_FILE = "plsa_data_evaluation"
+"""
+	Evaluation functions
 
-# CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-# @click.command(context_settings=CONTEXT_SETTINGS)
-# @click.option("--source_file", "-sf", "source_file",
-# 	default=DEFAULT_SOURCE_FILE,
-# 	help="The path of source file")
-# @click.option("--result_file", "-rf", "result_file",
-# 	default=DEFAULT_RESULT_FILE,
-# 	help="The path of result file")
+"""
 
-def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = DEFAULT_RESULT_FILE):
+def evaluation_classification(source_file, result_file):
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
@@ -355,10 +348,11 @@ def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = D
 	print 'The NMI between topic model and true label is\t' + str(NMI)
 	return NMI
 
-def evaluation_word_intrusion(doc_path = 'PROCESSED/titlesUnderCS_85000.txt', stop_word_path = 'stopwords.txt', \
-								lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
+
+def evaluation_word_intrusion(titles_file, source_file, stop_word_path = 'stopwords.txt', \
+								lemmatize = True, Stem = False):
 	if not os.path.exists('preprocessing_data.pkl'):
-		doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, \
+		doc_term_matrix, number_of_doc, wordlist = preprocessing(titles_file, stop_word_path, \
 				lemmatize = lemmatize, Stem = Stem)
 	else:
 		with open('preprocessing_data.pkl', 'rb') as INFILE:
@@ -375,19 +369,43 @@ def evaluation_word_intrusion(doc_path = 'PROCESSED/titlesUnderCS_85000.txt', st
 	accuracy = WordIntrusion(doc_term_matrix, len(wordlist), word_topic)
 	return accuracy
 
-def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjacentMatrixUnderCS_1000'):
+def evaluation_clustering(source_file, adj_matrix):
 	data_file = str(source_file)
 	with open(data_file, 'r') as INFILE:
 		data = pickle.load(INFILE)
 
-	NMI_network = networkclustering.networkClustering(input_file, data)
+	NMI_network = networkclustering.networkClustering(adj_matrix, data)
 
 	return NMI_network
 
 
+DEFAULT_SOURCE_FILE = "plsa_data"
+DEFAULT_TITLES_FILE = 'titlesUnderCS_1000.txt'
+DEFAULT_ADJ_MATRIX = 'adjacentMatrixUnderCS_1000'
+DEFAULT_RESULT_FILE = "plsa_data_evaluation"
+
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("--source_file", "-sf", "source_file",
+	default=DEFAULT_SOURCE_FILE,
+	help="The path of source file")
+@click.option("--titles_file", "-tf", "titles_file",
+	default=DEFAULT_TITLES_FILE,
+	help="The path of titles file")
+@click.option("--adj_matrix", "-am", "adj_matrix",
+	default=DEFAULT_ADJ_MATRIX,
+	help="The path of adjacent matrix")
+@click.option("--result_file", "-rf", "result_file",
+	default=DEFAULT_RESULT_FILE,
+	help="The path of result file")
+
+
+def main(source_file = DEFAULT_SOURCE_FILE, titles_file = DEFAULT_TITLES_FILE, adj_matrix = DEFAULT_ADJ_MATRIX, result_file = DEFAULT_RESULT_FILE):
+	NMI_topic_network = evaluation_classification(source_file, result_file)
+	NMI_network = evaluation_clustering(source_file, adj_matrix)
+	# evaluation_word_intrusion(titles_file)
+
 if __name__ == "__main__":
-	NMI_topic_network = evaluation_classification()
-	NMI_network = evaluation_clustering()
-	accuracy = evaluation_word_intrusion()
+	main()
 
 

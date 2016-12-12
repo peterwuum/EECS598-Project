@@ -96,6 +96,9 @@ class PLSA(object):
 					self._adj[i, j] = 1.0
 					self._adj[j, i] = 1.0
 
+			with open('EVALUATION/' + path_to_adj.split('/')[-1], 'wb') as outfile:
+				pickle.dump(self._adj, outfile)
+
 		self._lap = laplacian(self._adj)
 		self._adj = normalize(self._adj, norm='l1', axis=1)
 		self.synthetic_edge_prob = synthetic_edge_prob
