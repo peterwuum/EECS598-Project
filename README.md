@@ -1,5 +1,5 @@
 # EECS598 - Project
-# Authors:
+# Authors
  - Zheng Wu
  - Wei-Hsin Chen
  - Yuqi Gu
