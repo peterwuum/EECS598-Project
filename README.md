@@ -1,4 +1,4 @@
-# EECS598 - Project
+# EECS598 Project: Topic Models with Network Regularization 
 # Authors
  - Zheng Wu
  - Wei-Hsin Chen
