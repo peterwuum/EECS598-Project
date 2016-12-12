@@ -58,6 +58,6 @@ def visualize(savefile, i):
 	plt.savefig(save)
 
 if __name__ == '__main__':
-	for i in range(10):
+	for i in range():
 		save = './visualize__' + str(i) + '.png'
 		visualize(save, i)
