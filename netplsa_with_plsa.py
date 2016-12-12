@@ -13,15 +13,11 @@ from nltk.stem import WordNetLemmatizer
 from nltk.stem.lancaster import LancasterStemmer
 import click
 import random
-
-
-'''
-TODO: change the EM to distributed version
-'''
+import os
 
 class PLSA(object):
 	def __init__(self, doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
-					number_of_topic = 10, maxIteration = 30, threshold = 0.02, network = False, 
+					number_of_topic = 10, maxIteration = 30, threshold = 4, network = False, 
 					lambda_par = 0.5, gamma_par = 0.1, synthetic_edge_prob = 0.0, 
 					lemmatize = True, stemmer = False, 
 					save = None, optimal = False):
@@ -246,7 +242,7 @@ class PLSA(object):
 		# print 'tfidf version'
 		# transformer = TfidfTransformer(smooth_idf = False)
 		# self.doc_term_matrix = transformer.fit_transform(self.doc_term_matrix).toarray()
-		# print self.doc_term_matrix
+		# # print self.doc_term_matrix
 
 	def _initParameters(self):
 		normalization = np.sum(self._doc_topic, axis = 1)
@@ -397,7 +393,7 @@ class PLSA(object):
 			_probability = self._probability
 
 			# if(self._old != 1 and abs((self._new - self._old) / self._old) < self._threshold):
-			if self._old != 1 and abs(self._new - self._old < 4):
+			if self._old != 1 and abs(self._new - self._old < self._threshold):
 				break
 			self._old = self._new
 
@@ -425,6 +421,54 @@ class PLSA(object):
 			for i in range(0, int(top_n_words)):
 				print '%20s  \t---\t  %.4f' % (self._CommonWordList[pair[i][1]], pair[i][0])
 			print '\n'
+
+	def print_doc_topic_matrix(self, document_path, paper_id, path_to_idname, outfile, min_doc_threhold = False):
+		if min_doc_threhold:
+			min_probability = 1.0 / self.number_of_topic
+		else:
+			min_probability = 0
+
+		with open(document_path, 'r') as INFILE:
+			document = INFILE.readlines()
+
+		label_category = dict()
+		with open(path_to_idname, 'r') as INFILE:
+			for line in INFILE.readlines():
+				label_category[re.split('\t', line)[0]] = re.split('\t', line)[1]
+
+		paper_category = list()
+		with open(paper_id, 'r') as INFILE:
+			for line in INFILE.readlines():
+				linetemp = re.split('\t', line.strip())
+				temp = list()
+				for item in linetemp:
+					temp.append(label_category[item])
+				paper_category.append(temp) 
+
+
+		with open(outfile, 'w+') as OUTFILE:
+			for k in range(0, len(self._doc_topic)):
+				gamma_k = list(self._doc_topic[k, :])
+				gamma_k /= sum(gamma_k)
+				pair = zip(gamma_k, range(0, len(gamma_k)))
+				pair = sorted(pair, key = lambda x: x[0], reverse = True)
+
+				cate = ''
+				for item in paper_category[k]:
+					cate += item + '  '
+				print document[k].strip() + '\t' + cate.strip()
+				OUTFILE.write(document[k].strip() + '\t\t' + cate.strip() + '\n')
+
+				output = ''
+				for i in range(len(pair)):
+					if (pair[i][0] >= min_probability):
+						# if (i != self.number_of_topic - 1):
+						# 	output += str(pair[i][0]) + ' ' + 'topic' + str(pair[i][1]) + ' + '
+						# else:
+						output += str(pair[i][0]) + ' ' + 'topic ' + str(pair[i][1]) + '\t'
+				print output
+				OUTFILE.write(output + '\n')
+				print '\n'
 
 
 	def save_all_data(self, path_to_save):
@@ -471,14 +515,18 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 	path_to_adj = 'PROCESSED/adjacentMatrixUnderCS_%s' % (data_file_suffix)
 	path_to_idname = 'filtered_10_fields.txt' 
 	path_to_paperid = 'PROCESSED/PaperToKeywords_%s.txt' % (data_file_suffix)
+	show_doc = 'show_doc.txt'
+
+	if os.path.exists(show_doc):
+		os.remove(show_doc)
 
 	# Set "network = False" to get a good initialization from PLSA
-	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid, 
+	plsa = PLSA(doc_path, stop_word_path, path_to_adj, path_to_idname, path_to_paperid,
 					network = False, lambda_par = lambda_par, gamma_par = gamma_par, 
 					synthetic_edge_prob = synthetic_edge_prob, optimal = False)
 	plsa.RunPLSA()
 
-	# # Run NetPLSA
+	# # # Run NetPLSA
 	plsa.network = True
 	plsa._old = 1
 	plsa._new = 1
@@ -486,7 +534,8 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 	plsa.RunPLSA()
 
 	# Print result
-	plsa.print_topic_word_matrix(20)
+	plsa.print_topic_word_matrix(5)
+	plsa.print_doc_topic_matrix(doc_path, path_to_paperid, path_to_idname, show_doc, True)
 	path_to_save = result_file
 	plsa.save_all_data(str(path_to_save))
 	
