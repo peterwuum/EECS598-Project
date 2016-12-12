@@ -22,6 +22,7 @@ The dependent python libraries for this project are listed as follow:
  - statistics
  - multiprocessing
  - matplotlib
+ - networkx
 
 ## Installing
 Please run the following in terminal before running the code

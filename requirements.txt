@@ -6,3 +6,4 @@ click
 statistics
 multiprocessing
 matplotlib
+networkx
