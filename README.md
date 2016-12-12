@@ -48,9 +48,10 @@ python evaluate.py
 # Function Description
  - DataProcessing.py: Select papers from Microsoft Academic Graph
  - netplsa_with_plsa.py: Run NetPLSA Model (network = True) or PLSA model (network = False)
- - evaluate.py: Classification and Word Intrusion Task on Topic Model
+ - evaluate.py: Classification, Word Intrusion, Network Clustering Tasks on Topic Model
  - networkclustering.py: Cluster papers based on network structure
  - overlapNMI.py: Calculate overlap NMI score based on true labels and predict labels (differ from NMI score function in sklearn library)
+ - word_intrusion.py: Evaluate topic interpretability
 
 # Pre-selected Dataset
 The files in PROCESSED folder are the data we used in our project
