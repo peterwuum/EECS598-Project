@@ -215,7 +215,7 @@ class PLSA(object):
 		_CommonWordListTmp = []
 		_indexTmp = []
 		for i in ind[::-1]:
-			if word_entropy[i] < -2 and len(_CommonWordListTmp) < self._numSelectedWord:
+			if word_entropy[i] < -3.5 and len(_CommonWordListTmp) < self._numSelectedWord:
 				_CommonWordListTmp.append(self._CommonWordList[i])
 				_indexTmp.append(i)
 
@@ -480,7 +480,7 @@ class PLSA(object):
 			outfile.write('\t'.join(self._avg_iteration_time))
 
 
-DEFAULT_DATA_FILE_SUFFIX = "1000"
+DEFAULT_DATA_FILE_SUFFIX = "10000"
 DEFAULT_RESULT_FILE = "plsa_data"
 DEFAULT_LAMBDA = 0.5
 DEFAULT_GAMMA = 0.1
@@ -535,7 +535,7 @@ def main(data_file_suffix = DEFAULT_DATA_FILE_SUFFIX, result_file = DEFAULT_RESU
 
 	# Print result
 	plsa.print_topic_word_matrix(5)
-	plsa.print_doc_topic_matrix(doc_path, path_to_paperid, path_to_idname, show_doc, True)
+	# plsa.print_doc_topic_matrix(doc_path, path_to_paperid, path_to_idname, show_doc, True)
 	path_to_save = result_file
 	plsa.save_all_data(str(path_to_save))
 	

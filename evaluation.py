@@ -178,10 +178,6 @@ def classification(doc_topic, label_list, label_category_list, percentage, accur
 	print 'Mean test accuracy: ' + str(statistics.mean(test_loose_accuracy))
 	return (statistics.mean(train_loose_accuracy), statistics.mean(test_loose_accuracy), NMI)
 
-
-
-
-
 # word intrusion evaluation
 def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 	StopWords = set()
@@ -239,7 +235,7 @@ def preprocessing(doc_path, stop_word_path, lemmatize = True, Stem = False):
 
 
 def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
-					number_of_topic = 10, num_topwords = 10, num_instances_per_topic = 50):
+					number_of_topic = 10, num_topwords = 10, num_instances_per_topic = 70):
 	# binary_doc_term = doc_term_matrix.toarray()
 	binary_doc_term = doc_term_matrix
 	print 'finish dense matrix'
@@ -251,14 +247,19 @@ def WordIntrusion(doc_term_matrix, number_of_word, word_topic, \
 	print 'finsh bigram freq matrix'
 
 	unigram_prob = (1.0 * np.diag(bigram_freq)) / np.trace(bigram_freq)
+	print '1'
 	bigram_prob = (1.0 * bigram_freq) / (np.sum(bigram_freq) - np.trace(bigram_freq)) + 1e-10
+	print '2'
 	PMI_denominator = np.outer(unigram_prob, unigram_prob)
+	print '3'
 	PMI_mat = np.log(bigram_prob) - np.log(PMI_denominator)
+	print '4'
 	PMI = PMI_mat.sum(axis = 0)
 	CP1 = (PMI_mat / unigram_prob).sum(axis = 0)
 	CP2 = ((1.0 / unigram_prob).T * PMI_mat).sum(axis = 0)
 	# change 3 column vector to a n * 3 matrix
 	word_intrusion_features = np.column_stack((PMI, CP1, CP2))
+	print 'word intrusion feature'
 	
 	ind_words = np.ndarray((number_of_topic, len(word_topic)))
 	ind_topwords = np.ndarray((number_of_topic, num_topwords))
@@ -354,7 +355,7 @@ def evaluation_classification(source_file = DEFAULT_SOURCE_FILE, result_file = D
 	print 'The NMI between topic model and true label is\t' + str(NMI)
 	return NMI
 
-def evaluation_word_intrusion(doc_path = 'titlesUnderCS_85000.txt', stop_word_path = 'stopwords.txt', \
+def evaluation_word_intrusion(doc_path = 'PROCESSED/titlesUnderCS_85000.txt', stop_word_path = 'stopwords.txt', \
 								lemmatize = True, Stem = False, source_file = DEFAULT_SOURCE_FILE):
 	if not os.path.exists('preprocessing_data.pkl'):
 		doc_term_matrix, number_of_doc, wordlist = preprocessing(doc_path, stop_word_path, \
@@ -385,8 +386,8 @@ def evaluation_clustering(source_file = DEFAULT_SOURCE_FILE, input_file = 'adjac
 
 
 if __name__ == "__main__":
-	# NMI_topic_network = evaluation_classification()
-	# NMI_network = evaluation_clustering()
+	NMI_topic_network = evaluation_classification()
+	NMI_network = evaluation_clustering()
 	accuracy = evaluation_word_intrusion()
 
 
