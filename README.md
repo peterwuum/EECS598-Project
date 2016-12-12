@@ -1,16 +1,16 @@
 # EECS598 - Project
-## Authors:
+# Authors:
  - Zheng Wu
  - Wei-Hsin Chen
  - Yuqi Gu
  - Xuefei Zhang
 
-## Introduction:
+# Introduction:
 
 
-## Getting Started
+# Getting Started
 
-# Prerequisites
+## Prerequisites
 The dependent python libraries for this project are listed as follow:
  - numpy
  - scipy
@@ -21,7 +21,7 @@ The dependent python libraries for this project are listed as follow:
  - multiprocessing
  - matplotlib
 
-# Installing
+## Installing
 Please run the following in terminal before running the code
 ```
 pip install -r requirements.txt
@@ -35,7 +35,7 @@ python DataProcessingPipeline.py
 
 ### Fit NetPLSA Model or PLSA model on Selected Academic Graph
 ```
-python netplsa_with_plsa.
+python netplsa_with_plsa.py
 ```
 
 ### Evaluate NetPLSA Model or PLSA Model
@@ -43,16 +43,16 @@ python netplsa_with_plsa.
 python evaluate.py
 ```
 
-## Function Description
+# Function Description
  - DataProcessing.py: Select papers from Microsoft Academic Graph
  - netplsa_with_plsa.py: Run NetPLSA Model (network = True) or PLSA model (network = False)
  - evaluate.py: Classification and Word Intrusion Task on Topic Model
  - networkclustering.py: Cluster papers based on network structure
  - overlapNMI.py: Calculate overlap NMI score based on true labels and predict labels (differ from NMI score function in sklearn library)
 
-## Pre-selected Dataset
+# Pre-selected Dataset
 The files in PROCESSED folder are the data we used in our project
 
-## License
+# License
 This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the LICENSE.md file for details
 
